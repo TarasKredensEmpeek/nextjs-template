@@ -1,12 +1,9 @@
-import { IDataProvider, IRequestOptions, IResponse } from './types';
+import { IDataProvider, IRequestOptions } from './types';
 import { paramsToPath, generateQuery } from './utils';
 import { fetchInstance } from './fetchInstance';
 
 const dataProvider: IDataProvider = {
-  getData: (
-    resource: string,
-    options?: IRequestOptions,
-  ): Promise<IResponse> => {
+  getData: <T>(resource: string, options?: IRequestOptions) => {
     const { id, signal, ...params } = options || {};
     let source = resource;
 
@@ -24,7 +21,7 @@ const dataProvider: IDataProvider = {
     return fetchInstance(source, { signal, method: 'GET' });
   },
 
-  postData: (resource: string, options?: IRequestOptions) => {
+  postData: <T>(resource: string, options?: IRequestOptions) => {
     const { signal, body, ...params } = options || {};
     let source = resource;
 
@@ -39,7 +36,7 @@ const dataProvider: IDataProvider = {
     });
   },
 
-  updateData: (resource: string, options?: IRequestOptions) => {
+  updateData: <T>(resource: string, options?: IRequestOptions) => {
     const { params, body } = options || {};
 
     const parsedResource = paramsToPath(resource, params);
@@ -50,7 +47,7 @@ const dataProvider: IDataProvider = {
     );
   },
 
-  deleteData: (resource: string, options?: IRequestOptions) => {
+  deleteData: <T>(resource: string, options?: IRequestOptions) => {
     const { params, ...query } = options || {};
     const parsedResource = paramsToPath(resource, params);
 

@@ -1,3 +1,5 @@
+import { IResponse, IRequestOptions } from './types';
+
 // export const createHeadersFromOptions = options => {
 //   const requestHeaders =
 //     options.headers ||
@@ -20,14 +22,13 @@
 //
 //   return requestHeaders;
 // };
-import { IResponse, IRequestOptions } from './types';
 
 const { NEXT_PUBLIC_API_URL } = process.env;
 
-export const fetchInstance = async (
+export const fetchInstance = async <T = {}>(
   resource: string,
   options?: IRequestOptions,
-): Promise<IResponse> => {
+): Promise<IResponse<T>> => {
   const url = `${NEXT_PUBLIC_API_URL}/${resource}`;
   // const requestHeaders = createHeadersFromOptions(options);
 
@@ -40,10 +41,7 @@ export const fetchInstance = async (
 
     const json = await response.json();
 
-    return {
-      ...response,
-      data: json,
-    };
+    return { ...response, data: json };
   } catch (e) {
     return Promise.reject(e);
   }

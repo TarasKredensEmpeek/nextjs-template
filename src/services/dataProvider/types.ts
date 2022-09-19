@@ -21,14 +21,15 @@ export interface IRequestOptions extends RequestInit {
   stringifyOptions?: StringifyOptions;
 }
 
-export interface IResponse extends Response {
-  data?: any;
+export interface IResponse<T> extends Response {
+  data?: T | any;
+  total?: number;
 }
 
-export type DataProviderInstance = (
+export type DataProviderInstance = <T>(
   resource: string,
   options?: IRequestOptions | undefined,
-) => Promise<IResponse>;
+) => Promise<IResponse<T>>;
 
 export interface IDataProvider {
   getData: DataProviderInstance;

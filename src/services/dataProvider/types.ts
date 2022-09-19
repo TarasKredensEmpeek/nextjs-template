@@ -26,10 +26,10 @@ export interface IResponse<T> extends Response {
   total?: number;
 }
 
-export type DataProviderInstance = <T>(
+export type DataProviderInstance = <ResponseType>(
   resource: string,
   options?: IRequestOptions | undefined,
-) => Promise<IResponse<T>>;
+) => Promise<IResponse<ResponseType>>;
 
 export interface IDataProvider {
   getData: DataProviderInstance;

@@ -25,10 +25,10 @@ import { IResponse, IRequestOptions } from './types';
 
 const { NEXT_PUBLIC_API_URL } = process.env;
 
-export const fetchInstance = async <T = {}>(
+export const fetchInstance = async <ResponseType = {}>(
   resource: string,
   options?: IRequestOptions,
-): Promise<IResponse<T>> => {
+): Promise<IResponse<ResponseType>> => {
   const url = `${NEXT_PUBLIC_API_URL}/${resource}`;
   // const requestHeaders = createHeadersFromOptions(options);
 

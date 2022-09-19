@@ -3,7 +3,7 @@ import { paramsToPath, generateQuery } from './utils';
 import { fetchInstance } from './fetchInstance';
 
 const dataProvider: IDataProvider = {
-  getData: <T>(resource: string, options?: IRequestOptions) => {
+  getData: (resource: string, options?: IRequestOptions) => {
     const { id, signal, ...params } = options || {};
     let source = resource;
 
@@ -21,7 +21,7 @@ const dataProvider: IDataProvider = {
     return fetchInstance(source, { signal, method: 'GET' });
   },
 
-  postData: <T>(resource: string, options?: IRequestOptions) => {
+  postData: (resource: string, options?: IRequestOptions) => {
     const { signal, body, ...params } = options || {};
     let source = resource;
 
@@ -36,7 +36,7 @@ const dataProvider: IDataProvider = {
     });
   },
 
-  updateData: <T>(resource: string, options?: IRequestOptions) => {
+  updateData: (resource: string, options?: IRequestOptions) => {
     const { params, body } = options || {};
 
     const parsedResource = paramsToPath(resource, params);
@@ -47,7 +47,7 @@ const dataProvider: IDataProvider = {
     );
   },
 
-  deleteData: <T>(resource: string, options?: IRequestOptions) => {
+  deleteData: (resource: string, options?: IRequestOptions) => {
     const { params, ...query } = options || {};
     const parsedResource = paramsToPath(resource, params);
 

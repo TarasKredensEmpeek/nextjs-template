@@ -18,12 +18,14 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
+      "@theme": ["theme"],
+      "@pages/*": ["pages/*"],
       "@common/*": ["common/*"],
-      "@modules/*": ["modules/*"],
-      "@services/*": ["services/*"],
-      "@constants/*": ["constants/*"]
+      "@services/*": ["services/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src",
+    "pages"
+  ],
   "exclude": ["node_modules"]
 }

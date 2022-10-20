@@ -1,3 +1,3 @@
-import createTheme from '@mui/material/styles/createTheme';
+import theme from './theme';
 
-export default createTheme({});
+export default theme;

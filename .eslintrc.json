@@ -2,6 +2,7 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "prettier",
     "plugin:prettier/recommended",
@@ -16,6 +17,15 @@
     },
     "sourceType": "module"
   },
+  "settings": {
+    "react": { "version": "detect" },
+    "import/resolver": {
+      "alias": {
+        "map": [["~", "./src"]],
+        "extensions": [".ts", ".tsx", ".d.ts"]
+      }
+    }
+  },
   "rules": {
     "import/extensions": [
       "error",
@@ -27,44 +37,25 @@
         "jsx": "never"
       }
     ],
-    "no-console": [
-      1,
-      {
-        "allow": [
-          "warn",
-          "error"
-        ]
-      }
-    ],
+    "no-console": [1, {"allow": ["warn", "error"]}],
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
     "import/no-unresolved": "off",
     "import/named": "off",
     "react/display-name": "off",
     "react/jsx-fragments": "off",
-    "react/prop-types": [
-      "warn",
-      {
-        "skipUndeclared": true
-      }
-    ],
+    "react/prop-types": ["warn", { "skipUndeclared": true }],
     "consistent-return": "warn",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
-    "arrow-parens": [
-      2,
-      "as-needed"
-    ],
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "external",
-          "internal"
-        ],
-        "newlines-between": "always"
-      }
-    ]
+    "arrow-parens": [2, "as-needed"],
+    "import/order": ["error", {
+      "groups": [
+        "external",
+        "internal"
+      ],
+      "newlines-between": "always"
+    }]
   },
-  "ignorePatterns": ["next.config.js", "next-env.d.ts"]
+  "ignorePatterns": ["next.config.js", "next-env.d.ts", "next-i18next.config.js"]
 }

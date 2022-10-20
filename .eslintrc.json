@@ -7,9 +7,7 @@
     "plugin:prettier/recommended",
     "plugin:import/recommended"
   ],
-  "plugins": [
-    "import"
-  ],
+  "plugins": ["import"],
   "parserOptions": {
     "project": "./tsconfig.json",
     "ecmaVersion": 12,
@@ -41,6 +39,7 @@
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
     "import/no-unresolved": "off",
+    "import/named": "off",
     "react/display-name": "off",
     "react/jsx-fragments": "off",
     "react/prop-types": [

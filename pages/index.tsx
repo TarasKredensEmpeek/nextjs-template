@@ -18,9 +18,9 @@ const Home: NextPage<IdxProps> = () => {
       <h3>App lang - {locale}</h3>
       <h4>{t('name')}</h4>
 
-      <Link href="/pages">Home</Link>
+      <Link href="/">Home</Link>
 
-      <Link href="/pages/about">About</Link>
+      <Link href="/about">About</Link>
     </div>
   );
 };

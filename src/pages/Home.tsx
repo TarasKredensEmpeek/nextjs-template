@@ -1,22 +1,36 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+// import useTheme from '@mui/material/styles/useTheme';
 
 const Home = () => {
+  // console.log(useTheme().palette);
   return (
     <>
       <Typography color="hint">text</Typography>
-      <Button color="primary" variant="outlined">
-        text
-      </Button>
+      <TextField
+        color="secondary"
+        variant="outlined"
+        value=""
+        placeholder="outlined"
+        size="small"
+      />
 
-      <Button color="primary" variant="contained">
-        text
-      </Button>
+      <TextField
+        color="secondary"
+        variant="filled"
+        value="filled"
+        placeholder="filled"
+        size="small"
+      />
 
-      <Button color="primary" variant="text">
-        text
-      </Button>
+      <TextField
+        color="secondary"
+        variant="standard"
+        value="standard"
+        size="small"
+        placeholder="standard"
+      />
     </>
   );
 };

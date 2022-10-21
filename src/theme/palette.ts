@@ -1,4 +1,4 @@
-// todo declare new palette
+// todo declare new palette interface
 const palette: any = {
   background: {
     main: '#ffffff',
@@ -18,8 +18,12 @@ const palette: any = {
     light: '#DAC091',
   },
 
-  // secondary: {},
-  //
+  secondary: {
+    dark: '#000000',
+    main: '#2a2a2a',
+    light: '#b7b7b7',
+  },
+
   // error: {},
   // warning: {},
   // info: {},

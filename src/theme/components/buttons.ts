@@ -3,6 +3,8 @@ import { ComponentsOverrides } from '@/theme/types';
 const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
   styleOverrides: {
     root: {
+      height: 42,
+      fontSize: 14,
       borderRadius: 0,
       fontWeight: 100,
     },

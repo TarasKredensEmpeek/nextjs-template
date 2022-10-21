@@ -1,3 +1,9 @@
 import createTheme from '@mui/material/styles/createTheme';
 
-export default createTheme({});
+import palette from './palette';
+import components from './components';
+
+export default createTheme({
+  palette,
+  components,
+});

@@ -7,8 +7,9 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 // import dataProvider from '@services/dataProvider';
+import Home from '@/pages/Home';
 
-const IndexPage: NextPage = () => {
+const HomePage: NextPage = () => {
   const { locale } = useRouter();
   const { t } = useTranslation();
 
@@ -17,6 +18,7 @@ const IndexPage: NextPage = () => {
       <Head>
         <title>My app</title>
       </Head>
+      <Home />
       <h3>App lang - {locale}</h3>
       <h4>{t('name')}</h4>
 
@@ -39,4 +41,4 @@ export const getServerSideProps = async ({ locale }: SSRProps) => {
   return { props };
 };
 
-export default IndexPage;
+export default HomePage;

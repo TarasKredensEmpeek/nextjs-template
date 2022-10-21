@@ -26,6 +26,9 @@ const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
     fontSize: size === 'small' ? 14 : 16,
     paddingTop: theme.spacing(paddingValue),
     paddingBottom: theme.spacing(paddingValue),
+    '&::placeholder': {
+      textTransform: 'uppercase',
+    },
   };
 };
 

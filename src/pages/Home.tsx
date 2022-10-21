@@ -11,15 +11,14 @@ const Home = () => {
       <TextField
         color="secondary"
         variant="outlined"
-        value=""
         placeholder="outlined"
         size="small"
+        required
       />
 
       <TextField
         color="secondary"
         variant="filled"
-        value="filled"
         placeholder="filled"
         size="small"
       />
@@ -27,7 +26,6 @@ const Home = () => {
       <TextField
         color="secondary"
         variant="standard"
-        value="standard"
         size="small"
         placeholder="standard"
       />

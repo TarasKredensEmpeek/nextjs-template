@@ -14,6 +14,7 @@ const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
       fontSize: 14,
       borderRadius: 0,
       fontWeight: 100,
+      fontFamily: 'StagSans-Book',
     },
 
     text: {

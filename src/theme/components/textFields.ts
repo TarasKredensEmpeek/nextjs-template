@@ -23,6 +23,7 @@ const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
   const paddingValue = size === 'small' ? 1.0625 : 1.75;
 
   return {
+    fontFamily: 'StagSans-Book',
     fontSize: size === 'small' ? 14 : 16,
     paddingTop: theme.spacing(paddingValue),
     paddingBottom: theme.spacing(paddingValue),

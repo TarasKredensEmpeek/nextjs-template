@@ -4,7 +4,7 @@ import { filledInputClasses } from '@mui/material/FilledInput';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import { inputClasses } from '@mui/material/Input';
 
-import { ComponentsOverrides, OverrideThemeProps } from '@/theme/types';
+import { ComponentsOverrides, OverrideThemeProps } from '../types';
 
 type OwnerState = ComponentsPropsList[
   | 'MuiOutlinedInput'

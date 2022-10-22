@@ -1,15 +1,18 @@
-// todo declare new palette interface
-const palette: any = {
+const palette = {
   background: {
-    main: '#ffffff',
-    secondary: '#000000',
+    default: '#ffffff',
+    paper: '#ffffff',
+    dark: '#000000',
+    secondary: '#f5f5f5',
+    gradient: 'linear-gradient(90deg, #D7C378 0%, #FDDC8D 100.26%)',
   },
 
   text: {
     primary: '#000000',
     secondary: '#ffffff',
-    disabled: '#b3b3b3',
-    hint: '#B5964D',
+    disabled: '#BCBFBE',
+    main: '#B5964D',
+    gradient: 'linear-gradient(90deg, #D7C378 0%, #FDDC8D 100.26%)',
   },
 
   primary: {
@@ -24,11 +27,28 @@ const palette: any = {
     light: '#b7b7b7',
   },
 
-  // error: {},
-  // warning: {},
+  error: {
+    dark: '#C31111',
+    main: '#FF0042',
+    light: '#FF5757',
+  },
+
   // info: {},
-  // success: {},
-  // divider: {},
+  // warning: {},
+
+  success: {
+    main: '#00B460',
+  },
+
+  border: {
+    dark: '#000000',
+    main: '#585E5F',
+    light: '#BCBFBE',
+  },
+
+  divider: '#BBBFBE',
+
+  transparent: 'transparent',
 };
 
 export default palette;

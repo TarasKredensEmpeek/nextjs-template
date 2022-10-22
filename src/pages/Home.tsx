@@ -1,12 +1,17 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-// import useTheme from '@mui/material/styles/useTheme';
 
 const Home = () => {
-  // console.log(useTheme().palette);
   return (
     <>
+      <Button variant="contained">I</Button>
+      <Button variant="circle">I</Button>
+      <Button variant="outlined">I</Button>
+      <Button variant="contained">I</Button>
+      <Button variant="rounded">sdfsfsd fsdf sdfsd I</Button>
+
       <Typography color="hint">text</Typography>
       <TextField
         color="secondary"

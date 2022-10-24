@@ -1,7 +1,9 @@
-import { ReactElement, ElementType, ReactNode } from 'react';
-import { Variant } from '@mui/material/styles/createTypography';
+import { FC, ReactElement } from 'react';
 import { SxProps, Theme } from '@mui/material/styles';
-import { UseFieldArrayReturn } from 'react-hook-form';
+import { Variant } from '@mui/material/styles/createTypography';
+import { UseFieldArrayReturn, UseFormReturn } from 'react-hook-form';
+
+import { TInputProps } from '@common/components/Form/fields/TextField';
 
 export interface TDivider {
   divider?: boolean;
@@ -23,6 +25,10 @@ interface TFieldSelectOption {
 
 export type TFieldOptions = TFieldSelectOption[];
 
+export interface FieldComponentProps extends TInputProps {
+  control: UseFormReturn['control'];
+}
+
 export interface TField extends TDivider, TTitle {
   xs?: boolean | number;
   name: string;
@@ -32,7 +38,7 @@ export interface TField extends TDivider, TTitle {
   options?: TFieldOptions;
   required?: boolean;
   resource?: string;
-  component?: ReactElement | ElementType | ReactNode;
+  component?: FC<FieldComponentProps>;
   getLabel?: (f: TField) => string;
   getTitle?: (f: Partial<TField>) => string;
   getOptions?: (f: string) => TFieldOptions;
@@ -66,4 +72,4 @@ export interface TField extends TDivider, TTitle {
   };
 }
 
-export type TFieldsModel = TField[];
+export type FieldsModel = TField[];

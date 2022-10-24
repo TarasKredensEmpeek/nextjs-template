@@ -11,8 +11,6 @@ import {
   UseControllerReturn,
 } from 'react-hook-form';
 
-import useStyles from './useStyles';
-
 export interface TInputProps
   extends InputHTMLAttributes<InputProps>,
     UseControllerProps {
@@ -41,7 +39,6 @@ const TextField: FC<TInputProps> = ({
   defaultValue = '',
   inputComponent,
 }) => {
-  const classes = useStyles();
   const { t } = useTranslation();
 
   const { field, fieldState }: UseControllerReturn = useController({
@@ -76,9 +73,7 @@ const TextField: FC<TInputProps> = ({
       />
 
       {isError && (
-        <Typography variant="fieldError" className={classes.formHelperText}>
-          {t(errorMessage)}
-        </Typography>
+        <Typography variant="fieldError">{t(errorMessage)}</Typography>
       )}
     </Grid>
   );

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
 import { UseFormReturn } from 'react-hook-form';
@@ -7,14 +7,14 @@ import Grid, { GridSpacing } from '@mui/material/Grid';
 
 import Field from './Field';
 import FieldsArray from './FieldsArray';
-import { TFieldsModel, TField } from './types';
+import { FieldsModel, TField } from './types';
 
 interface FormBuilderProps<FormDataType = unknown> {
   form: UseFormReturn<object>;
   formStyles?: React.CSSProperties;
   onSubmit: (data: FormDataType) => void;
-  children?: ReactNode;
-  fieldsList: TFieldsModel;
+  children?: React.ReactNode;
+  fieldsList: FieldsModel;
   submitButtonLabel?: string;
   containerRowSpacing?: ResponsiveStyleValue<GridSpacing>;
   containerColumnSpacing?: ResponsiveStyleValue<GridSpacing>;

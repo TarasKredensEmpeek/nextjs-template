@@ -27,7 +27,7 @@ const booleanInputs = {
   [BooleanInputTypes.radio]: Radio,
 };
 
-interface TBoolFieldProps extends UseControllerProps {
+export interface TBoolFieldProps extends UseControllerProps {
   name: string;
   control: Control;
   type?: BooleanInputTypes;

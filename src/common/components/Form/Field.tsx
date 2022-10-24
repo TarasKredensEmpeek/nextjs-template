@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 
-import { TField, TFieldOptions } from './types';
+import { FieldComponentProps, TField, TFieldOptions } from './types';
 import TextField from './fields/TextField';
 
 interface FieldProps extends TField {
@@ -31,7 +31,7 @@ const Field: FC<FieldProps> = ({
   ...field
 }) => {
   const { t } = useTranslation();
-  const fieldProps: TField = { ...field };
+  const fieldProps = { ...field };
   const FieldComponent = Component || TextField;
   const fieldXs = xs || (getXs && getXs()) || defaultFieldXs;
 
@@ -47,7 +47,7 @@ const Field: FC<FieldProps> = ({
     const fieldTitle = t(title).replace('{index}', String(index + 1));
 
     return Component ? (
-      <Component />
+      <Component {...(fieldProps as FieldComponentProps)} />
     ) : (
       <Typography
         container
@@ -80,7 +80,10 @@ const Field: FC<FieldProps> = ({
       xs={fieldXs}
       sx={{ margin: '8px 0', ...gridItemSx }}
     >
-      <FieldComponent {...fieldProps} size="small" control={control} />
+      <FieldComponent
+        {...(fieldProps as FieldComponentProps)}
+        control={control}
+      />
     </Grid>
   );
 };

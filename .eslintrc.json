@@ -60,7 +60,8 @@
       "component": true,
       "html": true
     }],
-    "arrow-body-style": "error"
+    "arrow-body-style": "error",
+    "object-shorthand": "error"
   },
   "ignorePatterns": ["next.config.js", "next-env.d.ts", "next-i18next.config.js"]
 }

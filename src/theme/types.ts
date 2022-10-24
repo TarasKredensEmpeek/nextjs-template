@@ -1,3 +1,4 @@
+import React from 'react';
 import { Components, Theme } from '@mui/material/styles';
 import { ComponentsPropsList } from '@mui/material/styles/props';
 
@@ -13,6 +14,13 @@ declare module '@mui/material/Button' {
     rounded: true;
     circle: true;
     link: true;
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    label1: true;
+    fieldError: true;
   }
 }
 
@@ -44,5 +52,15 @@ declare module '@mui/material/styles' {
   }
   interface SimplePaletteColorOptions {
     gradient?: string;
+  }
+
+  interface TypographyVariants {
+    label1: React.CSSProperties;
+    fieldError: React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    label1?: React.CSSProperties;
+    fieldError?: React.CSSProperties;
   }
 }

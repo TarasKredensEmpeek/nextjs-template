@@ -1,14 +1,11 @@
 const typography = {
   fontFamily: [
-    'StagSans-Bold',
-    'StagSans-Bold-Header1',
     'StagSans-Book',
+    'StagSans-Bold',
     'StagSans-Light',
     'StagSans-Medium',
-    'StagSans-Semibold',
     'GothamCondensed-Bold',
   ].join(','),
-  htmlFontSize: 14,
   fontSize: 16,
 
   h1: {
@@ -34,22 +31,23 @@ const typography = {
   h6: {
     fontSize: '1.75em',
     fontFamily: 'StagSans-Bold',
+    fontWeight: 100,
   },
   subtitle1: {
     fontSize: '1.25em',
-    fontFamily: 'StagSans-Bold',
+    fontFamily: 'StagSans-Book',
   },
   subtitle2: {
     fontSize: '1em',
-    fontFamily: 'StagSans-Bold',
+    fontFamily: 'StagSans-Medium',
   },
   body1: {
     fontSize: '1em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Light',
   },
   body2: {
     fontSize: '0.875em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Light',
   },
   caption: {
     fontSize: '0.75em',
@@ -57,7 +55,7 @@ const typography = {
   },
   button: {
     fontSize: '1em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Medium',
   },
   overline: {
     fontSize: '0.75em',

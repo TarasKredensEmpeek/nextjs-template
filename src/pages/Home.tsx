@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 const Home = () => {
   return (
     <>
-      <Button variant="contained">I</Button>
       <Button variant="circle">I</Button>
       <Button variant="outlined">I</Button>
       <Button variant="contained">I</Button>

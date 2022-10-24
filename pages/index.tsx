@@ -41,7 +41,7 @@ const HomePage: NextPage = () => {
       <Typography variant="caption">caption - App lang - {locale}</Typography>
       <Typography variant="button">button - App lang - {locale}</Typography>
       <Typography variant="overline">overline - App lang - {locale}</Typography>
-      <h4>{t('name')}</h4>
+      <div>{t('name')}</div>
 
       <Link href="/">Home</Link>
 

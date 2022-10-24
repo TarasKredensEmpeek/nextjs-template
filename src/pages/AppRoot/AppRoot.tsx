@@ -2,10 +2,10 @@ import React from 'react';
 
 import ModalHandler from '@common/modules/ModalHandler';
 
-const MainDocument = () => (
+const AppRoot = () => (
   <>
     <ModalHandler />
   </>
 );
 
-export default MainDocument;
+export default AppRoot;

@@ -45,8 +45,8 @@ const ModalHandler = () => {
     <Dialog open={isModalOpened} onClose={onClose}>
       {modal?.name &&
         {
-          [ModalNames.auth]: modal.name,
-          [ModalNames.confirmation]: modal.name,
+          [ModalNames.auth]: null,
+          [ModalNames.confirmation]: null,
         }[modal?.name]}
     </Dialog>
   );

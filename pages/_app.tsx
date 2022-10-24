@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import theme from '@theme';
-import MainDocument from '@pages/MainDocument';
+import AppRoot from '@pages/AppRoot';
 
 import createEmotionCache from '../utils/createEmotionCache';
 
@@ -24,7 +24,7 @@ const MyApp: FC<IAppProps> = props => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
-        <MainDocument />
+        <AppRoot />
       </ThemeProvider>
     </CacheProvider>
   );

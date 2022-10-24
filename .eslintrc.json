@@ -55,7 +55,12 @@
         "internal"
       ],
       "newlines-between": "always"
-    }]
+    }],
+    "react/self-closing-comp": ["error", {
+      "component": true,
+      "html": true
+    }],
+    "arrow-body-style": "error"
   },
   "ignorePatterns": ["next.config.js", "next-env.d.ts", "next-i18next.config.js"]
 }

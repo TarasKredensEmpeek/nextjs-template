@@ -1,6 +1,6 @@
 import dataProvider from './dataProvider';
 
 export * from './types';
+export * from './dataProvider';
 
-export { default as useDataProvider } from './useDataProvider';
 export default dataProvider;

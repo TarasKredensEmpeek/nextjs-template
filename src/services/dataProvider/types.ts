@@ -10,13 +10,17 @@ export interface ISortingParams {
   order: string;
 }
 
+export interface IQueryFilterParams {
+  [key: string]: string | number | string[];
+}
+
 export interface IRequestOptions extends RequestInit {
-  id?: string;
+  id?: string | number;
   ids?: string[];
   body?: BodyInit;
   sort?: ISortingParams;
-  filter?: any;
-  params?: any;
+  query?: IQueryFilterParams;
+  params?: IQueryFilterParams;
   pagination?: IPaginationParams;
   stringifyOptions?: StringifyOptions;
 }
@@ -28,7 +32,7 @@ export interface IResponse<T> extends Response {
 
 export type DataProviderInstance = <ResponseType>(
   resource: string,
-  options?: IRequestOptions | undefined,
+  options?: IRequestOptions,
 ) => Promise<IResponse<ResponseType>>;
 
 export interface IDataProvider {

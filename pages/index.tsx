@@ -5,20 +5,25 @@ import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Home from '@/pages/Home';
+import { useGetData } from '@common/hooks/dataProvider';
 
-const HomePage: NextPage = () => (
-  <div>
-    <Head>
-      <title>My app</title>
-    </Head>
+const HomePage: NextPage = () => {
+  useGetData('todos', { id: '1f' });
 
-    <Home />
+  return (
+    <div>
+      <Head>
+        <title>My app</title>
+      </Head>
 
-    <Link href="/">Home</Link>
+      <Home />
 
-    <Link href="/about">About</Link>
-  </div>
-);
+      <Link href="/">Home</Link>
+
+      <Link href="/about">About</Link>
+    </div>
+  );
+};
 
 interface SSRProps {
   locale: string;

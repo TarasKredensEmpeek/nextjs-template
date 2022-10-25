@@ -2,32 +2,43 @@ import { IDataProvider, IRequestOptions } from './types';
 import { paramsToPath, generateQuery } from './utils';
 import { fetchInstance } from './fetchInstance';
 
+export enum FetchMethods {
+  get = 'getData',
+  post = 'postData',
+  update = 'updateData',
+  delete = 'deleteData',
+}
+
+const getResource = (resource: string, options?: IRequestOptions) => {
+  const { id, params, query, sort, pagination } = options || {};
+  let source = resource;
+
+  if (id) {
+    source =
+      source.includes(':id') && id
+        ? paramsToPath(resource, { ...params, id })
+        : `${resource}/${id}`;
+  }
+
+  if (query || sort || pagination) {
+    source = `${source}${generateQuery({ query, sort, pagination })}`;
+  }
+
+  return source;
+};
+
 const dataProvider: IDataProvider = {
-  getData: (resource: string, options?: IRequestOptions) => {
-    const { id, signal, ...params } = options || {};
-    let source = resource;
-
-    if (id) {
-      source =
-        source.includes(':id') && id
-          ? paramsToPath(resource, { id })
-          : `${resource}/${id}`;
-    }
-
-    if (params) {
-      source = `${resource}${generateQuery(params)}`;
-    }
+  [FetchMethods.get]: (resource: string, options?: IRequestOptions) => {
+    const { signal, ...restOptions } = options || {};
+    const source = getResource(resource, restOptions);
 
     return fetchInstance(source, { signal, method: 'GET' });
   },
 
-  postData: (resource: string, options?: IRequestOptions) => {
-    const { signal, body, ...params } = options || {};
-    let source = resource;
+  [FetchMethods.post]: (resource: string, options?: IRequestOptions) => {
+    const { signal, body, ...restOptions } = options || {};
 
-    if (params) {
-      source = `${resource}${generateQuery(params)}`;
-    }
+    const source = getResource(resource, restOptions);
 
     return fetchInstance(source, {
       signal,
@@ -36,25 +47,24 @@ const dataProvider: IDataProvider = {
     });
   },
 
-  updateData: (resource: string, options?: IRequestOptions) => {
-    const { params, body } = options || {};
+  [FetchMethods.update]: (resource: string, options?: IRequestOptions) => {
+    const { signal, body, ...restOptions } = options || {};
 
-    const parsedResource = paramsToPath(resource, params);
+    const source = getResource(resource, restOptions);
 
-    return fetchInstance(
-      `${parsedResource}${generateQuery({ filter: params })}`,
-      { method: 'PUT', body: JSON.stringify(body) },
-    );
+    return fetchInstance(source, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      signal,
+    });
   },
 
-  deleteData: (resource: string, options?: IRequestOptions) => {
-    const { params, ...query } = options || {};
-    const parsedResource = paramsToPath(resource, params);
+  [FetchMethods.delete]: (resource: string, options?: IRequestOptions) => {
+    const { signal, ...restOptions } = options || {};
 
-    return fetchInstance(
-      `${parsedResource}${generateQuery({ filter: query })}`,
-      { method: 'DELETE' },
-    );
+    const source = getResource(resource, restOptions);
+
+    return fetchInstance(source, { method: 'DELETE', signal });
   },
 };
 

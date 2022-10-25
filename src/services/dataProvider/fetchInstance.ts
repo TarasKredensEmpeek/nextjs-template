@@ -25,7 +25,7 @@ import { IResponse, IRequestOptions } from './types';
 
 const { NEXT_PUBLIC_API_URL } = process.env;
 
-export const fetchInstance = async <ResponseType = {}>(
+export const fetchInstance = async <ResponseType = unknown>(
   resource: string,
   options?: IRequestOptions,
 ): Promise<IResponse<ResponseType>> => {

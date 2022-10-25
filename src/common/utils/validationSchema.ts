@@ -9,19 +9,22 @@ export const specialCharacterRegexp = /(?=.*?[#?!@$%^&*-])/;
 
 export const passwordValidator = yup
   .string()
-  .min(8, 'formValidations.minLength')
-  .max(64, 'formValidations.maxLength')
-  .matches(oneDigitRegexp, 'formValidations.shouldContainOneDigit')
-  .matches(lowerCaseRegexp, 'formValidations.shouldContainOneLowercase')
-  .matches(upperCaseRegexp, 'formValidations.shouldContainOneUppercase')
-  .matches(specialCharacterRegexp, 'formValidations.shouldContainOneSpecial');
+  .min(8, 'fieldValidationMessages.minLength')
+  .max(64, 'fieldValidationMessages.maxLength')
+  .matches(oneDigitRegexp, 'fieldValidationMessages.shouldContainOneDigit')
+  .matches(lowerCaseRegexp, 'fieldValidationMessages.shouldContainOneLowercase')
+  .matches(upperCaseRegexp, 'fieldValidationMessages.shouldContainOneUppercase')
+  .matches(
+    specialCharacterRegexp,
+    'fieldValidationMessages.shouldContainOneSpecial',
+  );
 
 const validatePhoneFormat = (value?: string) =>
   value ? matchIsValidTel(value) : true;
 
 export const getNameValidator = (
-  spaceMessage = 'formValidations.emptyField',
-  requiredMessage = 'formValidations.firstNameRequired',
+  spaceMessage = 'fieldValidationMessages.emptyField',
+  requiredMessage = 'fieldValidationMessages.firstNameRequired',
   required = true,
 ) => {
   const validator = yup.string().strict().trim(spaceMessage);
@@ -34,8 +37,8 @@ export const getNameValidator = (
 };
 
 export const getPhoneValidator = (
-  formatMessage = 'formValidations.phoneFormat',
-  requiredMessage = 'formValidations.primaryPhoneRequired',
+  formatMessage = 'fieldValidationMessages.phoneFormat',
+  requiredMessage = 'fieldValidationMessages.primaryPhoneRequired',
   required = true,
 ) => {
   const validator = yup
@@ -50,9 +53,9 @@ export const getPhoneValidator = (
 };
 
 export const getZipCodeValidator = (
-  lengthMessage = 'formValidations.zipCodeLength',
-  digitsMessage = 'formValidations.zipCodeOnlyDigits',
-  requiredMessage = 'formValidations.zipCodeRequired',
+  lengthMessage = 'fieldValidationMessages.zipCodeLength',
+  digitsMessage = 'fieldValidationMessages.zipCodeOnlyDigits',
+  requiredMessage = 'fieldValidationMessages.zipCodeRequired',
 ) =>
   yup
     .string()

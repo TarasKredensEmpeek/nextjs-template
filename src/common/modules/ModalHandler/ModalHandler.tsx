@@ -1,19 +1,23 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import Dialog from '@mui/material/Dialog';
+import Dialog, { DialogProps } from '@mui/material/Dialog';
 
 import { EventNames, ModalNames } from '@common/constants/enums';
 import useEventEmitter from '@common/hooks/useEventEmitter';
+
+import Auth from '../Auth';
 
 interface ModalParams {
   name?: ModalNames;
   props?: object;
   onClose?: () => void;
+  maxWidth?: DialogProps['maxWidth'];
 }
 
 const ModalHandler = () => {
   const [modal, setModal] = useState<ModalParams | null>(null);
 
   const isModalOpened = useMemo(() => Boolean(modal?.name), [modal?.name]);
+  const maxWidth = useMemo(() => modal?.maxWidth || 'md', [modal?.maxWidth]);
 
   const handleOpenModal = useCallback(
     (eventName: string, modalData: ModalParams) => {
@@ -42,10 +46,10 @@ const ModalHandler = () => {
   useEventEmitter(EventNames.openModal, handleOpenModal);
 
   return (
-    <Dialog open={isModalOpened} onClose={onClose}>
+    <Dialog open={isModalOpened} onClose={onClose} maxWidth={maxWidth}>
       {modal?.name &&
         {
-          [ModalNames.auth]: null,
+          [ModalNames.auth]: <Auth {...modal.props} />,
           [ModalNames.confirmation]: null,
         }[modal?.name]}
     </Dialog>

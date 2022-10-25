@@ -24,6 +24,8 @@ const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
     },
 
     outlined: ({ theme }) => ({
+      borderWidth: 2,
+
       '&:hover': {
         color: 'white',
         backgroundColor: theme.palette.primary.main,
@@ -37,22 +39,20 @@ const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
   variants: [
     {
       props: { variant: 'circle', color: 'primary' },
-      style: ({ theme }) => {
-        return {
-          width: 40,
-          height: 40,
-          minWidth: 40,
-          borderRadius: '50%',
-          backgroundColor: theme.palette.transparent,
-          border: '2px solid',
-          color: theme.palette.primary.main,
-          borderColor: theme.palette.primary.main,
-          '&:hover': {
-            color: theme.palette.text.primary,
-            borderColor: theme.palette.border.dark,
-          },
-        };
-      },
+      style: ({ theme }) => ({
+        width: 40,
+        height: 40,
+        minWidth: 40,
+        borderRadius: '50%',
+        backgroundColor: theme.palette.transparent,
+        border: '2px solid',
+        color: theme.palette.primary.main,
+        borderColor: theme.palette.primary.main,
+        '&:hover': {
+          color: theme.palette.text.primary,
+          borderColor: theme.palette.border.dark,
+        },
+      }),
     },
 
     {

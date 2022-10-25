@@ -1,9 +1,7 @@
 import React, { FC, InputHTMLAttributes, useMemo } from 'react';
-import Grid from '@mui/material/Grid';
 import { useTranslation } from 'react-i18next';
-import Typography from '@mui/material/Typography';
-import MuiInput, { InputProps } from '@mui/material/Input';
 import { InputBaseProps } from '@mui/material/InputBase/InputBase';
+import MuiTextField, { TextFieldProps } from '@mui/material/TextField';
 import {
   useController,
   Control,
@@ -12,12 +10,14 @@ import {
 } from 'react-hook-form';
 
 export interface TInputProps
-  extends InputHTMLAttributes<InputProps>,
+  extends InputHTMLAttributes<TextFieldProps>,
     UseControllerProps {
   name: string;
   type?: string;
   label?: string;
   control: Control;
+  color?: TextFieldProps['color'];
+  variant?: TextFieldProps['variant'];
   required?: boolean;
   withBorder?: boolean;
   placeholder?: string;
@@ -31,6 +31,8 @@ const TextField: FC<TInputProps> = ({
   name,
   rules,
   type = 'text',
+  color = 'secondary',
+  variant = 'filled',
   control,
   disabled,
   required,
@@ -49,33 +51,41 @@ const TextField: FC<TInputProps> = ({
   });
   const { error } = fieldState;
 
+  const inputProps = useMemo(
+    () => ({
+      endAdornment,
+      inputComponent,
+      disableUnderline: true,
+    }),
+    [endAdornment, inputComponent],
+  );
+
   const isError = useMemo(() => Boolean(error), [error]);
-  const errorMessage = useMemo(() => error?.message || '', [error?.message]);
+  const errorMessage = useMemo(
+    () => t(error?.message || ''),
+    [error?.message, t],
+  );
   const placeholderText = useMemo(
     () => (required ? `${t(placeholder)} *` : t(placeholder)),
     [placeholder, required, t],
   );
 
   return (
-    <Grid container style={{ position: 'relative' }}>
-      <MuiInput
-        fullWidth
-        disableUnderline
-        {...field}
-        type={type}
-        name={name}
-        required={required}
-        disabled={disabled}
-        placeholder={placeholderText}
-        error={isError}
-        inputComponent={inputComponent}
-        endAdornment={endAdornment}
-      />
-
-      {isError && (
-        <Typography variant="fieldError">{t(errorMessage)}</Typography>
-      )}
-    </Grid>
+    <MuiTextField
+      fullWidth
+      {...field}
+      type={type}
+      color={color}
+      name={name}
+      variant={variant}
+      required={required}
+      disabled={disabled}
+      placeholder={placeholderText}
+      error={isError}
+      size="small"
+      helperText={errorMessage}
+      InputProps={inputProps}
+    />
   );
 };
 

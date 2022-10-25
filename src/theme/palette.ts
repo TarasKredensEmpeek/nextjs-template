@@ -24,7 +24,7 @@ const palette = {
   secondary: {
     dark: '#000000',
     main: '#2a2a2a',
-    light: '#b7b7b7',
+    light: '#f6f6f6',
   },
 
   error: {
@@ -43,7 +43,7 @@ const palette = {
   border: {
     dark: '#000000',
     main: '#585E5F',
-    light: '#BCBFBE',
+    light: '#B7B7B7',
   },
 
   divider: '#BBBFBE',

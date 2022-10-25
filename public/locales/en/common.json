@@ -1,3 +1,55 @@
 {
-  "name": "Hello Eng!"
+  "shared": {
+    "yes": "Yes",
+    "no": "No",
+    "help": "Help",
+    "included": "Included",
+    "notIncluded": "Not Included",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "emailUs": "Email Us"
+  },
+  "buttons": {
+    "login": "Login"
+  },
+  "fieldPlaceholders": {
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailAddress": "Email Address",
+    "confirmEmail": "Confirm Email Address",
+    "confirmPassword": "Confirm Password",
+    "agreePolicy": "By Submitting this form I agree to the ON LOCATION <0>Purchase Policy</0>, <1>Privacy Policy</1>, and <2>Terms of Use</2> of ON LOCATION",
+    "moreInformation": "I would like to receive more information about ON LOCATION and its packages, and confirm my request to be contacted by email or phone for marketing and promotional purposes. I understand that I may opt out of receiving future communications from ON LOCATION following the initial communication."
+  },
+  "fieldValidationMessages": {
+    "emailRequired": "The email address is required.",
+    "emailInvalid": "The email address must be a valid.",
+    "emailIsNotSame": "The email must match.",
+    "oldPasswordRequired": "The old password is required.",
+    "passwordRequired": "The password field is required.",
+    "passwordIsNotSame": "The password must match.",
+    "firstNameRequired": "The first name field is required.",
+    "lastNameRequired": "The last name field is required.",
+    "agreePolicy": "Field must be checked",
+    "primaryPhoneRequired": "The primary phone is required.",
+    "mobilePhoneRequired": "The mobile phone is required.",
+    "minLength": "The min length should be 8 symbols.",
+    "maxLength": "The max length should be 64 symbols.",
+    "shouldContainOneDigit": " Should contain at least one digit.",
+    "shouldContainOneLowercase": "Should contain at least one lowercase letter.",
+    "shouldContainOneUppercase": "Should contain at least one uppercase letter.",
+    "shouldContainOneSpecial": "Should contain at least one special character.",
+    "addressLine1Required": "The address line 1 is required.",
+    "countryRequired": "The country is required.",
+    "stateRequired": "The state is required.",
+    "cityRequired": "The city is required.",
+    "zipCodeRequired": "The zip code is required",
+    "zipCodeLength": "The zip code should contain 5 characters.",
+    "zipCodeOnlyDigits": "The zip code should contain only digits.",
+    "phoneFormat": "Phone format is invalid.",
+    "emptyField": "The field should not be empty"
+  }
 }

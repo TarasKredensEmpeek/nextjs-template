@@ -1,6 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import Button from '@mui/material/Button';
-import { useTranslation } from 'react-i18next';
+import { SxProps } from '@mui/material/styles';
 import { UseFormReturn } from 'react-hook-form';
 import { ResponsiveStyleValue } from '@mui/system';
 import Grid, { GridSpacing } from '@mui/material/Grid';
@@ -11,7 +10,7 @@ import { FieldsModel, TField } from './types';
 
 interface FormBuilderProps<FormDataType = unknown> {
   form: UseFormReturn<object>;
-  formStyles?: React.CSSProperties;
+  formSx?: SxProps;
   onSubmit: (data: FormDataType) => void;
   children?: React.ReactNode;
   fieldsList: FieldsModel;
@@ -25,16 +24,13 @@ interface FormBuilderProps<FormDataType = unknown> {
 const FormBuilder: FC<FormBuilderProps> = ({
   onSubmit,
   form,
-  formStyles,
+  formSx = {},
   fieldsList,
   children = null,
-  submitButtonLabel,
   containerRowSpacing,
   containerColumnSpacing,
   containerSpacing,
-  formActions: FormActions,
 }) => {
-  const { t } = useTranslation();
   const { control, handleSubmit } = form;
 
   const renderField = useCallback(
@@ -61,7 +57,13 @@ const FormBuilder: FC<FormBuilderProps> = ({
   );
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)} style={formStyles}>
+    <Grid
+      container
+      noValidate
+      sx={formSx}
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Grid
         container
         rowSpacing={containerRowSpacing}
@@ -75,23 +77,7 @@ const FormBuilder: FC<FormBuilderProps> = ({
       </Grid>
 
       {children}
-
-      {FormActions ? (
-        <FormActions onSubmit={handleSubmit(onSubmit)} />
-      ) : (
-        <Grid
-          container
-          justifyContent="space-between"
-          style={{ marginTop: 40, marginBottom: 80 }}
-        >
-          <Grid item container wrap="nowrap">
-            <Button variant="outlined" onClick={handleSubmit(onSubmit)}>
-              {t(submitButtonLabel as string)}
-            </Button>
-          </Grid>
-        </Grid>
-      )}
-    </form>
+    </Grid>
   );
 };
 

@@ -20,7 +20,7 @@ const notDisabledSelector = `:hover:not(.${inputClasses.disabled}):before`;
 const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
   const { size } = ownerState;
 
-  const paddingValue = size === 'small' ? 1.0625 : 1.75;
+  const paddingValue = size === 'small' ? 1 : 1.0625;
 
   return {
     fontFamily: 'StagSans-Book',
@@ -69,14 +69,22 @@ const inputBaseOverrides: ComponentsOverrides['MuiInputBase'] = {
 
 const filledInputOverrides: ComponentsOverrides['MuiFilledInput'] = {
   styleOverrides: {
-    root: {
-      borderRadius: 4,
-      [`&.${filledInputClasses.focused}`]: {
-        border: 'none',
-      },
-      [`&:before, :after, :hover, ${notDisabledSelector}`]: {
-        border: 'none',
-      },
+    root: ({ theme, ownerState }) => {
+      const { color = 'primary' } = ownerState;
+
+      const currentColor = theme.palette[color];
+
+      return {
+        borderRadius: 4,
+        border: `1px solid ${theme.palette.border.light}`,
+        backgroundColor: currentColor.light,
+        [`&.${filledInputClasses.focused}`]: {
+          border: `1px solid ${theme.palette.border.light}`,
+        },
+        [`&:before, :after, :hover, ${notDisabledSelector}`]: {
+          border: `1px solid ${theme.palette.border.light}`,
+        },
+      };
     },
     input: getBaseInput,
   },

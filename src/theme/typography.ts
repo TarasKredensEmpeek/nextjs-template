@@ -61,6 +61,11 @@ const typography = {
     fontSize: '0.75em',
     fontFamily: 'StagSans-Book',
   },
+  fieldError: {
+    fontSize: '0.75em',
+    fontFamily: 'StagSans-Book',
+    color: 'error',
+  },
 };
 
 export default typography;

@@ -12,6 +12,14 @@ const components: ComponentsOverrides = {
       disableRipple: true,
     },
   },
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: {
+        marginLeft: 0,
+        marginRight: 0,
+      },
+    },
+  },
   ...textFields,
 };
 

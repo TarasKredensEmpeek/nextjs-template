@@ -2,7 +2,7 @@ const palette = {
   background: {
     default: '#ffffff',
     paper: '#ffffff',
-    dark: '#000000',
+    dark: '#2d2d2d',
     secondary: '#f5f5f5',
     gradient: 'linear-gradient(90deg, #D7C378 0%, #FDDC8D 100.26%)',
   },

@@ -20,6 +20,13 @@ const components: ComponentsOverrides = {
       },
     },
   },
+  MuiLink: {
+    styleOverrides: {
+      root: {
+        cursor: 'pointer',
+      },
+    },
+  },
   ...textFields,
 };
 

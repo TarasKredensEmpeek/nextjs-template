@@ -49,7 +49,7 @@ const ModalHandler = () => {
     <Dialog open={isModalOpened} onClose={onClose} maxWidth={maxWidth}>
       {modal?.name &&
         {
-          [ModalNames.auth]: <Auth {...modal.props} />,
+          [ModalNames.auth]: <Auth {...modal.props} onClose={onClose} />,
           [ModalNames.confirmation]: null,
         }[modal?.name]}
     </Dialog>

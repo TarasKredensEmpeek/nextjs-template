@@ -42,19 +42,22 @@ const typography = {
   },
   subtitle1: {
     fontSize: '1.25em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Bold',
   },
   subtitle2: {
     fontSize: '1em',
     fontFamily: 'StagSans-Medium',
+    fontWeight: 100,
   },
   body1: {
     fontSize: '1em',
-    fontFamily: 'StagSans-Light',
+    fontFamily: 'StagSans-Book',
+    fontWeight: 100,
   },
   body2: {
     fontSize: '0.875em',
     fontFamily: 'StagSans-Light',
+    fontWeight: 100,
   },
   caption: {
     fontSize: '0.75em',

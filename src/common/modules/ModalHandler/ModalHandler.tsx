@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
+import { useRouter } from 'next/router';
 
 import { EventNames, ModalNames } from '@common/constants/enums';
 import useEventEmitter from '@common/hooks/useEventEmitter';
@@ -14,6 +15,7 @@ interface ModalParams {
 }
 
 const ModalHandler = () => {
+  const router = useRouter();
   const [modal, setModal] = useState<ModalParams | null>(null);
 
   const isModalOpened = useMemo(() => Boolean(modal?.name), [modal?.name]);
@@ -43,7 +45,24 @@ const ModalHandler = () => {
     emitHideModal();
   }, [modal, emitHideModal]);
 
+  const closeAnyModalOnChangeLocation = useCallback(() => {
+    const handleRouteChange = () => {
+      if (!isModalOpened) {
+        return;
+      }
+
+      emitHideModal();
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+  }, [isModalOpened, emitHideModal, router.events]);
+
   useEventEmitter(EventNames.openModal, handleOpenModal);
+
+  useEffect(
+    () => closeAnyModalOnChangeLocation(),
+    [closeAnyModalOnChangeLocation],
+  );
 
   return (
     <Dialog open={isModalOpened} onClose={onClose} maxWidth={maxWidth}>

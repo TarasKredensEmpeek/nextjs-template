@@ -15,8 +15,17 @@ const components: ComponentsOverrides = {
   MuiFormHelperText: {
     styleOverrides: {
       root: {
+        position: 'absolute',
         marginLeft: 0,
         marginRight: 0,
+        top: '85%',
+      },
+    },
+  },
+  MuiTypography: {
+    styleOverrides: {
+      root: {
+        fontWeight: 'normal',
       },
     },
   },

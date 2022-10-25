@@ -51,5 +51,8 @@
     "zipCodeOnlyDigits": "The zip code should contain only digits.",
     "phoneFormat": "Phone format is invalid.",
     "emptyField": "The field should not be empty"
+  },
+  "fieldLabels": {
+    "agreeGetUpdatesLabel": "I would like to receive more information about ON LOCATION and its packages, and confirm my request to be contacted by email or phone for marketing and promotional purposes. I understand that I may opt out of receiving future communication from ON LOCATION following the initial communication."
   }
 }

@@ -55,6 +55,16 @@ const useCreateAccountFields = () => {
       component: BooleanField,
       label: AcceptingAgreementsLabel,
       defaultValue: false,
+      labelTypographySx: { lineHeight: 1 },
+    },
+    {
+      xs: 12,
+      name: 'agreeGetUpdates',
+      component: BooleanField,
+      labelVariant: 'caption',
+      label: 'fieldLabels.agreeGetUpdatesLabel',
+      defaultValue: false,
+      labelTypographySx: { fontWeight: 'normal' },
     },
   ] as FieldsModel;
 };

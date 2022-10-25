@@ -7,6 +7,7 @@ const typography = {
     'GothamCondensed-Bold',
   ].join(','),
   fontSize: 16,
+  fontWeight: 'normal',
 
   h1: {
     fontSize: '5em',
@@ -47,17 +48,14 @@ const typography = {
   subtitle2: {
     fontSize: '1em',
     fontFamily: 'StagSans-Medium',
-    fontWeight: 100,
   },
   body1: {
     fontSize: '1em',
     fontFamily: 'StagSans-Book',
-    fontWeight: 100,
   },
   body2: {
     fontSize: '0.875em',
     fontFamily: 'StagSans-Light',
-    fontWeight: 100,
   },
   caption: {
     fontSize: '0.75em',

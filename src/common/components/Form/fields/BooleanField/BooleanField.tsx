@@ -1,12 +1,12 @@
 import React, { FC, ReactNode, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import makeStyles from '@mui/styles/makeStyles';
-import Typography from '@mui/material/Typography';
 import { SxProps, Theme } from '@mui/material/styles';
 import Radio, { RadioProps } from '@mui/material/Radio';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 import {
   useController,
   Control,
@@ -39,6 +39,7 @@ export interface TBoolFieldProps extends UseControllerProps {
     | CheckboxProps['inputProps']
     | SwitchProps['inputProps'];
   className?: string;
+  labelVariant?: TypographyProps['variant'];
   defaultValue?: string | number;
   labelTypographySx?: SxProps<Theme>;
 }
@@ -57,6 +58,7 @@ const BooleanField: FC<TBoolFieldProps> = ({
   control,
   className,
   inputProps = {},
+  labelVariant = 'subtitle1',
   defaultValue = false,
   labelTypographySx,
   ...props
@@ -76,10 +78,6 @@ const BooleanField: FC<TBoolFieldProps> = ({
   const errorMessage = useMemo(() => error?.message || '', [error?.message]);
 
   const fieldLabel = useMemo(() => {
-    if (React.isValidElement(label)) {
-      return label;
-    }
-
     if (typeof label === 'function') {
       const LabelRender = label;
       return <LabelRender />;
@@ -88,16 +86,16 @@ const BooleanField: FC<TBoolFieldProps> = ({
     if (typeof label === 'string') {
       return (
         <Typography
-          variant="subtitle1"
+          variant={labelVariant}
           sx={{ fontWeight: 700, ...labelTypographySx }}
         >
-          {t(label)}
+          {React.isValidElement(label) ? label : t(label)}
         </Typography>
       );
     }
 
     return '';
-  }, [label, labelTypographySx, t]);
+  }, [label, labelVariant, labelTypographySx, t]);
 
   const component = useMemo(
     () => (
@@ -131,7 +129,6 @@ const BooleanField: FC<TBoolFieldProps> = ({
           label={fieldLabel}
           control={component}
           className={className}
-          sx={{ lineHeight: 1 }}
         />
       ) : (
         component

@@ -13,13 +13,14 @@ declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     rounded: true;
     circle: true;
-    link: true;
   }
 }
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
+    link: true;
     label1: true;
+    label2: true;
     fieldError: true;
   }
 }
@@ -55,12 +56,16 @@ declare module '@mui/material/styles' {
   }
 
   interface TypographyVariants {
+    link: React.CSSProperties;
     label1: React.CSSProperties;
+    label2: React.CSSProperties;
     fieldError: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
+    link?: React.CSSProperties;
     label1?: React.CSSProperties;
+    label2?: React.CSSProperties;
     fieldError?: React.CSSProperties;
   }
 }

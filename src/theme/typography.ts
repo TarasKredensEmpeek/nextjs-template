@@ -31,7 +31,14 @@ const typography = {
   h6: {
     fontSize: '1.75em',
     fontFamily: 'StagSans-Bold',
-    fontWeight: 100,
+  },
+  label1: {
+    fontSize: '1em',
+    fontFamily: 'StagSans-Book',
+  },
+  label2: {
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Book',
   },
   subtitle1: {
     fontSize: '1.25em',
@@ -65,6 +72,11 @@ const typography = {
     fontSize: '0.75em',
     fontFamily: 'StagSans-Book',
     color: 'error',
+  },
+  link: {
+    color: '#1d5a92',
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Light',
   },
 };
 

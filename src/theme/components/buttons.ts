@@ -75,11 +75,6 @@ const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
         };
       },
     },
-
-    {
-      props: { variant: 'link', color: 'primary' },
-      style: { border: 'none', backgroundColor: 'transparent' },
-    },
   ],
 };
 

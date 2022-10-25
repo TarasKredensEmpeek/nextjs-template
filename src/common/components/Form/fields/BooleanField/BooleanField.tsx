@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import makeStyles from '@mui/styles/makeStyles';
 import Typography from '@mui/material/Typography';
@@ -31,7 +31,7 @@ export interface TBoolFieldProps extends UseControllerProps {
   name: string;
   control: Control;
   type?: BooleanInputTypes;
-  label?: string | React.ReactElement;
+  label?: ReactNode | FC;
   color?: RadioProps['color'] | CheckboxProps['color'] | SwitchProps['color'];
   size?: RadioProps['size'] | CheckboxProps['size'] | SwitchProps['size'];
   inputProps?:
@@ -75,6 +75,30 @@ const BooleanField: FC<TBoolFieldProps> = ({
   const isError = useMemo(() => Boolean(error), [error]);
   const errorMessage = useMemo(() => error?.message || '', [error?.message]);
 
+  const fieldLabel = useMemo(() => {
+    if (React.isValidElement(label)) {
+      return label;
+    }
+
+    if (typeof label === 'function') {
+      const LabelRender = label;
+      return <LabelRender />;
+    }
+
+    if (typeof label === 'string') {
+      return (
+        <Typography
+          variant="subtitle1"
+          sx={{ fontWeight: 700, ...labelTypographySx }}
+        >
+          {t(label)}
+        </Typography>
+      );
+    }
+
+    return '';
+  }, [label, labelTypographySx, t]);
+
   const component = useMemo(
     () => (
       <BooleanInputComponent
@@ -102,25 +126,21 @@ const BooleanField: FC<TBoolFieldProps> = ({
 
   return (
     <Box sx={{ position: 'relative' }}>
-      {label ? (
+      {fieldLabel ? (
         <FormControlLabel
-          label={
-            <Typography
-              variant="subtitle1"
-              sx={{ fontWeight: 700, ...labelTypographySx }}
-            >
-              {React.isValidElement(label) ? label : t(label)}
-            </Typography>
-          }
+          label={fieldLabel}
           control={component}
           className={className}
+          sx={{ lineHeight: 1 }}
         />
       ) : (
         component
       )}
+
       {isError && (
         <Typography
           variant="fieldError"
+          color="error"
           sx={{ left: 8, top: '95%', position: 'absolute' }}
         >
           {t(errorMessage)}

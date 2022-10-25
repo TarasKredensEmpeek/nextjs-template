@@ -20,6 +20,13 @@ const components: ComponentsOverrides = {
       },
     },
   },
+  MuiFormControlLabel: {
+    styleOverrides: {
+      root: {
+        lineHeight: 1,
+      },
+    },
+  },
   MuiLink: {
     styleOverrides: {
       root: {

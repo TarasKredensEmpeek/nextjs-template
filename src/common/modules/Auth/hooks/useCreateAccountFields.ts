@@ -4,6 +4,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { BooleanField } from '@common/components/Form';
 import { FieldsModel } from '@common/components/Form/types';
 
+import AcceptingAgreementsLabel from '../components/AcceptingAgreementsLabel';
+
 const useCreateAccountFields = () => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -51,15 +53,8 @@ const useCreateAccountFields = () => {
       xs: 12,
       name: 'agreePolicy',
       component: BooleanField,
-      // label: (
-      //   <Trans i18nKey="fieldPlaceholders.agreePolicy">
-      //   <Link to="/purchase-policy" />
-      //   <Link to="/privacy-policy" />
-      //   <Link to="/terms-of-use" />
-      //     </Trans>
-      // ),
+      label: AcceptingAgreementsLabel,
       defaultValue: false,
-      gridItemSx: { paddingTop: '10px', color: '#585E5F' },
     },
   ] as FieldsModel;
 };

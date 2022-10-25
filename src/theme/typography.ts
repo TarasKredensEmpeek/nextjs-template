@@ -78,7 +78,7 @@ const typography = {
   },
   link: {
     color: '#1d5a92',
-    fontSize: '0.875em',
+    fontSize: 'inherit',
     fontFamily: 'StagSans-Light',
   },
 };

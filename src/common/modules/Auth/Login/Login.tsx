@@ -7,8 +7,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Divider from '@mui/material/Divider';
 
 import FormBuilder from '@common/components/Form';
+import { openModal } from '@common/utils/eventEmitter';
+import { AuthViews, ModalNames } from '@common/constants/enums';
 
-import { validationSchema, formModel } from './constants';
+import { formModel, validationSchema } from './constants';
 
 const Login = () => {
   const { t } = useTranslation(['auth']);
@@ -21,6 +23,9 @@ const Login = () => {
   const { handleSubmit } = form;
 
   const onSubmit = () => null;
+
+  const openCreateAccount = () =>
+    openModal(ModalNames.auth, { view: AuthViews.createAccount });
 
   return (
     <Grid container>
@@ -38,7 +43,7 @@ const Login = () => {
         <Divider sx={{ my: 3 }} variant="fullWidth" />
 
         <Grid sx={{ px: 3, pb: 3 }}>
-          <Button fullWidth variant="outlined">
+          <Button fullWidth variant="outlined" onClick={openCreateAccount}>
             {t('createAccount')}
           </Button>
         </Grid>

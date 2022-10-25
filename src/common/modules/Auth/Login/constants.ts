@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 import { FieldsModel } from '@common/components/Form/types';
-import { passwordValidator } from '@common/utils/validationSchema';
+import { passwordValidator, emailSchema } from '@common/utils/validationSchema';
 
 export const formModel: FieldsModel = [
   {
@@ -19,9 +19,6 @@ export const formModel: FieldsModel = [
 ];
 
 export const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('fieldValidationMessages.emailInvalid')
-    .required('fieldValidationMessages.emailRequired'),
-
+  email: emailSchema,
   password: passwordValidator,
 });

@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import { matchIsValidTel } from 'mui-tel-input';
 
 export const digitRegexp = /^[0-9]+$/;
@@ -7,8 +7,11 @@ export const upperCaseRegexp = /(?=.*?[A-Z])/;
 export const lowerCaseRegexp = /(?=.*?[a-z])/;
 export const specialCharacterRegexp = /(?=.*?[#?!@$%^&*-])/;
 
-export const passwordValidator = yup
-  .string()
+export const emailSchema = Yup.string()
+  .email('fieldValidationMessages.emailInvalid')
+  .required('fieldValidationMessages.emailRequired');
+
+export const passwordValidator = Yup.string()
   .min(8, 'fieldValidationMessages.minLength')
   .max(64, 'fieldValidationMessages.maxLength')
   .matches(oneDigitRegexp, 'fieldValidationMessages.shouldContainOneDigit')
@@ -27,7 +30,7 @@ export const getNameValidator = (
   requiredMessage = 'fieldValidationMessages.firstNameRequired',
   required = true,
 ) => {
-  const validator = yup.string().strict().trim(spaceMessage);
+  const validator = Yup.string().strict().trim(spaceMessage);
 
   if (required) {
     return validator.required(requiredMessage);
@@ -41,9 +44,11 @@ export const getPhoneValidator = (
   requiredMessage = 'fieldValidationMessages.primaryPhoneRequired',
   required = true,
 ) => {
-  const validator = yup
-    .string()
-    .test('test-format', formatMessage, validatePhoneFormat);
+  const validator = Yup.string().test(
+    'test-format',
+    formatMessage,
+    validatePhoneFormat,
+  );
 
   if (required) {
     return validator.required(requiredMessage);
@@ -57,8 +62,7 @@ export const getZipCodeValidator = (
   digitsMessage = 'fieldValidationMessages.zipCodeOnlyDigits',
   requiredMessage = 'fieldValidationMessages.zipCodeRequired',
 ) =>
-  yup
-    .string()
+  Yup.string()
     .min(5, lengthMessage)
     .max(5, lengthMessage)
     .matches(digitRegexp, digitsMessage)

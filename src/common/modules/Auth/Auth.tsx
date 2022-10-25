@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 
-import Login from './Login';
+import { AuthViews } from '@common/constants/enums';
 
-const Auth = () => (
+import Login from './Login';
+import CreateAccount from './CreateAccount';
+
+interface AuthProps {
+  view?: AuthViews;
+}
+
+const Auth: FC<AuthProps> = ({ view = AuthViews.login }) => (
   <Grid maxWidth={480}>
-    <Login />
+    {
+      {
+        [AuthViews.login]: <Login />,
+        [AuthViews.createAccount]: <CreateAccount />,
+        [AuthViews.forgotPassword]: null,
+      }[view]
+    }
   </Grid>
 );
 

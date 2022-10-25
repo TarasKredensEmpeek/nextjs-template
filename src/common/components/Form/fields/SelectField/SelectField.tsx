@@ -1,6 +1,7 @@
 import React, { FC, InputHTMLAttributes, useMemo } from 'react';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
+import { SxProps, Theme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import Select, { SelectProps } from '@mui/material/Select';
@@ -10,7 +11,6 @@ import {
   UseControllerProps,
   UseControllerReturn,
 } from 'react-hook-form';
-import { SxProps, Theme } from '@mui/material';
 
 import { FieldOptions } from '@/types/form';
 
@@ -64,7 +64,7 @@ const SelectField: FC<TSelectFieldProps> = ({
 
       {rightLabel && <Typography variant="label1">{t(rightLabel)}</Typography>}
 
-      {isError && <Typography variant="label1">{errorMessage}</Typography>}
+      {isError && <Typography variant="fieldError">{errorMessage}</Typography>}
     </Grid>
   );
 };

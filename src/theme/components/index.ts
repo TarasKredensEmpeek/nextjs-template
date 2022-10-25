@@ -5,6 +5,8 @@ import textFields from './textFields';
 import cssBaseline from './cssBaseline';
 
 const components: ComponentsOverrides = {
+  ...textFields,
+
   MuiButton: buttons,
   MuiCssBaseline: cssBaseline,
   MuiButtonBase: {
@@ -43,7 +45,6 @@ const components: ComponentsOverrides = {
       },
     },
   },
-  ...textFields,
 };
 
 export default components;

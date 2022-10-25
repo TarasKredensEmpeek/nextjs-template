@@ -20,11 +20,11 @@ const notDisabledSelector = `:hover:not(.${inputClasses.disabled}):before`;
 const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
   const { size } = ownerState;
 
-  const paddingValue = size === 'small' ? 1 : 1.0625;
+  const paddingValue = size === 'small' ? 1.25 : 1.5;
 
   return {
     fontFamily: 'StagSans-Book',
-    fontSize: size === 'small' ? 14 : 16,
+    fontSize: `${size === 'small' ? 0.87 : 1}em`,
     paddingTop: theme.spacing(paddingValue),
     paddingBottom: theme.spacing(paddingValue),
     '&::placeholder': {

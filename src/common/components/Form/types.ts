@@ -1,6 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { SxProps, Theme } from '@mui/material/styles';
 import { InputBaseProps } from '@mui/material/InputBase';
+import { TextFieldProps } from '@mui/material/TextField';
 import { Variant } from '@mui/material/styles/createTypography';
 import { UseFieldArrayReturn, UseFormReturn } from 'react-hook-form';
 
@@ -34,9 +35,11 @@ export interface TField extends TDivider, TTitle {
   xs?: boolean | number;
   name: string;
   label?: string | ReactElement;
+  size?: InputBaseProps['size'];
   color?: InputBaseProps['color'];
   fields?: TField[];
   hidden?: boolean;
+  variant?: TextFieldProps['variant'];
   options?: TFieldOptions;
   required?: boolean;
   resource?: string;

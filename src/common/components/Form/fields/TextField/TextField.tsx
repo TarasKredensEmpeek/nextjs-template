@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { InputBaseProps } from '@mui/material/InputBase/InputBase';
 import MuiTextField, { TextFieldProps } from '@mui/material/TextField';
@@ -9,15 +9,15 @@ import {
   UseControllerReturn,
 } from 'react-hook-form';
 
-export interface TInputProps
-  extends InputHTMLAttributes<TextFieldProps>,
-    UseControllerProps {
+export interface TInputProps extends UseControllerProps {
   name: string;
   type?: string;
   label?: string;
   control: Control;
+  size?: TextFieldProps['size'];
   color?: TextFieldProps['color'];
   variant?: TextFieldProps['variant'];
+  disabled?: boolean;
   required?: boolean;
   withBorder?: boolean;
   placeholder?: string;
@@ -31,6 +31,7 @@ const TextField: FC<TInputProps> = ({
   name,
   rules,
   type = 'text',
+  size = 'small',
   color = 'secondary',
   variant = 'filled',
   control,
@@ -75,6 +76,7 @@ const TextField: FC<TInputProps> = ({
       fullWidth
       {...field}
       type={type}
+      size={size}
       color={color}
       name={name}
       variant={variant}
@@ -82,7 +84,6 @@ const TextField: FC<TInputProps> = ({
       disabled={disabled}
       placeholder={placeholderText}
       error={isError}
-      size="small"
       helperText={errorMessage}
       InputProps={inputProps}
     />

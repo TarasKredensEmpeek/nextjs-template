@@ -1,24 +1,25 @@
 import React, { FC, useMemo } from 'react';
-import clsx from 'clsx';
 import i18next from 'i18next';
 import Grid from '@mui/material/Grid';
 import { MuiTelInput } from 'mui-tel-input';
 import { useTranslation } from 'react-i18next';
+import { TextFieldProps } from '@mui/material/TextField';
 import {
   Control,
   useController,
   UseControllerProps,
   UseControllerReturn,
 } from 'react-hook-form';
-import Typography from '@mui/material/Typography';
-
-import useStyles from '../TextField/useStyles';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 export interface TInputProps extends UseControllerProps {
   name: string;
   type?: string;
   label?: string;
+  color: TextFieldProps['color'];
   control: Control;
+  variant: TextFieldProps['variant'];
   required?: boolean;
   withBorder?: boolean;
   placeholder?: string;
@@ -26,15 +27,29 @@ export interface TInputProps extends UseControllerProps {
   boldInputText?: boolean;
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    paddingLeft: theme.spacing(0.5),
+    '&>.MuiInputAdornment-root': {
+      marginTop: theme.spacing(0.2),
+      marginRight: theme.spacing(0.5),
+
+      '&.MuiInputAdornment-positionStart:not(.MuiInputAdornment-hiddenLabel)': {
+        marginTop: theme.spacing(0.2),
+      },
+    },
+  },
+}));
+
 const PhoneNumberField: FC<TInputProps> = ({
-  boldInputText,
   name,
   rules,
+  color = 'secondary',
   control,
-  defaultValue,
-  placeholder = '',
+  variant = 'filled',
   required,
-  withBorder,
+  placeholder = '',
+  defaultValue,
   ...props
 }) => {
   const classes = useStyles();
@@ -49,20 +64,14 @@ const PhoneNumberField: FC<TInputProps> = ({
 
   const { error } = fieldState;
   const isError = useMemo(() => Boolean(error), [error]);
-  const errorMessage = useMemo(() => error?.message || '', [error?.message]);
+  const errorMessage = useMemo(
+    () => t(error?.message || ''),
+    [t, error?.message],
+  );
   const placeholderText = useMemo(
     () => (required ? `${t(placeholder)} *` : t(placeholder)),
     [placeholder, required, t],
   );
-
-  const inputClasses = {
-    root: clsx(classes.inputField, {
-      [classes.withBorder]: withBorder,
-      [classes.boldInputText]: boldInputText,
-    }),
-    error: classes.error,
-    focused: classes.inputFocused,
-  };
 
   return (
     <Grid container style={{ position: 'relative' }}>
@@ -71,21 +80,17 @@ const PhoneNumberField: FC<TInputProps> = ({
         size="small"
         {...props}
         {...field}
-        langOfCountryName={language}
+        color={color}
+        variant={variant}
         InputProps={{
-          classes: inputClasses,
-          disableUnderline: true,
+          classes,
           error: isError,
+          disableUnderline: true,
         }}
+        helperText={errorMessage}
         placeholder={placeholderText}
-        variant="standard"
+        langOfCountryName={language}
       />
-
-      {isError && (
-        <Typography variant="fieldError" className={classes.formHelperText}>
-          {t(errorMessage)}
-        </Typography>
-      )}
     </Grid>
   );
 };

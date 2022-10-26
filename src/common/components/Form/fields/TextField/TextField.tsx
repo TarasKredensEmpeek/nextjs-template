@@ -18,6 +18,7 @@ export interface TInputProps extends UseControllerProps {
   color?: TextFieldProps['color'];
   variant?: TextFieldProps['variant'];
   disabled?: boolean;
+  multiline?: boolean;
   required?: boolean;
   withBorder?: boolean;
   placeholder?: string;
@@ -37,6 +38,7 @@ const TextField: FC<TInputProps> = ({
   control,
   disabled,
   required,
+  multiline = false,
   placeholder = '',
   endAdornment,
   defaultValue = '',
@@ -77,11 +79,12 @@ const TextField: FC<TInputProps> = ({
       {...field}
       type={type}
       size={size}
-      color={color}
       name={name}
+      color={color}
       variant={variant}
       required={required}
       disabled={disabled}
+      multiline={multiline}
       placeholder={placeholderText}
       error={isError}
       helperText={errorMessage}

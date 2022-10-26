@@ -66,8 +66,8 @@ const RadioGroupField: FC<TRadioGroupFieldProps> = ({
   const stylesX = useMemo(
     () => ({
       display: 'flex',
-      flexDirection: row ? 'row' : 'column',
       flexWrap: row ? 'wrap' : 'nowrap',
+      flexDirection: row ? 'row' : 'column',
     }),
     [row],
   );

@@ -33,6 +33,7 @@ export interface FieldComponentProps extends TInputProps {
 
 export interface TField extends TDivider, TTitle {
   xs?: boolean | number;
+  row?: boolean;
   name: string;
   label?: string | ReactElement;
   size?: InputBaseProps['size'];
@@ -42,20 +43,18 @@ export interface TField extends TDivider, TTitle {
   variant?: TextFieldProps['variant'];
   options?: TFieldOptions;
   required?: boolean;
-  resource?: string;
   component?: FC<FieldComponentProps>;
+  multiline?: string;
   getLabel?: (f: TField) => string;
   getTitle?: (f: Partial<TField>) => string;
   getOptions?: (f: string) => TFieldOptions;
   disabled?: string;
   leftLabel?: string;
-  withBorder?: boolean;
   rightLabel?: string;
   placeholder?: string;
   labelVariant?: Variant;
   defaultValue?: string | number | boolean | never;
   requestParams?: unknown;
-  boldInputText?: boolean;
   countFieldName?: string;
   gridItemSx?: SxProps<Theme>;
   fieldSxProps?: SxProps<Theme>;

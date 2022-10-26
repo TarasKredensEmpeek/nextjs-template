@@ -22,7 +22,7 @@ const Login = () => {
     mode: 'all',
   });
 
-  const { handleSubmit } = form;
+  const { handleSubmit, control } = form;
 
   const onSubmit = () => null;
 
@@ -38,29 +38,36 @@ const Login = () => {
         {t('loginSubtitle')}
       </Typography>
 
-      <Grid container px={3}>
-        <FormBuilder form={form} onSubmit={onSubmit} fieldsList={formModel} />
-      </Grid>
-
-      <Grid item container direction="column">
-        <Grid container>
-          <Link px={3} variant="body1" onClick={openForgotPassword}>
-            {t('forgotPassword')}
-          </Link>
+      <Grid
+        container
+        noValidate
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Grid container px={3}>
+          <FormBuilder control={control} fieldsList={formModel} />
         </Grid>
 
-        <Grid sx={{ px: 3 }}>
-          <Button fullWidth variant="outlined" onClick={handleSubmit(onSubmit)}>
-            {t('login')}
-          </Button>
-        </Grid>
+        <Grid item container direction="column">
+          <Grid container>
+            <Link px={3} variant="body1" onClick={openForgotPassword}>
+              {t('forgotPassword')}
+            </Link>
+          </Grid>
 
-        <Divider sx={{ my: 3 }} variant="fullWidth" />
+          <Grid sx={{ px: 3 }}>
+            <Button fullWidth type="submit" variant="outlined">
+              {t('login')}
+            </Button>
+          </Grid>
 
-        <Grid sx={{ px: 3, pb: 3 }}>
-          <Button fullWidth variant="outlined" onClick={openCreateAccount}>
-            {t('createAccount')}
-          </Button>
+          <Divider sx={{ my: 3 }} variant="fullWidth" />
+
+          <Grid sx={{ px: 3, pb: 3 }}>
+            <Button fullWidth variant="outlined" onClick={openCreateAccount}>
+              {t('createAccount')}
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

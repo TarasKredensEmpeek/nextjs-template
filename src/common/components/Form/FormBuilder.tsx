@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
+import { Control } from 'react-hook-form';
 import { SxProps } from '@mui/material/styles';
-import { UseFormReturn } from 'react-hook-form';
 import { ResponsiveStyleValue } from '@mui/system';
 import Grid, { GridSpacing } from '@mui/material/Grid';
 
@@ -8,10 +8,9 @@ import Field from './Field';
 import FieldsArray from './FieldsArray';
 import { FieldsModel, TField } from './types';
 
-interface FormBuilderProps<FormDataType = unknown> {
-  form: UseFormReturn<object>;
+interface FormBuilderProps {
+  control: Control;
   formSx?: SxProps;
-  onSubmit: (data: FormDataType) => void;
   children?: React.ReactNode;
   fieldsList: FieldsModel;
   submitButtonLabel?: string;
@@ -22,8 +21,7 @@ interface FormBuilderProps<FormDataType = unknown> {
 }
 
 const FormBuilder: FC<FormBuilderProps> = ({
-  onSubmit,
-  form,
+  control,
   formSx = {},
   fieldsList,
   children = null,
@@ -31,8 +29,6 @@ const FormBuilder: FC<FormBuilderProps> = ({
   containerColumnSpacing,
   containerSpacing,
 }) => {
-  const { control, handleSubmit } = form;
-
   const renderField = useCallback(
     (fieldParams: TField, index: number) => {
       const key = fieldParams.id || fieldParams.name;
@@ -57,13 +53,7 @@ const FormBuilder: FC<FormBuilderProps> = ({
   );
 
   return (
-    <Grid
-      container
-      noValidate
-      sx={formSx}
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <Grid container sx={formSx}>
       <Grid
         container
         rowSpacing={containerRowSpacing}

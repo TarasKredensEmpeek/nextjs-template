@@ -22,7 +22,7 @@ const CreateAccount = () => {
     mode: 'all',
   });
 
-  const { handleSubmit } = form;
+  const { handleSubmit, control } = form;
 
   const onSubmit = () => null;
 
@@ -42,20 +42,21 @@ const CreateAccount = () => {
         </Link>
       </Grid>
 
-      <Grid container px={3}>
-        <FormBuilder
-          onSubmit={onSubmit}
-          form={form}
-          fieldsList={fields}
-          containerColumnSpacing={4}
-        />
-      </Grid>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Grid container px={3}>
+          <FormBuilder
+            control={control}
+            fieldsList={fields}
+            containerColumnSpacing={4}
+          />
+        </Grid>
 
-      <Grid container sx={{ px: 3, pb: 3 }}>
-        <Button fullWidth variant="outlined" onClick={handleSubmit(onSubmit)}>
-          {t('createAccount')}
-        </Button>
-      </Grid>
+        <Grid container sx={{ px: 3, pb: 3 }}>
+          <Button fullWidth variant="outlined" type="submit">
+            {t('createAccount')}
+          </Button>
+        </Grid>
+      </form>
     </Grid>
   );
 };

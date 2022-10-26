@@ -36,16 +36,11 @@ const CreateAccount = () => {
         {t('createAccountSubtitle')}
       </Typography>
 
-      <Link
-        mx={3}
-        width="100%"
-        variant="body1"
-        textAlign="center"
-        underline="none"
-        onClick={openLogin}
-      >
-        {t('createAccountLink')}
-      </Link>
+      <Grid container justifyContent="center">
+        <Link mx={3} variant="body1" onClick={openLogin}>
+          {t('createAccountLink')}
+        </Link>
+      </Grid>
 
       <Grid container px={3}>
         <FormBuilder

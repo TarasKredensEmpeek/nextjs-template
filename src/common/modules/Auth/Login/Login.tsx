@@ -43,15 +43,12 @@ const Login = () => {
       </Grid>
 
       <Grid item container direction="column">
-        <Link
-          px={3}
-          width="100%"
-          variant="body1"
-          underline="none"
-          onClick={openForgotPassword}
-        >
-          {t('forgotPassword')}
-        </Link>
+        <Grid container>
+          <Link px={3} variant="body1" onClick={openForgotPassword}>
+            {t('forgotPassword')}
+          </Link>
+        </Grid>
+
         <Grid sx={{ px: 3 }}>
           <Button fullWidth variant="outlined" onClick={handleSubmit(onSubmit)}>
             {t('login')}

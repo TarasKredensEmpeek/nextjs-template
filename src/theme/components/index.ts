@@ -39,6 +39,7 @@ const components: ComponentsOverrides = {
     },
   },
   MuiLink: {
+    defaultProps: { underline: 'none' },
     styleOverrides: {
       root: {
         cursor: 'pointer',

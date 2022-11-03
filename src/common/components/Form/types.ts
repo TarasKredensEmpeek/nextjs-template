@@ -5,49 +5,16 @@ import { TextFieldProps } from '@mui/material/TextField';
 import { Variant } from '@mui/material/styles/createTypography';
 import { UseFieldArrayReturn, UseFormReturn } from 'react-hook-form';
 
-import { TInputProps } from '@common/components/Form/fields/TextField';
-
-export interface TDivider {
-  divider?: boolean;
-  id?: string;
-}
-
-export interface TTitle {
-  titleVariant?: Variant;
-  title?: string;
-  id?: string;
-}
-
-interface TFieldSelectOption {
-  label: string | number;
-  value: string | number;
-  xs?: number;
-  id?: string;
-}
-
-export type TFieldOptions = TFieldSelectOption[];
-
-export interface FieldComponentProps extends TInputProps {
-  control: UseFormReturn['control'];
-}
-
-export interface TField extends TDivider, TTitle {
-  xs?: boolean | number;
+interface BaseFieldParams {
   row?: boolean;
   name: string;
-  label?: string | ReactElement;
   size?: InputBaseProps['size'];
+  label?: string | ReactElement;
   color?: InputBaseProps['color'];
-  fields?: TField[];
-  hidden?: boolean;
-  variant?: TextFieldProps['variant'];
-  options?: TFieldOptions;
-  required?: boolean;
-  component?: FC<FieldComponentProps>;
   multiline?: string;
-  getLabel?: (f: TField) => string;
-  getTitle?: (f: Partial<TField>) => string;
-  getOptions?: (f: string) => TFieldOptions;
+  variant?: TextFieldProps['variant'];
+  options?: FieldSelectOption[];
+  required?: boolean;
   disabled?: string;
   leftLabel?: string;
   rightLabel?: string;
@@ -55,16 +22,50 @@ export interface TField extends TDivider, TTitle {
   labelVariant?: Variant;
   defaultValue?: string | number | boolean | never;
   requestParams?: unknown;
+  labelTypographySx?: SxProps<Theme>;
+}
+
+export interface DividerParams {
+  divider?: boolean;
+  id?: string;
+}
+
+export interface TitleParams {
+  titleVariant?: Variant;
+  title?: string;
+  id?: string;
+}
+
+interface FieldSelectOption {
+  label: string | number;
+  value: string | number;
+  xs?: number;
+  id?: string;
+}
+
+export interface FieldComponentProps extends BaseFieldParams {
+  control: UseFormReturn['control'];
+}
+
+export interface FieldParams
+  extends DividerParams,
+    TitleParams,
+    BaseFieldParams {
+  xs?: boolean | number;
+  fields?: FieldParams[];
+  hidden?: boolean;
+  getTitle?: (f: Partial<FieldParams>) => string;
+  component?: FC<FieldComponentProps>;
+  getOptions?: (f: string) => FieldSelectOption[];
   countFieldName?: string;
   gridItemSx?: SxProps<Theme>;
   fieldSxProps?: SxProps<Theme>;
-  labelTypographySx?: SxProps<Theme>;
   getXs?: () => number;
   fieldArrayHelpers?: {
     getNewFieldsForFieldsArray?: (
       fields: { [key: string]: string },
       fieldsCounterName: string,
-    ) => TField[];
+    ) => FieldParams[];
     getFieldsArrayIndexToRemove?: (
       fields: UseFieldArrayReturn['fields'],
       fieldsCounterName: string,
@@ -72,8 +73,8 @@ export interface TField extends TDivider, TTitle {
     getFieldsForFieldsArrayToCompare?: (
       fields: UseFieldArrayReturn['fields'],
       fieldsCounterName: string,
-    ) => TField[];
+    ) => FieldParams[];
   };
 }
 
-export type FieldsModel = TField[];
+export type FieldsModel = FieldParams[];

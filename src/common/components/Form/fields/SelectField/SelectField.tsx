@@ -14,7 +14,7 @@ import {
 
 import { FieldOptions } from '@/types/form';
 
-export interface TSelectFieldProps
+export interface SelectFieldProps
   extends InputHTMLAttributes<SelectProps>,
     UseControllerProps {
   name: string;
@@ -27,7 +27,7 @@ export interface TSelectFieldProps
   defaultValue?: string | number;
 }
 
-const SelectField: FC<TSelectFieldProps> = ({
+const SelectField: FC<SelectFieldProps> = ({
   name,
   control,
   rules,

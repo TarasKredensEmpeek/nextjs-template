@@ -13,7 +13,7 @@ import {
 import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 
-export interface TInputProps extends UseControllerProps {
+export interface PhoneInputProps extends UseControllerProps {
   name: string;
   type?: string;
   label?: string;
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const PhoneNumberField: FC<TInputProps> = ({
+const PhoneNumberField: FC<PhoneInputProps> = ({
   name,
   rules,
   color = 'secondary',

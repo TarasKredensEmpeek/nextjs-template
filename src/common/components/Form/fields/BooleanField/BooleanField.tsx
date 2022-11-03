@@ -27,7 +27,7 @@ const booleanInputs = {
   [BooleanInputTypes.radio]: Radio,
 };
 
-export interface TBoolFieldProps extends UseControllerProps {
+export interface BooleanFieldProps extends UseControllerProps {
   name: string;
   control: Control;
   type?: BooleanInputTypes;
@@ -48,7 +48,7 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: { padding: spacing(1), color: '#BCBFBE', '& svg': { fontSize: 24 } },
 }));
 
-const BooleanField: FC<TBoolFieldProps> = ({
+const BooleanField: FC<BooleanFieldProps> = ({
   name,
   label,
   type = BooleanInputTypes.checkbox,

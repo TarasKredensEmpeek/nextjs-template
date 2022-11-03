@@ -9,7 +9,7 @@ import {
   UseControllerReturn,
 } from 'react-hook-form';
 
-export interface TInputProps extends UseControllerProps {
+export interface InputProps extends UseControllerProps {
   name: string;
   type?: string;
   label?: string;
@@ -28,7 +28,7 @@ export interface TInputProps extends UseControllerProps {
   endAdornment?: React.ReactNode;
 }
 
-const TextField: FC<TInputProps> = ({
+const TextField: FC<InputProps> = ({
   name,
   rules,
   type = 'text',

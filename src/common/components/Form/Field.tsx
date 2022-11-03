@@ -5,10 +5,10 @@ import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 
-import { FieldComponentProps, TField, TFieldOptions } from './types';
+import { FieldComponentProps, FieldParams } from './types';
 import TextField from './fields/TextField';
 
-interface FieldProps extends TField {
+interface FieldProps extends FieldParams {
   index?: number;
   control: Control;
   getXs?: () => number;
@@ -40,7 +40,7 @@ const Field: FC<FieldProps> = ({
   }
 
   if (getOptions) {
-    fieldProps.options = getOptions(field.name) as TFieldOptions;
+    fieldProps.options = getOptions(field.name) as FieldParams['options'];
   }
 
   if (title) {

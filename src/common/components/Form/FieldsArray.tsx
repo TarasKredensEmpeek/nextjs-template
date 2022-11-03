@@ -11,10 +11,10 @@ import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import { useFieldArray, useWatch, Control } from 'react-hook-form';
 
-import { FieldsModel, TField } from './types';
+import { FieldsModel, FieldParams } from './types';
 import Field from './Field';
 
-interface FieldsArrayProps extends TField {
+interface FieldsArrayProps extends FieldParams {
   fields: FieldsModel;
   control: Control;
   fieldIndex?: number;

@@ -18,7 +18,7 @@ import {
 
 import { FieldOptions } from '@/types/form';
 
-interface TRadioGroupFieldProps
+interface RadioGroupFieldProps
   extends InputHTMLAttributes<RadioProps>,
     UseControllerProps {
   row: boolean;
@@ -37,7 +37,7 @@ const componentsProps: FormControlLabelProps['componentsProps'] = {
   typography: { variant: 'subtitle1' },
 };
 
-const RadioGroupField: FC<TRadioGroupFieldProps> = ({
+const RadioGroupField: FC<RadioGroupFieldProps> = ({
   row = false,
   name,
   label,

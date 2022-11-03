@@ -6,31 +6,31 @@ import Grid, { GridSpacing } from '@mui/material/Grid';
 
 import Field from './Field';
 import FieldsArray from './FieldsArray';
-import { FieldsModel, TField } from './types';
+import { FieldsModel, FieldParams } from './types';
 
 interface FormBuilderProps {
-  control: Control;
   formSx?: SxProps;
+  control: Control;
   children?: React.ReactNode;
   fieldsList: FieldsModel;
+  formActions?: React.ElementType;
+  containerSpacing?: ResponsiveStyleValue<GridSpacing>;
   submitButtonLabel?: string;
   containerRowSpacing?: ResponsiveStyleValue<GridSpacing>;
   containerColumnSpacing?: ResponsiveStyleValue<GridSpacing>;
-  containerSpacing?: ResponsiveStyleValue<GridSpacing>;
-  formActions?: React.ElementType;
 }
 
 const FormBuilder: FC<FormBuilderProps> = ({
-  control,
   formSx = {},
-  fieldsList,
+  control,
   children = null,
+  fieldsList,
+  containerSpacing,
   containerRowSpacing,
   containerColumnSpacing,
-  containerSpacing,
 }) => {
   const renderField = useCallback(
-    (fieldParams: TField, index: number) => {
+    (fieldParams: FieldParams, index: number) => {
       const key = fieldParams.id || fieldParams.name;
 
       if (fieldParams.fields?.length) {

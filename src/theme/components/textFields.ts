@@ -51,6 +51,12 @@ const filledInputOverrides: ComponentsOverrides['MuiFilledInput'] = {
         border: 'none',
         borderBottomStyle: 'none',
       },
+
+      [`&.${filledInputClasses.disabled}`]: {
+        '&:before': {
+          borderBottomStyle: 'none',
+        },
+      },
     }),
 
     input: ({ theme, ownerState }) => ({

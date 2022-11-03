@@ -59,7 +59,6 @@ const typography = {
     color: 'error',
   },
   link: {
-    color: 'text.link',
     fontSize: '0.875em',
     fontFamily: 'StagSans-Medium',
   },

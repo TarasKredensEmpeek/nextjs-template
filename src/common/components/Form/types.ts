@@ -22,7 +22,7 @@ interface BaseFieldParams {
   rightLabel?: string;
   placeholder?: string;
   labelVariant?: Variant;
-  defaultValue?: never;
+  defaultValue?: unknown;
   requestParams?: unknown;
   labelTypographySx?: SxProps<Theme>;
 }

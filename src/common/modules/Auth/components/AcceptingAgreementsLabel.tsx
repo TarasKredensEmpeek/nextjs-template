@@ -10,7 +10,9 @@ interface LinkTextProps {
 
 const LinkText: FC<LinkTextProps> = ({ href, children }) => (
   <Link href={href}>
-    <Typography variant="link">{children}</Typography>
+    <Typography variant="link" fontSize="inherit" color="text.link">
+      {children}
+    </Typography>
   </Link>
 );
 

@@ -5,22 +5,24 @@ import { TextFieldProps } from '@mui/material/TextField';
 import { Variant } from '@mui/material/styles/createTypography';
 import { UseFieldArrayReturn, UseFormReturn } from 'react-hook-form';
 
+import { TextInputProps } from './fields/TextField';
+
 interface BaseFieldParams {
   row?: boolean;
   name: string;
   size?: InputBaseProps['size'];
   label?: string | ReactElement;
   color?: InputBaseProps['color'];
-  multiline?: string;
   variant?: TextFieldProps['variant'];
   options?: FieldSelectOption[];
   required?: boolean;
-  disabled?: string;
+  disabled?: boolean;
   leftLabel?: string;
+  multiline?: boolean;
   rightLabel?: string;
   placeholder?: string;
   labelVariant?: Variant;
-  defaultValue?: string | number | boolean | never;
+  defaultValue?: never;
   requestParams?: unknown;
   labelTypographySx?: SxProps<Theme>;
 }
@@ -43,7 +45,9 @@ interface FieldSelectOption {
   id?: string;
 }
 
-export interface FieldComponentProps extends BaseFieldParams {
+export interface FieldComponentProps
+  extends BaseFieldParams,
+    Omit<TextInputProps, 'defaultValue' | 'label'> {
   control: UseFormReturn['control'];
 }
 

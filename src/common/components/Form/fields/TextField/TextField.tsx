@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, ReactElement, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { InputBaseProps } from '@mui/material/InputBase/InputBase';
 import MuiTextField, { TextFieldProps } from '@mui/material/TextField';
@@ -9,10 +9,10 @@ import {
   UseControllerReturn,
 } from 'react-hook-form';
 
-export interface InputProps extends UseControllerProps {
+export interface TextInputProps extends UseControllerProps {
   name: string;
   type?: string;
-  label?: string;
+  label?: string | ReactElement;
   control: Control;
   size?: TextFieldProps['size'];
   color?: TextFieldProps['color'];
@@ -28,7 +28,7 @@ export interface InputProps extends UseControllerProps {
   endAdornment?: React.ReactNode;
 }
 
-const TextField: FC<InputProps> = ({
+const TextField: FC<TextInputProps> = ({
   name,
   rules,
   type = 'text',

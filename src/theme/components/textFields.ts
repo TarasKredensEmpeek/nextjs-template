@@ -1,15 +1,12 @@
+import { formHelperTextClasses } from '@mui/material/FormHelperText';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { ComponentsPropsList } from '@mui/material/styles/props';
 import { filledInputClasses } from '@mui/material/FilledInput';
-import { inputBaseClasses } from '@mui/material/InputBase';
 import { inputClasses } from '@mui/material/Input';
 
 import { ComponentsOverrides, OverrideThemeProps } from '../types';
 
-type OwnerState = ComponentsPropsList[
-  | 'MuiOutlinedInput'
-  | 'MuiFilledInput'
-  | 'MuiFormControl'];
+type OwnerState = ComponentsPropsList['MuiOutlinedInput' | 'MuiFilledInput'];
 
 type InputOverrides = Omit<OverrideThemeProps, 'ownerState'> & {
   ownerState: OwnerState;
@@ -23,8 +20,10 @@ const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
   const paddingValue = size === 'small' ? 1.25 : 1.5;
 
   return {
+    height: 20,
+    borderWidth: 1,
     fontFamily: 'StagSans-Book',
-    fontSize: `${size === 'small' ? 0.87 : 1}em`,
+    fontSize: `${size === 'small' ? 0.875 : 1}em`,
     paddingTop: theme.spacing(paddingValue),
     paddingBottom: theme.spacing(paddingValue),
     '&::placeholder': {
@@ -33,109 +32,95 @@ const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
   };
 };
 
-const getBaseFocusInput = ({ theme, ownerState }: InputOverrides) => {
-  const { color = 'primary' } = ownerState;
-
-  return {
-    borderWidth: 1,
-    borderColor: theme.palette[color].light,
-  };
-};
-const inputOverrides: ComponentsOverrides['MuiInput'] = {
-  styleOverrides: {
-    root: ({ theme, ownerState }: InputOverrides) => {
-      const { color = 'primary' } = ownerState;
-      const borderBottom = `1px solid ${theme.palette[color].light}`;
-
-      return {
-        borderBottom,
-        [`&:before, :after, ${notDisabledSelector}`]: { border: 'none' },
-        [`&.${inputClasses.focused}`]: { borderBottom },
-      };
-    },
-    input: getBaseInput,
-  },
-};
-
-const inputBaseOverrides: ComponentsOverrides['MuiInputBase'] = {
-  styleOverrides: {
-    root: {
-      [`&:before, :after, ${notDisabledSelector}`]: { border: 'none' },
-      [`&.${inputBaseClasses.focused}`]: { border: 'none' },
-    },
-    input: getBaseInput,
-  },
-};
-
 const filledInputOverrides: ComponentsOverrides['MuiFilledInput'] = {
   styleOverrides: {
-    root: ({ theme, ownerState }) => {
-      const { color = 'primary' } = ownerState;
+    root: ({ theme }) => ({
+      paddingTop: 0,
+      borderRadius: 4,
+      backgroundColor: theme.palette.background.secondary,
 
-      const currentColor = theme.palette[color];
+      [`&.${filledInputClasses.focused}`]: {
+        backgroundColor: theme.palette.background.secondary,
+      },
 
-      return {
-        borderRadius: 4,
-        border: `1px solid ${theme.palette.border.light}`,
-        backgroundColor: currentColor.light,
-        [`&.${filledInputClasses.focused}`]: {
-          border: `1px solid ${theme.palette.border.light}`,
+      [`&.${filledInputClasses.error}`]: {
+        backgroundColor: '#FEF4F3',
+      },
+
+      [`&:before, :after, :hover, ${notDisabledSelector}`]: {
+        border: 'none',
+        borderBottomStyle: 'none',
+      },
+    }),
+
+    input: ({ theme, ownerState }) => ({
+      ...getBaseInput({ theme, ownerState }),
+      borderRadius: 4,
+
+      [`&.${filledInputClasses.disabled}`]: {
+        color: theme.palette.text.disabled,
+        backgroundColor: theme.palette.background.secondary,
+
+        '&:before': {
+          borderBottomStyle: 'none',
         },
-        [`&:before, :after, :hover, ${notDisabledSelector}`]: {
-          border: `1px solid ${theme.palette.border.light}`,
-        },
-      };
-    },
-    input: getBaseInput,
+      },
+    }),
+
+    focused: ({ theme }: InputOverrides) => ({
+      backgroundColor: theme.palette.background.secondary,
+    }),
   },
 };
 
 const outlinedInputOverrides: ComponentsOverrides['MuiOutlinedInput'] = {
   styleOverrides: {
-    input: ({ theme, ownerState }: InputOverrides) =>
-      getBaseFocusInput({
-        theme,
-        ownerState,
-      }),
-  },
-};
+    root: ({ theme }: InputOverrides) => ({
+      borderWidth: 1,
+      borderColor: theme.palette.neutral.light,
 
-const formControlOverrides: ComponentsOverrides['MuiFormControl'] = {
-  styleOverrides: {
-    root: ({ theme, ownerState }: InputOverrides) => {
-      const { color = 'primary' } = ownerState;
-      const border = `1px solid ${theme.palette[color].light}`;
+      [`&.${outlinedInputClasses.disabled}`]: {
+        color: theme.palette.text.disabled,
+        backgroundColor: theme.palette.background.secondary,
+      },
 
-      return {
-        [`&:before, :after, :hover, ${notDisabledSelector}`]: {
-          borderBottom: 'none',
+      [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
+        {
+          borderWidth: 1,
         },
 
-        [`& .${outlinedInputClasses.input}`]: {
-          borderRadius: 4,
-          border,
+      [`&.${outlinedInputClasses.focused}:not(.${outlinedInputClasses.error}) .${outlinedInputClasses.notchedOutline}`]:
+        {
+          borderColor: theme.palette.neutral.light,
         },
 
-        [`& .${outlinedInputClasses.notchedOutline}`]: {
-          border: 'none',
-          '&:hover': {
-            border: 'none',
-            outline: 'none',
+      [`&:hover:not(.${outlinedInputClasses.error}):not(.${outlinedInputClasses.focused}):not(.${outlinedInputClasses.disabled}) .${outlinedInputClasses.notchedOutline}`]:
+        {
+          borderColor: theme.palette.primary.main,
+        },
+
+      [`&:hover:is(.${outlinedInputClasses.error}) .${outlinedInputClasses.notchedOutline}`]:
+        {
+          borderColor: theme.palette.error.dark,
+
+          [`.${formHelperTextClasses.root}`]: {
+            color: theme.palette.error.main,
           },
         },
-      };
-    },
+    }),
+
+    input: getBaseInput,
+
+    error: ({ theme }: InputOverrides) => ({
+      borderColor: theme.palette.error.light,
+      backgroundColor: '#FEF4F3',
+    }),
   },
 };
 
 const textFields = {
-  MuiInputBase: inputBaseOverrides,
-
-  MuiInput: inputOverrides,
   MuiFilledInput: filledInputOverrides,
   MuiOutlinedInput: outlinedInputOverrides,
-
-  MuiFormControl: formControlOverrides,
 };
 
 export default textFields;

@@ -1,53 +1,37 @@
 const typography = {
   fontFamily: [
-    'StagSans-Book',
-    'StagSans-Bold',
-    'StagSans-Light',
     'StagSans-Medium',
-    'GothamCondensed-Bold',
+    'StagSans-Book',
+    'StagSans-Light',
+    'StagSans-SemiBold',
+    'StagSans-Bold',
   ].join(','),
   fontSize: 16,
   fontWeight: 'normal',
 
   h1: {
-    fontSize: '5em',
+    fontSize: '2.8125em',
     fontFamily: 'StagSans-Medium',
   },
   h2: {
-    fontSize: '3.75em',
-    fontFamily: 'StagSans-Book',
+    fontSize: '2.375em',
+    fontFamily: 'StagSans-SemiBold',
   },
   h3: {
-    fontSize: '2.75em',
-    fontFamily: 'StagSans-Medium',
+    fontSize: '1.5em',
+    fontFamily: 'StagSans-Light',
   },
   h4: {
-    fontSize: '2.125em',
-    fontFamily: 'StagSans-Book',
-  },
-  h5: {
-    fontSize: '2em',
-    fontFamily: 'StagSans-Book',
-  },
-  h6: {
-    fontSize: '1.75em',
-    fontFamily: 'StagSans-Bold',
-  },
-  label1: {
-    fontSize: '1em',
-    fontFamily: 'StagSans-Book',
-  },
-  label2: {
     fontSize: '0.875em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Bold',
   },
   subtitle1: {
     fontSize: '1.25em',
-    fontFamily: 'StagSans-Bold',
+    fontFamily: 'StagSans-Medium',
   },
   subtitle2: {
-    fontSize: '1em',
-    fontFamily: 'StagSans-Medium',
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Book',
   },
   body1: {
     fontSize: '1em',
@@ -55,15 +39,15 @@ const typography = {
   },
   body2: {
     fontSize: '0.875em',
-    fontFamily: 'StagSans-Light',
+    fontFamily: 'StagSans-Book',
   },
   caption: {
     fontSize: '0.75em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Medium',
   },
   button: {
-    fontSize: '1em',
-    fontFamily: 'StagSans-Medium',
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Book',
   },
   overline: {
     fontSize: '0.75em',
@@ -71,13 +55,13 @@ const typography = {
   },
   fieldError: {
     fontSize: '0.75em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Medium',
     color: 'error',
   },
   link: {
-    color: '#1d5a92',
-    fontSize: 'inherit',
-    fontFamily: 'StagSans-Light',
+    color: 'text.link',
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Medium',
   },
 };
 

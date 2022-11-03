@@ -2,23 +2,30 @@ const palette = {
   background: {
     default: '#ffffff',
     paper: '#ffffff',
-    dark: '#2d2d2d',
-    secondary: '#f5f5f5',
+    dark: '#212121',
+    secondary: '#f6f6f6',
     gradient: 'linear-gradient(90deg, #D7C378 0%, #FDDC8D 100.26%)',
   },
 
   text: {
-    primary: '#000000',
-    secondary: '#ffffff',
-    disabled: '#BCBFBE',
-    main: '#B5964D',
+    primary: '#1A1A1A',
+    secondary: '#3F3F3F',
+    disabled: '#B3B3B3',
+    link: '#024B78',
+    light: '#FFFFFF',
     gradient: 'linear-gradient(90deg, #D7C378 0%, #FDDC8D 100.26%)',
   },
 
+  neutral: {
+    dark: '#404040',
+    main: '#9E9E9E',
+    light: '#CACACA',
+  },
+
   primary: {
-    dark: '#A98A53',
-    main: '#B5964D',
-    light: '#DAC091',
+    dark: '#846737',
+    main: '#A98953',
+    light: '#C1AB87',
   },
 
   secondary: {
@@ -28,22 +35,33 @@ const palette = {
   },
 
   error: {
-    dark: '#C31111',
-    main: '#FF0042',
-    light: '#FF5757',
+    dark: '#8B1A1C',
+    main: '#D72F19',
+    light: '#F68686',
   },
 
-  // info: {},
-  // warning: {},
+  info: {
+    dark: '#1B5FAF',
+    main: '#57A2FA',
+    light: '#BFDAF9',
+  },
+
+  warning: {
+    dark: '#995B11',
+    main: '#E99D42',
+    light: '#EABB82',
+  },
 
   success: {
-    main: '#00B460',
+    dark: '#3D6300',
+    main: '#66B44F',
+    light: '#B3DA9B',
   },
 
   border: {
     dark: '#000000',
     main: '#585E5F',
-    light: '#B7B7B7',
+    light: '#CACACA',
   },
 
   divider: '#BBBFBE',

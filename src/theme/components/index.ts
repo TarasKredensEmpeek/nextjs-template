@@ -15,19 +15,14 @@ const components: ComponentsOverrides = {
     },
   },
   MuiFormHelperText: {
+    defaultProps: { color: 'error.dark' },
+
     styleOverrides: {
       root: {
         position: 'absolute',
         marginLeft: 0,
         marginRight: 0,
         top: '85%',
-      },
-    },
-  },
-  MuiTypography: {
-    styleOverrides: {
-      root: {
-        fontWeight: 'normal',
       },
     },
   },
@@ -39,7 +34,8 @@ const components: ComponentsOverrides = {
     },
   },
   MuiLink: {
-    defaultProps: { underline: 'none' },
+    defaultProps: { color: 'text.link' },
+
     styleOverrides: {
       root: {
         cursor: 'pointer',

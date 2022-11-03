@@ -1,57 +1,47 @@
 const styleOverrides = `
 @font-face {
-  font-family: 'StagSans-Bold';
-  src: url('https://assets.primesport.com/content/fonts/StagSans-Bold.woff') format('woff'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Bold.eot?#iefix') format('embedded-opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Bold.otf') format('opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Bold.ttf') format('truetype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Bold.svg#StagSans-Bold') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'StagSans-Medium';
+    src: url('assets/fonts/StagSans-Medium.woff2') format('woff2'),
+        url('assets/fonts/StagSans-Medium.woff') format('woff'),
+        url('assets/fonts/StagSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'StagSans-Book';
-  src: url('https://assets.primesport.com/content/fonts/StagSans-Book.woff') format('woff'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.eot?#iefix') format('embedded-opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.otf') format('opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.ttf') format('truetype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.svg#StagSans-Book') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'StagSans-Book';
+    src: url('assets/fonts/StagSans-Regular.woff2') format('woff2'),
+        url('assets/fonts/StagSans-Regular.woff') format('woff'),
+        url('assets/fonts/StagSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'StagSans-Light';
-  src: url('https://assets.primesport.com/content/fonts/StagSans-Book.woff') format('woff'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.eot?#iefix') format('embedded-opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.otf') format('opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.ttf') format('truetype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Book.svg#StagSans-Book') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'StagSans-Light';
+    src: url('assets/fonts/StagSans-Light.woff2') format('woff2'),
+        url('assets/fonts/StagSans-Light.woff') format('woff'),
+        url('assets/fonts/StagSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'StagSans-Medium';
-  src: url('https://assets.primesport.com/content/fonts/StagSans-Medium.woff') format('woff'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Medium.eot?#iefix') format('embedded-opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Medium.otf') format('opentype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Medium.ttf') format('truetype'),
-    url('https://assets.primesport.com/content/fonts/StagSans-Medium.svg#StagSans-Medium') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'StagSans-SemiBold';
+    src: url('assets/fonts/StagSans-SemiBold.woff2') format('woff2'),
+        url('assets/fonts/StagSans-SemiBold.woff') format('woff'),
+        url('assets/fonts/StagSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'GothamCondensed-Bold';
-  src: url('https://assets.primesport.com/content/fonts/GothamCondensed-Bold.woff') format('woff'),
-    url('https://assets.primesport.com/content/fonts/GothamCondensed-Bold.eot?#iefix') format('embedded-opentype'),
-    url('https://assets.primesport.com/content/fonts/GothamCondensed-Bold.otf') format('opentype'),
-    url('https://assets.primesport.com/content/fonts/GothamCondensed-Bold.ttf') format('truetype'),
-    url('https://assets.primesport.com/content/fonts/GothamCondensed-Bold.svg#GothamCondensed-Bold') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'StagSans-Bold';
+    src: url('assets/fonts/StagSans-Bold.woff2') format('woff2'),
+        url('assets/fonts/StagSans-Bold.woff') format('woff'),
+        url('assets/fonts/StagSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 `;
 

@@ -19,8 +19,6 @@ declare module '@mui/material/Button' {
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     link: true;
-    label1: true;
-    label2: true;
     fieldError: true;
   }
 }
@@ -28,6 +26,7 @@ declare module '@mui/material/Typography' {
 declare module '@mui/material/styles/createPalette' {
   interface TypeText {
     main: string;
+    light: string;
     gradient: string;
   }
 
@@ -42,10 +41,12 @@ declare module '@mui/material/styles' {
   interface Palette {
     transparent: string;
     border: Palette['primary'];
+    neutral: Palette['primary'];
   }
   interface PaletteOptions {
     transparent: string;
     border: PaletteOptions['primary'];
+    neutral: PaletteOptions['primary'];
   }
 
   interface PaletteColor {
@@ -57,15 +58,11 @@ declare module '@mui/material/styles' {
 
   interface TypographyVariants {
     link: React.CSSProperties;
-    label1: React.CSSProperties;
-    label2: React.CSSProperties;
     fieldError: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     link?: React.CSSProperties;
-    label1?: React.CSSProperties;
-    label2?: React.CSSProperties;
     fieldError?: React.CSSProperties;
   }
 }

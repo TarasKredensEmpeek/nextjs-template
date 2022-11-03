@@ -34,7 +34,7 @@ const TextField: FC<TextInputProps> = ({
   type = 'text',
   size = 'small',
   color = 'secondary',
-  variant = 'filled',
+  variant = 'outlined',
   control,
   disabled,
   required,
@@ -58,7 +58,6 @@ const TextField: FC<TextInputProps> = ({
     () => ({
       endAdornment,
       inputComponent,
-      disableUnderline: true,
     }),
     [endAdornment, inputComponent],
   );

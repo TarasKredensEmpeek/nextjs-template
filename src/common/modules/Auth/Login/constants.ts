@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 
+import { PasswordField } from '@common/components/Form';
 import { FieldsModel } from '@common/components/Form/types';
 import { passwordValidator, emailSchema } from '@common/utils/validationSchema';
 
@@ -15,6 +16,7 @@ export const formModel: FieldsModel = [
     defaultValue: '',
     placeholder: 'fieldPlaceholders.password',
     xs: 12,
+    component: PasswordField,
   },
 ];
 

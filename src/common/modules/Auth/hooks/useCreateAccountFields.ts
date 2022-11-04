@@ -1,8 +1,8 @@
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { BooleanField } from '@common/components/Form';
 import { FieldsModel } from '@common/components/Form/types';
+import { BooleanField, PasswordField } from '@common/components/Form';
 
 import AcceptingAgreementsLabel from '../components/AcceptingAgreementsLabel';
 
@@ -41,6 +41,7 @@ const useCreateAccountFields = () => {
       defaultValue: '',
       placeholder: 'fieldPlaceholders.password',
       xs: isMd ? 12 : 6,
+      component: PasswordField,
     },
     {
       name: 'confirmPassword',
@@ -48,6 +49,7 @@ const useCreateAccountFields = () => {
       type: 'password',
       placeholder: 'fieldPlaceholders.confirmPassword',
       xs: isMd ? 12 : 6,
+      component: PasswordField,
     },
     {
       xs: 12,

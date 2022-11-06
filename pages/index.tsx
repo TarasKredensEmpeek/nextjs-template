@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Home from '@/pages/Home';
-import { useGetData } from '@common/hooks/dataProvider';
+import { useGetData } from '@common/hooks/useRequest';
 
 const HomePage: NextPage = () => {
-  useGetData('todos', { id: '1f' });
+  const [getCards] = useGetData('/packages/getPackageCardsBySiteId');
+
+  useEffect(() => {
+    getCards();
+  }, [getCards]);
 
   return (
     <div>
@@ -30,6 +34,13 @@ interface SSRProps {
 }
 
 export const getServerSideProps = async ({ locale }: SSRProps) => {
+  // const res = await axiosInstance.get(
+  //   '/PackageService/GetPackageCardsBySiteId',
+  //   {
+  //     params: { langtag: 'en', siteId: 39 },
+  //   },
+  // );
+
   const props = {
     ...(await serverSideTranslations(locale)),
   };

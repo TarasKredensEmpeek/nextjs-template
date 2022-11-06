@@ -7,8 +7,9 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import theme from '@theme';
 import AppRoot from '@pages/AppRoot';
+import createEmotionCache from '@common/utils/createEmotionCache';
 
-import createEmotionCache from '../utils/createEmotionCache';
+import '../styles/fonts.css';
 
 interface IAppProps extends AppProps {
   emotionCache?: EmotionCache;

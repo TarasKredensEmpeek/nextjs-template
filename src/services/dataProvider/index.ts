@@ -1,6 +1,3 @@
-import dataProvider from './dataProvider';
+import axiosInstance from './axiosInstance';
 
-export * from './types';
-export * from './dataProvider';
-
-export default dataProvider;
+export default axiosInstance;

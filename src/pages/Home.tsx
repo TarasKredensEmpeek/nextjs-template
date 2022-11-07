@@ -12,6 +12,14 @@ const Home = () => (
     >
       login
     </Button>
+
+    <Button
+      variant="text"
+      color="secondary"
+      onClick={() => openModal(ModalNames.auth, { view: AuthViews.login })}
+    >
+      login
+    </Button>
   </>
 );
 

@@ -45,8 +45,20 @@ const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
         backgroundColor: '#EBEBEB',
       },
 
-      [`&:hover`]: {
+      '&:hover': {
         boxShadow: '4px 4px 0px rgba(0, 0, 0, 0.3)',
+      },
+    },
+
+    textSecondary: {
+      color: '#B3B3B3',
+
+      '&:hover': {
+        color: '#024B78',
+      },
+
+      [`&.${buttonClasses.disabled}`]: {
+        color: '#CACACA',
       },
     },
   },

@@ -16,10 +16,9 @@ const refresh = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const response = await axiosInstance.post('/auth/refresh', payload, {
       params: req.query,
-      headers: req.headers,
     });
 
-    setTokens(response.data);
+    setTokens(response.data, { req, res });
 
     res.status(response.status).json(response.data);
   } catch (e: any) {

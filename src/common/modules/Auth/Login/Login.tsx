@@ -60,7 +60,7 @@ const Login = () => {
           </Grid>
 
           <Grid sx={{ px: 3 }}>
-            <Button fullWidth type="submit" variant="outlined">
+            <Button fullWidth type="submit" variant="contained">
               {t('login')}
             </Button>
           </Grid>

@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 
 import cookiesStorage, { CookieNames } from '@services/cookiesStorage';
-import { parseJwt, removeTokens } from '@common/utils/helpers';
+import { decodeJwt, removeTokens } from '@common/utils/helpers';
 import refreshToken from '@services/auth/refreshToken';
 import apiUrls from '@common/constants/apiUrls';
 
@@ -14,7 +14,7 @@ export const isTokenAlive = (token: string) => {
   if (!token) return false;
 
   try {
-    const decodedToken: any = parseJwt(token);
+    const decodedToken = decodeJwt(token);
     const tokenExpTime = decodedToken.exp;
     const serverTimeDiff = getServerTimeDiff();
     const currentTime = new Date().getTime() / 1000;

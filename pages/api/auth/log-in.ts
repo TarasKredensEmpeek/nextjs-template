@@ -7,10 +7,9 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const response = await axiosInstance.post('/auth/log-in', req.body, {
       params: req.query,
-      headers: req.headers,
     });
 
-    setTokens(response.data);
+    setTokens(response.data, { req, res });
 
     res.status(response.status).json(response.data);
   } catch (e: any) {

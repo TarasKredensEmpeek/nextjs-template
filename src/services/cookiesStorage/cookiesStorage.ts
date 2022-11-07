@@ -1,4 +1,5 @@
-import * as cookiesNext from 'cookies-next';
+import { getCookie, setCookie, deleteCookie } from 'cookies-next';
+import { OptionsType } from 'cookies-next/lib/types';
 
 export enum CookieNames {
   clientId = 'clientId',
@@ -8,11 +9,12 @@ export enum CookieNames {
 }
 
 const cookiesStorage = {
-  get: (key: string) => cookiesNext.getCookie(key),
+  get: (key: string, options?: OptionsType) => getCookie(key, options),
 
-  set: <D = unknown>(key: string, data: D) => cookiesNext.setCookie(key, data),
+  set: <D = unknown>(key: string, data: D, options?: OptionsType) =>
+    setCookie(key, data, options),
 
-  remove: (key: string) => cookiesNext.deleteCookie(key),
+  remove: (key: string, options?: OptionsType) => deleteCookie(key, options),
 };
 
 export default cookiesStorage;

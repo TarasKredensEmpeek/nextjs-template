@@ -49,7 +49,7 @@ const PhoneNumberField: FC<PhoneInputProps> = ({
   variant = 'filled',
   required,
   placeholder = '',
-  defaultValue,
+  defaultValue = '',
   ...props
 }) => {
   const classes = useStyles();

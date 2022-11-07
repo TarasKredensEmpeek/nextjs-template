@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import { useForm } from 'react-hook-form';
+import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -29,18 +29,14 @@ const CreateAccount = () => {
   const fields = useCreateAccountFields();
 
   const openLogin = () => openModal(ModalNames.auth, { view: AuthViews.login });
+  const openCreateAgencyAccount = () =>
+    openModal(ModalNames.auth, { view: AuthViews.createAgencyAccount });
 
   return (
     <Grid container>
-      <Typography variant="body1" textAlign="center" mx={3}>
+      <Typography variant="body2" textAlign="center" mx={4.5}>
         {t('createAccountSubtitle')}
       </Typography>
-
-      <Grid container justifyContent="center">
-        <Link mx={3} variant="body1" onClick={openLogin}>
-          {t('createAccountLink')}
-        </Link>
-      </Grid>
 
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Grid container px={3}>
@@ -51,9 +47,27 @@ const CreateAccount = () => {
           />
         </Grid>
 
-        <Grid container sx={{ px: 3, pb: 3 }}>
-          <Button fullWidth variant="outlined" type="submit">
+        <Grid container px={4.5} pt={1.5}>
+          <Button fullWidth variant="contained" type="submit">
             {t('createAccount')}
+          </Button>
+        </Grid>
+
+        <Grid container justifyContent="center" px={4.5} pt={1.5}>
+          <Button variant="text" color="secondary" onClick={openLogin}>
+            {t('login')}
+          </Button>
+        </Grid>
+
+        <Divider sx={{ my: 3 }} variant="fullWidth" />
+
+        <Grid container sx={{ px: 4.5, pb: 4 }}>
+          <Button
+            fullWidth
+            variant="outlined"
+            onClick={openCreateAgencyAccount}
+          >
+            {t('createAgencyAccount')}
           </Button>
         </Grid>
       </form>

@@ -61,7 +61,6 @@ const FormBuilder: FC<FormBuilderProps> = ({
         spacing={containerSpacing}
         justifyContent="flex-start"
         alignItems="center"
-        style={{ padding: '16px 0' }}
       >
         {fieldsList.map(renderField)}
       </Grid>

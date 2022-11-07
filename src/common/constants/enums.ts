@@ -11,5 +11,6 @@ export enum ModalNames {
 export enum AuthViews {
   login,
   createAccount,
+  createAgencyAccount,
   forgotPassword,
 }

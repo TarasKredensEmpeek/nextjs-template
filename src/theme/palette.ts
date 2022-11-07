@@ -64,7 +64,7 @@ const palette = {
     light: '#CACACA',
   },
 
-  divider: '#BBBFBE',
+  divider: '#E0E0E0',
 
   transparent: 'transparent',
 };

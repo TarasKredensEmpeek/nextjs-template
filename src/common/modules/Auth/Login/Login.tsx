@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -41,7 +40,7 @@ const Login = () => {
 
   return (
     <Grid container>
-      <Typography variant="body1" textAlign="center" sx={{ mx: 3 }}>
+      <Typography variant="body2" textAlign="center" sx={{ mx: 4.5 }}>
         {t('loginSubtitle')}
       </Typography>
 
@@ -51,26 +50,32 @@ const Login = () => {
         component="form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Grid container px={3}>
+        <Grid container px={4.5} pt={4}>
           <FormBuilder control={control} fieldsList={formModel} />
         </Grid>
 
-        <Grid item container direction="column">
-          <Grid container>
-            <Link px={3} variant="body1" onClick={openForgotPassword}>
-              {t('forgotPassword')}
-            </Link>
-          </Grid>
-
-          <Grid sx={{ px: 3 }}>
+        <Grid item container direction="column" sx={{ px: 4.5, pt: 3.75 }}>
+          <Grid>
             <Button fullWidth type="submit" variant="contained">
               {t('login')}
             </Button>
           </Grid>
 
+          <Grid container>
+            <Button
+              fullWidth
+              sx={{ mt: 1.5 }}
+              variant="text"
+              color="secondary"
+              onClick={openForgotPassword}
+            >
+              {t('forgotPassword')}
+            </Button>
+          </Grid>
+
           <Divider sx={{ my: 3 }} variant="fullWidth" />
 
-          <Grid sx={{ px: 3, pb: 3 }}>
+          <Grid sx={{ px: 4.5, pb: 5 }}>
             <Button fullWidth variant="outlined" onClick={openCreateAccount}>
               {t('createAccount')}
             </Button>

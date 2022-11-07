@@ -18,6 +18,7 @@ const authTitles = {
   [AuthViews.login]: 'login',
   [AuthViews.createAccount]: 'createAccount',
   [AuthViews.forgotPassword]: 'forgotPassword',
+  [AuthViews.createAgencyAccount]: 'createAgencyAccount',
 };
 
 const Auth: FC<AuthProps> = ({ onClose, view = AuthViews.login }) => {
@@ -29,7 +30,11 @@ const Auth: FC<AuthProps> = ({ onClose, view = AuthViews.login }) => {
     <Grid container maxWidth={480} direction="column" alignItems="center">
       <AuthHeader onClose={onClose} />
 
-      <Typography variant="subtitle1" sx={{ mt: 3, mb: 2 }}>
+      <Typography
+        variant="subtitle1"
+        textTransform="uppercase"
+        sx={{ mt: 3, mb: 2 }}
+      >
         {t(title)}
       </Typography>
 
@@ -38,6 +43,7 @@ const Auth: FC<AuthProps> = ({ onClose, view = AuthViews.login }) => {
           [AuthViews.login]: <Login />,
           [AuthViews.createAccount]: <CreateAccount />,
           [AuthViews.forgotPassword]: null,
+          [AuthViews.createAgencyAccount]: null,
         }[view]
       }
     </Grid>

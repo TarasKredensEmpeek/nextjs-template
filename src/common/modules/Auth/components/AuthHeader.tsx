@@ -33,12 +33,11 @@ const AuthHeader: FC<AuthHeaderProps> = ({
         height: 20,
         color: 'white',
         cursor: 'pointer',
-        border: '1px solid white',
         position: 'absolute',
         borderRadius: '50%',
       }}
     >
-      <CloseIcon fontSize="small" sx={{ fontSize: 14 }} />
+      <CloseIcon fontSize="medium" sx={{ fontSize: 14 }} />
     </Grid>
   </Grid>
 );

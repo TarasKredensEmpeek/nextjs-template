@@ -11,3 +11,5 @@ export const openModal = (
     props,
     onClose,
   });
+
+export const closeModal = () => eventEmitter.emit(EventNames.hideModal);

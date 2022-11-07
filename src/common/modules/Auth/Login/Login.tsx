@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
@@ -11,8 +11,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import apiUrls from '@common/constants/apiUrls';
 import FormBuilder from '@common/components/Form';
 import { usePostData } from '@common/hooks/useRequest';
-import { openModal } from '@common/utils/eventEmitter';
 import { AuthViews, ModalNames } from '@common/constants/enums';
+import { openModal, closeModal } from '@common/utils/eventEmitter';
 
 import { formModel, validationSchema } from './constants';
 
@@ -20,7 +20,7 @@ const Login = () => {
   const [handleLogin] = usePostData(apiUrls.login);
 
   const { t } = useTranslation(['auth']);
-  const form = useForm({
+  const form = useForm<FieldValues>({
     resolver: yupResolver(validationSchema),
     reValidateMode: 'onChange',
     mode: 'all',
@@ -28,7 +28,10 @@ const Login = () => {
 
   const { handleSubmit, control } = form;
 
-  const onSubmit = (d: any) => handleLogin(d);
+  const onSubmit = async (d: FieldValues) => {
+    await handleLogin(d);
+    closeModal();
+  };
 
   const openCreateAccount = () =>
     openModal(ModalNames.auth, { view: AuthViews.createAccount });

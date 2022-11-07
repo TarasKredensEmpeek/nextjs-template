@@ -7,7 +7,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import theme from '@theme';
 import AppRoot from '@pages/AppRoot';
-import createEmotionCache from '@common/utils/createEmotionCache';
+import { createEmotionCache } from '@common/utils/ssrHelpers';
 
 import '../styles/fonts.css';
 

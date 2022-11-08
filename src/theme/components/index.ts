@@ -40,6 +40,14 @@ const components: ComponentsOverrides = {
       },
     },
   },
+  MuiFormLabel: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.875em',
+        fontFamily: 'StagSans-Book',
+      },
+    },
+  },
 };
 
 export default components;

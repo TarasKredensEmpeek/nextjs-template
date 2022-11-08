@@ -17,7 +17,7 @@ const LinkText: FC<LinkTextProps> = ({ href, children }) => (
 );
 
 const AcceptingAgreementsLabel = () => (
-  <Typography variant="caption">
+  <Typography variant="inherit">
     <Trans i18nKey="fieldPlaceholders.agreePolicy">
       <LinkText href="/purchase-policy">purchase-policy</LinkText>
       <LinkText href="/privacy-policy">privacy-policy</LinkText>

@@ -59,7 +59,7 @@ const CreateAccount = () => {
           </Button>
         </Grid>
 
-        <Divider sx={{ my: 3 }} variant="fullWidth" />
+        <Divider sx={{ mb: 3, mt: 2.5 }} variant="fullWidth" />
 
         <Grid container sx={{ px: 4.5, pb: 4 }}>
           <Button

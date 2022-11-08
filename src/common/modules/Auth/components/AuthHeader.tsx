@@ -1,17 +1,14 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import CloseIcon from '@mui/icons-material/Close';
 
+import Logo from '@common/components/logo';
+
 interface AuthHeaderProps {
-  logoUrl?: string;
   onClose: () => void;
 }
 
-const AuthHeader: FC<AuthHeaderProps> = ({
-  onClose,
-  logoUrl = '/assets/images/logo.png',
-}) => (
+const AuthHeader: FC<AuthHeaderProps> = ({ onClose }) => (
   <Grid
     container
     alignItems="center"
@@ -20,7 +17,7 @@ const AuthHeader: FC<AuthHeaderProps> = ({
     bgcolor="background.dark"
     height={70}
   >
-    <Image src={logoUrl} layout="fixed" width="210" height="35" alt="logo" />
+    <Logo text="general.onLocationLogo" />
 
     <Grid
       container
@@ -28,16 +25,16 @@ const AuthHeader: FC<AuthHeaderProps> = ({
       justifyContent="center"
       onClick={onClose}
       sx={{
-        right: 10,
+        top: '30%',
+        right: 20,
         width: 20,
         height: 20,
         color: 'white',
         cursor: 'pointer',
         position: 'absolute',
-        borderRadius: '50%',
       }}
     >
-      <CloseIcon fontSize="medium" sx={{ fontSize: 14 }} />
+      <CloseIcon fontSize="medium" sx={{ fontSize: 24 }} />
     </Grid>
   </Grid>
 );

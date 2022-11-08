@@ -1,4 +1,7 @@
 {
+  "general" : {
+    "onLocationLogo": "On Location"
+  },
   "shared": {
     "yes": "Yes",
     "no": "No",

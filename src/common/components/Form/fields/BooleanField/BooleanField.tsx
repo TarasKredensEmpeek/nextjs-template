@@ -58,9 +58,8 @@ const BooleanField: FC<BooleanFieldProps> = ({
   control,
   className,
   inputProps = {},
-  labelVariant = 'subtitle1',
+  labelVariant = 'caption',
   defaultValue = false,
-  labelTypographySx,
   ...props
 }) => {
   const classes = useStyles();
@@ -83,19 +82,8 @@ const BooleanField: FC<BooleanFieldProps> = ({
       return <LabelRender />;
     }
 
-    if (typeof label === 'string') {
-      return (
-        <Typography
-          variant={labelVariant}
-          sx={{ fontWeight: 700, ...labelTypographySx }}
-        >
-          {React.isValidElement(label) ? label : t(label)}
-        </Typography>
-      );
-    }
-
-    return '';
-  }, [label, labelVariant, labelTypographySx, t]);
+    return React.isValidElement(label) ? label : t(label as string);
+  }, [label, t]);
 
   const component = useMemo(
     () => (
@@ -129,6 +117,7 @@ const BooleanField: FC<BooleanFieldProps> = ({
           label={fieldLabel}
           control={component}
           className={className}
+          componentsProps={{ typography: { variant: labelVariant } }}
         />
       ) : (
         component

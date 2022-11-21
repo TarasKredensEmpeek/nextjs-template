@@ -11,8 +11,9 @@ export type OverrideThemeProps = {
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    rounded: true;
-    circle: true;
+    loadingText: true;
+    loadingOutlined: true;
+    loadingContained: true;
   }
 }
 

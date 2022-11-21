@@ -1,25 +1,25 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import { FieldValues, useForm } from 'react-hook-form';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, FieldValues } from 'react-hook-form';
 
-import apiUrls from '@common/constants/apiUrls';
+import { AuthLoginData } from '@/types/auth';
 import FormBuilder from '@common/components/Form';
-import { usePostData } from '@common/hooks/useRequest';
+import { Button } from '@common/components/buttons';
+import useAuthProvider from '@common/hooks/useAuthProvider';
 import { AuthViews, ModalNames } from '@common/constants/enums';
 import { openModal, closeModal } from '@common/utils/eventEmitter';
 
 import { formModel, validationSchema } from './constants';
 
 const Login = () => {
-  const [handleLogin] = usePostData(apiUrls.login);
+  const { login, loading } = useAuthProvider();
 
   const { t } = useTranslation(['auth']);
-  const form = useForm<FieldValues>({
+  const form = useForm({
     resolver: yupResolver(validationSchema),
     reValidateMode: 'onChange',
     mode: 'all',
@@ -28,7 +28,7 @@ const Login = () => {
   const { handleSubmit, control } = form;
 
   const onSubmit = async (d: FieldValues) => {
-    await handleLogin(d);
+    await login(d as AuthLoginData);
     closeModal();
   };
 
@@ -56,7 +56,12 @@ const Login = () => {
 
         <Grid item container direction="column" sx={{ px: 4.5, pt: 3.75 }}>
           <Grid>
-            <Button fullWidth type="submit" variant="contained">
+            <Button
+              fullWidth
+              type="submit"
+              variant="contained"
+              loading={loading}
+            >
               {t('login')}
             </Button>
           </Grid>

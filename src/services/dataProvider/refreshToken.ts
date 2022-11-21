@@ -1,5 +1,5 @@
+import axiosInstance from '@services/dataProvider/index';
 import apiUrls from '@common/constants/apiUrls';
-import axiosInstance from '@services/dataProvider';
 
 const refreshToken = async (): Promise<undefined> => {
   try {

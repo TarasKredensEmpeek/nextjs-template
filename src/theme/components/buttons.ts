@@ -1,11 +1,20 @@
+import { buttonClasses, ButtonProps } from '@mui/material/Button';
 import { ComponentsPropsList } from '@mui/material/styles/props';
-import { buttonClasses } from '@mui/material/Button';
+import { Theme } from '@mui/material/styles';
 
 import { ComponentsOverrides, OverrideThemeProps } from '../types';
 
 type OwnerState = ComponentsPropsList['MuiButton'];
 type ButtonOverrides = Omit<OverrideThemeProps, 'ownerState'> & {
   ownerState?: OwnerState;
+};
+
+const getColorPack = (color: ButtonProps['color'], theme: Theme) => {
+  if (!color || color === 'inherit') {
+    return theme.palette.primary;
+  }
+
+  return theme.palette[color];
 };
 
 const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
@@ -65,39 +74,50 @@ const buttonsOverrides: ComponentsOverrides['MuiButton'] = {
 
   variants: [
     {
-      props: { variant: 'circle', color: 'primary' },
-      style: ({ theme }) => ({
-        width: 40,
-        height: 40,
-        minWidth: 40,
-        borderRadius: '50%',
-        backgroundColor: theme.palette.transparent,
-        border: '2px solid',
-        color: theme.palette.primary.dark,
-        borderColor: theme.palette.primary.dark,
-        '&:hover': {
-          color: theme.palette.text.primary,
-          borderColor: theme.palette.border.dark,
-        },
-      }),
+      props: { variant: 'loadingText' },
+      style: ({ theme, ownerState }: ButtonOverrides) => {
+        const { color = 'primary' } = ownerState || {};
+        const colorPack = getColorPack(color, theme);
+
+        return {
+          color: `${colorPack.main} !important`,
+          backgroundColor: 'transparent',
+          '&:hover': {
+            color: colorPack.main,
+            backgroundColor: 'transparent',
+          },
+        };
+      },
     },
 
     {
-      props: { variant: 'rounded', color: 'primary' },
-      style: ({ theme }: ButtonOverrides) => {
-        const mainColor = theme.palette.primary.dark;
-        const border = `2px solid ${mainColor}`;
+      props: { variant: 'loadingOutlined' },
+      style: ({ theme, ownerState }: ButtonOverrides) => {
+        const { color = 'primary' } = ownerState || {};
+        const colorPack = getColorPack(color, theme);
 
         return {
-          border,
-          height: 40,
-          borderRadius: 40,
-          color: mainColor,
-          fontWeight: 700,
-          backgroundColor: 'transparent',
+          color: `${colorPack.contrastText} !important`,
+          backgroundColor: colorPack.light,
           '&:hover': {
-            color: theme.palette.text.secondary,
-            backgroundColor: mainColor,
+            color: colorPack.contrastText,
+            backgroundColor: colorPack.light,
+          },
+        };
+      },
+    },
+    {
+      props: { variant: 'loadingContained' },
+      style: ({ ownerState, theme }: ButtonOverrides) => {
+        const { color = 'primary' } = ownerState || {};
+        const colorPack = getColorPack(color, theme);
+
+        return {
+          color: `${colorPack.contrastText} !important`,
+          backgroundColor: colorPack.dark,
+          '&:hover': {
+            color: colorPack.contrastText,
+            backgroundColor: colorPack.dark,
           },
         };
       },

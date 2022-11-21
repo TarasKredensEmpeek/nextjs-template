@@ -7,6 +7,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import theme from '@theme';
 import AppRoot from '@pages/AppRoot';
+import AuthProvider from '@services/authProvider';
 import { createEmotionCache } from '@common/utils/ssrHelpers';
 
 import '../styles/fonts.css';
@@ -22,11 +23,13 @@ const MyApp: FC<IAppProps> = props => {
 
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-        <AppRoot />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+          <AppRoot />
+        </ThemeProvider>
+      </AuthProvider>
     </CacheProvider>
   );
 };

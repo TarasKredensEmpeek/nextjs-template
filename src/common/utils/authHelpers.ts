@@ -8,7 +8,7 @@ interface AuthResponseData {
   clientId: string;
 }
 
-interface DecodedTokenData {
+export interface DecodedTokenData {
   clientId: string;
   hash: string;
   nbf: number;

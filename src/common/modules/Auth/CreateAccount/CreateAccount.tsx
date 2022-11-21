@@ -8,9 +8,9 @@ import Typography from '@mui/material/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import FormBuilder from '@common/components/Form';
-import useCreateAccountFields from '@common/modules/Auth/hooks/useCreateAccountFields';
 import { openModal } from '@common/utils/eventEmitter';
 import { AuthViews, ModalNames } from '@common/constants/enums';
+import useCreateAccountFields from '@common/modules/Auth/hooks/useCreateAccountFields';
 
 import { validationSchemas } from './constants';
 

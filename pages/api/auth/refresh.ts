@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import cookiesStorage, { CookieNames } from '@services/cookiesStorage';
 import axiosInstance from '@services/dataProvider';
-import { setTokens } from '@common/utils/helpers';
+import { setTokens, removeTokens } from '@common/utils/authHelpers';
+import cookiesStorage, { CookieNames } from '@services/cookiesStorage';
 import { createApiError, NextResponseError } from '@common/utils/ssrHelpers';
 
 const refresh = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,12 +16,12 @@ const refresh = async (req: NextApiRequest, res: NextApiResponse) => {
       storageOptions,
     );
 
-    const payload = {
+    const body = {
       clientId,
       refreshToken,
     };
 
-    const response = await axiosInstance.post('/auth/refresh', payload, {
+    const response = await axiosInstance.post('/auth/refresh', body, {
       params: req.query,
     });
 
@@ -29,6 +29,7 @@ const refresh = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(response.status).json(response.data);
   } catch (e) {
+    removeTokens({ req, res });
     createApiError(res, e as NextResponseError);
   }
 };

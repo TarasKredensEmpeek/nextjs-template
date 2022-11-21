@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import axiosInstance from '@services/dataProvider';
-import { setTokens } from '@common/utils/helpers';
+import { setTokens } from '@common/utils/authHelpers';
 import { createApiError, NextResponseError } from '@common/utils/ssrHelpers';
 import cookiesStorage, { CookieNames } from '@services/cookiesStorage';
 

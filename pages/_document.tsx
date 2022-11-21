@@ -60,8 +60,10 @@ MyDocument.getInitialProps = async ctx => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App: any) => props =>
-        <App emotionCache={cache} {...props} />,
+      enhanceApp: (App: any) =>
+        function EnhanceApp(props) {
+          return <App emotionCache={cache} {...props} />;
+        },
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -70,8 +72,8 @@ MyDocument.getInitialProps = async ctx => {
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map(style => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
       key={style.key}
+      data-emotion={`${style.key} ${style.ids.join(' ')}`}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
@@ -79,10 +81,6 @@ MyDocument.getInitialProps = async ctx => {
 
   return {
     ...initialProps,
-    // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      ...emotionStyleTags,
-    ],
+    ...emotionStyleTags,
   };
 };

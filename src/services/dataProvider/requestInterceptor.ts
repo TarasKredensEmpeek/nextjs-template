@@ -1,9 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
 
 import cookiesStorage, { CookieNames } from '@services/cookiesStorage';
-import { decodeJwt, removeTokens } from '@common/utils/helpers';
-import refreshToken from '@services/auth/refreshToken';
+import { decodeJwt, removeTokens } from '@common/utils/authHelpers';
 import apiUrls from '@common/constants/apiUrls';
+
+import refreshToken from './refreshToken';
 
 let refreshPromise: Promise<undefined> | null = null;
 

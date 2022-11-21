@@ -1,8 +1,20 @@
 import { NextApiResponse } from 'next';
 import createCache from '@emotion/cache';
 
-export const createEmotionCache = () =>
-  createCache({ key: 'css', prepend: true });
+const isBrowser = typeof document !== 'undefined';
+
+export const createEmotionCache = () => {
+  let insertionPoint;
+
+  if (isBrowser) {
+    const emotionInsertionPoint = document.querySelector<HTMLMetaElement>(
+      'meta[name="emotion-insertion-point"]',
+    );
+    insertionPoint = emotionInsertionPoint ?? undefined;
+  }
+
+  return createCache({ key: 'mui-style', insertionPoint });
+};
 
 export interface NextResponseError {
   code: string | number;

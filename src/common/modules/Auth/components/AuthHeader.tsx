@@ -11,11 +11,11 @@ interface AuthHeaderProps {
 const AuthHeader: FC<AuthHeaderProps> = ({ onClose }) => (
   <Grid
     container
+    height={70}
+    bgcolor="background.dark"
+    position="relative"
     alignItems="center"
     justifyContent="center"
-    position="relative"
-    bgcolor="background.dark"
-    height={70}
   >
     <Logo text="general.onLocationLogo" />
 

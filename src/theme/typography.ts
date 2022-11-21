@@ -43,7 +43,7 @@ const typography = {
   },
   caption: {
     fontSize: '0.75em',
-    fontFamily: 'StagSans-Medium',
+    fontFamily: 'StagSans-Book',
   },
   button: {
     fontSize: '0.875em',

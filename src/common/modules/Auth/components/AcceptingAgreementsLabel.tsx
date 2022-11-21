@@ -10,20 +10,18 @@ interface LinkTextProps {
 
 const LinkText: FC<LinkTextProps> = ({ href, children }) => (
   <Link href={href}>
-    <Typography variant="link" fontSize="inherit" color="text.link">
+    <Typography variant="caption" fontSize="inherit" color="text.link">
       {children}
     </Typography>
   </Link>
 );
 
 const AcceptingAgreementsLabel = () => (
-  <Typography variant="inherit">
-    <Trans i18nKey="fieldPlaceholders.agreePolicy">
-      <LinkText href="/purchase-policy">purchase-policy</LinkText>
-      <LinkText href="/privacy-policy">privacy-policy</LinkText>
-      <LinkText href="/terms-of-use">terms-of-use</LinkText>
-    </Trans>
-  </Typography>
+  <Trans i18nKey="fieldPlaceholders.agreePolicy">
+    <LinkText href="/purchase-policy">purchase-policy</LinkText>
+    <LinkText href="/privacy-policy">privacy-policy</LinkText>
+    <LinkText href="/terms-of-use">terms-of-use</LinkText>
+  </Trans>
 );
 
 export default AcceptingAgreementsLabel;

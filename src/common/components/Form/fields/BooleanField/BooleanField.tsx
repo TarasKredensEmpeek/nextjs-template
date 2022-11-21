@@ -58,7 +58,7 @@ const BooleanField: FC<BooleanFieldProps> = ({
   control,
   className,
   inputProps = {},
-  labelVariant = 'caption',
+  labelVariant = 'body2',
   defaultValue = false,
   ...props
 }) => {

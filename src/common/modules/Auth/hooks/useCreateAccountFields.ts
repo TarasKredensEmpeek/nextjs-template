@@ -57,10 +57,13 @@ const useCreateAccountFields = () => {
       component: BooleanField,
       label: AcceptingAgreementsLabel,
       defaultValue: false,
+      size: 'small',
+      labelVariant: 'caption',
       labelTypographySx: { lineHeight: 1 },
     },
     {
       xs: 12,
+      size: 'small',
       name: 'agreeGetUpdates',
       component: BooleanField,
       labelVariant: 'caption',

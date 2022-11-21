@@ -54,8 +54,8 @@ const Login = () => {
           <FormBuilder control={control} fieldsList={formModel} />
         </Grid>
 
-        <Grid item container direction="column" sx={{ px: 4.5, pt: 3.75 }}>
-          <Grid>
+        <Grid item container direction="column" sx={{ pt: 3.75 }}>
+          <Grid container justifyContent="center" px={4.5}>
             <Button
               fullWidth
               type="submit"
@@ -64,11 +64,8 @@ const Login = () => {
             >
               {t('login')}
             </Button>
-          </Grid>
 
-          <Grid container>
             <Button
-              fullWidth
               sx={{ mt: 1.5 }}
               variant="text"
               color="secondary"

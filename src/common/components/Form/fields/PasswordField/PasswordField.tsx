@@ -2,6 +2,7 @@ import React, { FC, useMemo, useState } from 'react';
 import { Control } from 'react-hook-form';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
+import { TextFieldProps } from '@mui/material/TextField';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
 
@@ -9,6 +10,7 @@ import TextField from '../TextField';
 
 interface IProps {
   name: string;
+  color?: TextFieldProps['color'];
   control: Control;
   placeholder?: string;
   required?: boolean;
@@ -16,6 +18,7 @@ interface IProps {
 
 const PasswordField: FC<IProps> = ({
   name,
+  color = 'primary',
   control,
   required,
   placeholder,
@@ -31,6 +34,7 @@ const PasswordField: FC<IProps> = ({
     () => (
       <InputAdornment position="start">
         <IconButton
+          color={showPassword ? color : 'default'}
           aria-label="toggle password visibility"
           onClick={() => setShowPassword(prevState => !prevState)}
           edge="end"
@@ -39,7 +43,7 @@ const PasswordField: FC<IProps> = ({
         </IconButton>
       </InputAdornment>
     ),
-    [ShowHideIcon],
+    [ShowHideIcon, showPassword, color],
   );
 
   const fieldType = useMemo(
@@ -49,6 +53,7 @@ const PasswordField: FC<IProps> = ({
 
   return (
     <TextField
+      color={color}
       name={name}
       control={control}
       type={fieldType}

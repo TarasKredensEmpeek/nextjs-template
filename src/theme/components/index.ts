@@ -2,9 +2,25 @@ import { ComponentsOverrides } from '@/theme/types';
 
 import buttons from './buttons';
 import textFields from './textFields';
+import booleanFields from './booleanFields';
 
 const components: ComponentsOverrides = {
   ...textFields,
+  ...booleanFields,
+
+  MuiSvgIcon: {
+    styleOverrides: {
+      fontSizeSmall: {
+        // fontSize: '1.264em',
+      },
+      fontSizeMedium: {
+        // fontSize: '1.58rem',
+      },
+      fontSizeLarge: {
+        // fontSize: '1.78rem',
+      },
+    },
+  },
 
   MuiButton: buttons,
   MuiButtonBase: {
@@ -12,6 +28,7 @@ const components: ComponentsOverrides = {
       disableRipple: true,
     },
   },
+
   MuiFormHelperText: {
     defaultProps: { color: 'error.dark' },
 

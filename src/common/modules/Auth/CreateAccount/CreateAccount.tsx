@@ -10,9 +10,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FormBuilder from '@common/components/Form';
 import { openModal } from '@common/utils/eventEmitter';
 import { AuthViews, ModalNames } from '@common/constants/enums';
-import useCreateAccountFields from '@common/modules/Auth/hooks/useCreateAccountFields';
 
-import { validationSchemas } from './constants';
+import validationSchemas from './validationSchema';
+import { createAccountFields } from './constants';
 
 const CreateAccount = () => {
   const { t } = useTranslation(['auth']);
@@ -25,8 +25,6 @@ const CreateAccount = () => {
   const { handleSubmit, control } = form;
 
   const onSubmit = () => null;
-
-  const fields = useCreateAccountFields();
 
   const openLogin = () => openModal(ModalNames.auth, { view: AuthViews.login });
   const openCreateAgencyAccount = () =>
@@ -42,7 +40,7 @@ const CreateAccount = () => {
         <Grid container px={3}>
           <FormBuilder
             control={control}
-            fieldsList={fields}
+            fieldsList={createAccountFields}
             containerColumnSpacing={4}
           />
         </Grid>

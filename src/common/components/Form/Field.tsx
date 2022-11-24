@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import Grid from '@mui/material/Grid';
 import { Control } from 'react-hook-form';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { FieldComponentProps, FieldParams } from './types';
 import TextField from './fields/TextField';
@@ -11,7 +13,6 @@ import TextField from './fields/TextField';
 interface FieldProps extends FieldParams {
   index?: number;
   control: Control;
-  getXs?: () => number;
   defaultFieldXs?: number;
 }
 
@@ -31,9 +32,15 @@ const Field: FC<FieldProps> = ({
   ...field
 }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const fieldProps = { ...field };
   const FieldComponent = Component || TextField;
-  const fieldXs = xs || (getXs && getXs()) || defaultFieldXs;
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+
+  const fieldXs = useMemo(
+    () => xs || (getXs && getXs({ isMd })) || defaultFieldXs,
+    [defaultFieldXs, getXs, isMd, xs],
+  );
 
   if (hidden) {
     return null;
@@ -52,10 +59,10 @@ const Field: FC<FieldProps> = ({
       <Typography
         container
         item
-        xs={fieldXs}
+        xs={xs}
         component={Grid}
         variant={titleVariant}
-        sx={{ margin: '16px 0', ...gridItemSx }}
+        sx={{ my: 2, ...gridItemSx }}
       >
         {t(fieldTitle)}
       </Typography>
@@ -74,12 +81,7 @@ const Field: FC<FieldProps> = ({
   }
 
   return (
-    <Grid
-      item
-      key={field.name}
-      xs={fieldXs}
-      sx={{ margin: '8px 0', ...gridItemSx }}
-    >
+    <Grid item key={field.name} xs={fieldXs} sx={{ my: 1, ...gridItemSx }}>
       <FieldComponent
         {...(fieldProps as FieldComponentProps)}
         control={control}

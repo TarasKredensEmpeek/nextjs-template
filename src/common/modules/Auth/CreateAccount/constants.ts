@@ -1,28 +1,69 @@
-import * as Yup from 'yup';
+import { FieldsModel } from '@common/components/Form/types';
+import { BooleanField, PasswordField } from '@common/components/Form';
 
-import {
-  emailSchema,
-  passwordValidator,
-  getNameValidator,
-} from '@common/utils/validationSchema';
+import AcceptingAgreementsLabel from '../components/AcceptingAgreementsLabel';
 
-export const validationSchemas = Yup.object().shape({
-  email: emailSchema,
-  confirmEmail: Yup.string()
-    .email('fieldValidationMessages.emailInvalid')
-    .required('fieldValidationMessages.emailRequired')
-    .oneOf([Yup.ref('email'), null], 'fieldValidationMessages.emailIsNotSame'),
-  firstName: getNameValidator(),
-  lastName: getNameValidator(
-    undefined,
-    'fieldValidationMessages.lastNameRequired',
-  ),
-  password: passwordValidator,
-  confirmPassword: Yup.string()
-    .required('fieldValidationMessages.passwordRequired')
-    .oneOf(
-      [Yup.ref('password'), null],
-      'fieldValidationMessages.passwordIsNotSame',
-    ),
-  agreePolicy: Yup.bool().oneOf([true], 'fieldValidationMessages.agreePolicy'),
-});
+const getXs = ({ isMd }: { isMd: boolean }) => (isMd ? 12 : 6);
+
+export const createAccountFields = [
+  {
+    name: 'firstName',
+    defaultValue: '',
+    placeholder: 'fieldPlaceholders.firstName',
+    getXs,
+  },
+  {
+    name: 'lastName',
+    defaultValue: '',
+    placeholder: 'fieldPlaceholders.lastName',
+    getXs,
+  },
+  {
+    name: 'email',
+    defaultValue: '',
+    placeholder: 'fieldPlaceholders.emailAddress',
+    getXs,
+  },
+  {
+    name: 'confirmEmail',
+    defaultValue: '',
+    placeholder: 'fieldPlaceholders.confirmEmail',
+    getXs,
+  },
+  {
+    name: 'password',
+    type: 'password',
+    defaultValue: '',
+    placeholder: 'fieldPlaceholders.password',
+    getXs,
+    component: PasswordField,
+  },
+  {
+    name: 'confirmPassword',
+    defaultValue: '',
+    type: 'password',
+    placeholder: 'fieldPlaceholders.confirmPassword',
+    getXs,
+    component: PasswordField,
+  },
+  {
+    xs: 12,
+    name: 'agreePolicy',
+    component: BooleanField,
+    label: AcceptingAgreementsLabel,
+    defaultValue: false,
+    size: 'small',
+    labelVariant: 'caption',
+    labelTypographySx: { lineHeight: 1 },
+  },
+  {
+    xs: 12,
+    size: 'small',
+    name: 'agreeGetUpdates',
+    component: BooleanField,
+    labelVariant: 'caption',
+    label: 'fieldLabels.agreeGetUpdatesLabel',
+    defaultValue: false,
+    labelTypographySx: { fontWeight: 'normal' },
+  },
+] as FieldsModel;

@@ -13,7 +13,8 @@ import useAuthProvider from '@common/hooks/useAuthProvider';
 import { AuthViews, ModalNames } from '@common/constants/enums';
 import { openModal, closeModal } from '@common/utils/eventEmitter';
 
-import { formModel, validationSchema } from './constants';
+import { formModel } from './constants';
+import validationSchema from './validationSchemas';
 
 const Login = () => {
   const { login, loading } = useAuthProvider();

@@ -22,7 +22,7 @@ export interface TextInputProps extends UseControllerProps {
   required?: boolean;
   withBorder?: boolean;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: string | unknown;
   boldInputText?: boolean;
   inputComponent?: InputBaseProps['inputComponent'];
   endAdornment?: React.ReactNode;

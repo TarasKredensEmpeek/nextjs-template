@@ -22,7 +22,7 @@ interface BaseFieldParams {
   rightLabel?: string;
   placeholder?: string;
   labelVariant?: Variant;
-  defaultValue?: unknown;
+  defaultValue?: string | unknown;
   requestParams?: unknown;
   labelTypographySx?: SxProps<Theme>;
 }
@@ -56,6 +56,7 @@ export interface FieldParams
     TitleParams,
     BaseFieldParams {
   xs?: boolean | number;
+  getXs?: (params: unknown | object) => number;
   fields?: FieldParams[];
   hidden?: boolean;
   getTitle?: (f: Partial<FieldParams>) => string;
@@ -64,7 +65,6 @@ export interface FieldParams
   countFieldName?: string;
   gridItemSx?: SxProps<Theme>;
   fieldSxProps?: SxProps<Theme>;
-  getXs?: () => number;
   fieldArrayHelpers?: {
     getNewFieldsForFieldsArray?: (
       fields: { [key: string]: string },

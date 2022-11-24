@@ -54,7 +54,6 @@ export const createAccountFields = [
     defaultValue: false,
     size: 'small',
     labelVariant: 'caption',
-    labelTypographySx: { lineHeight: 1 },
   },
   {
     xs: 12,
@@ -64,6 +63,5 @@ export const createAccountFields = [
     labelVariant: 'caption',
     label: 'fieldLabels.agreeGetUpdatesLabel',
     defaultValue: false,
-    labelTypographySx: { fontWeight: 'normal' },
   },
 ] as FieldsModel;

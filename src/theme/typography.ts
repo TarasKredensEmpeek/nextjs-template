@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 const typography = {
   fontFamily: [
     'StagSans-Medium',
@@ -65,7 +67,7 @@ const typography = {
   input: {
     fontSize: '0.875em',
     fontFamily: 'StagSans-Light',
-    textTransform: 'uppercase',
+    textTransform: 'uppercase' as CSSProperties['textTransform'],
   },
 };
 

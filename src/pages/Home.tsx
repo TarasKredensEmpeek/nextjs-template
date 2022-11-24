@@ -8,7 +8,9 @@ const Home = () => (
   <>
     <Button
       variant="outlined"
-      onClick={() => openModal(ModalNames.auth, { view: AuthViews.login })}
+      onClick={() =>
+        openModal(ModalNames.auth, { view: AuthViews.login }, undefined, 'sm')
+      }
     >
       login
     </Button>

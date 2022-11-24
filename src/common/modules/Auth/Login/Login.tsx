@@ -37,7 +37,12 @@ const Login = () => {
     openModal(ModalNames.auth, { view: AuthViews.createAccount });
 
   const openForgotPassword = () =>
-    openModal(ModalNames.auth, { view: AuthViews.forgotPassword });
+    openModal(
+      ModalNames.auth,
+      { view: AuthViews.forgotPassword },
+      undefined,
+      'sm',
+    );
 
   return (
     <Grid container>

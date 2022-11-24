@@ -31,6 +31,7 @@ const Logo: FC<LogoProps> = ({ text, imageUrl }) => {
         textTransform="uppercase"
         sx={{
           letterSpacing: 4,
+          userSelect: 'none',
           fontFamily: 'StagSans-Book',
           fontSize: '1.2em',
           background:

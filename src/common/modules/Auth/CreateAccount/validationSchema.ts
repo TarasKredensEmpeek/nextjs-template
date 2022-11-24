@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import {
   emailSchema,
-  passwordValidator,
+  passwordSchema,
   getNameValidator,
 } from '@common/utils/validationSchema';
 
@@ -13,11 +13,8 @@ export const validationSchemas = Yup.object().shape({
     .required('fieldValidationMessages.emailRequired')
     .oneOf([Yup.ref('email'), null], 'fieldValidationMessages.emailIsNotSame'),
   firstName: getNameValidator(),
-  lastName: getNameValidator(
-    undefined,
-    'fieldValidationMessages.lastNameRequired',
-  ),
-  password: passwordValidator,
+  lastName: getNameValidator('fieldValidationMessages.lastNameRequired'),
+  password: passwordSchema,
   confirmPassword: Yup.string()
     .required('fieldValidationMessages.passwordRequired')
     .oneOf(

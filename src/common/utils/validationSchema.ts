@@ -1,36 +1,43 @@
 import * as Yup from 'yup';
 import { matchIsValidTel } from 'mui-tel-input';
 
-export const digitRegexp = /^[0-9]+$/;
-export const oneDigitRegexp = /(?=.*?[0-9])/;
-export const upperCaseRegexp = /(?=.*?[A-Z])/;
-export const lowerCaseRegexp = /(?=.*?[a-z])/;
-export const specialCharacterRegexp = /(?=.*?[#?!@$%^&*-])/;
+import {
+  digitRegexp,
+  oneDigitRegexp,
+  lowerCaseRegexp,
+  upperCaseRegexp,
+  stringMatchRegExp,
+  specialCharacterRegexp,
+} from '@common/constants/regExp';
 
 export const emailSchema = Yup.string()
   .email('fieldValidationMessages.emailInvalid')
   .required('fieldValidationMessages.emailRequired');
 
-export const passwordValidator = Yup.string()
-  .min(8, 'fieldValidationMessages.minLength')
-  .max(64, 'fieldValidationMessages.maxLength')
-  .matches(oneDigitRegexp, 'fieldValidationMessages.shouldContainOneDigit')
-  .matches(lowerCaseRegexp, 'fieldValidationMessages.shouldContainOneLowercase')
-  .matches(upperCaseRegexp, 'fieldValidationMessages.shouldContainOneUppercase')
-  .matches(
-    specialCharacterRegexp,
-    'fieldValidationMessages.shouldContainOneSpecial',
-  );
-
-const validatePhoneFormat = (value?: string) =>
+export const validatePhoneFormat = (value?: string | null) =>
   value ? matchIsValidTel(value) : true;
 
+export const createStringValidCharacters = (
+  message = 'formValidations.invalidCharacters',
+) =>
+  Yup.string()
+    .strict()
+    .trim('formValidations.whitespace')
+    .matches(stringMatchRegExp, message);
+
+export const firstName = createStringValidCharacters().required(
+  'formValidations.firstNameRequired',
+);
+
+export const lastName = createStringValidCharacters().required(
+  'formValidations.lastNameRequired',
+);
+
 export const getNameValidator = (
-  spaceMessage = 'fieldValidationMessages.emptyField',
   requiredMessage = 'fieldValidationMessages.firstNameRequired',
   required = true,
 ) => {
-  const validator = Yup.string().strict().trim(spaceMessage);
+  const validator = createStringValidCharacters();
 
   if (required) {
     return validator.required(requiredMessage);
@@ -39,31 +46,44 @@ export const getNameValidator = (
   return validator;
 };
 
-export const getPhoneValidator = (
-  formatMessage = 'fieldValidationMessages.phoneFormat',
-  requiredMessage = 'fieldValidationMessages.primaryPhoneRequired',
-  required = true,
-) => {
-  const validator = Yup.string().test(
-    'test-format',
-    formatMessage,
-    validatePhoneFormat,
-  );
+export const primaryPhone = Yup.string()
+  .nullable()
+  .test('test-format', 'formValidations.phoneFormat', validatePhoneFormat)
+  .required('formValidations.primaryPhoneRequired');
+export const mobilePhone = Yup.string()
+  .nullable()
+  .test('test-format', 'formValidations.phoneFormat', validatePhoneFormat);
 
-  if (required) {
-    return validator.required(requiredMessage);
-  }
+export const zipCode = Yup.string()
+  .nullable()
+  .min(5, 'formValidations.zipCodeLength')
+  .max(5, 'formValidations.zipCodeLength')
+  .matches(digitRegexp, 'formValidations.zipCodeOnlyDigits')
+  .required('formValidations.zipCodeRequired');
 
-  return validator;
-};
+export const passwordSchema = Yup.string()
+  .min(8, 'formValidations.minLength')
+  .max(64, 'formValidations.maxLength')
+  .matches(oneDigitRegexp, 'formValidations.shouldContainOneDigit')
+  .matches(lowerCaseRegexp, 'formValidations.shouldContainOneLowercase')
+  .matches(upperCaseRegexp, 'formValidations.shouldContainOneUppercase')
+  .matches(specialCharacterRegexp, 'formValidations.shouldContainOneSpecial');
 
-export const getZipCodeValidator = (
-  lengthMessage = 'fieldValidationMessages.zipCodeLength',
-  digitsMessage = 'fieldValidationMessages.zipCodeOnlyDigits',
-  requiredMessage = 'fieldValidationMessages.zipCodeRequired',
-) =>
-  Yup.string()
-    .min(5, lengthMessage)
-    .max(5, lengthMessage)
-    .matches(digitRegexp, digitsMessage)
-    .required(requiredMessage);
+export const addressSchema = Yup.object({
+  holderFirstName: firstName.nullable(),
+  holderLastName: lastName.nullable(),
+  primaryPhone,
+  mobilePhone,
+  address: createStringValidCharacters()
+    .nullable()
+    .strict()
+    .trim('formValidations.whitespace')
+    .required('formValidations.addressLine1Required'),
+  address2: createStringValidCharacters().nullable(),
+  countryId: Yup.number()
+    .nullable()
+    .required('formValidations.countryRequired'),
+  stateId: Yup.number().nullable().required('formValidations.stateRequired'),
+  city: createStringValidCharacters().required('formValidations.cityRequired'),
+  zipCode,
+});

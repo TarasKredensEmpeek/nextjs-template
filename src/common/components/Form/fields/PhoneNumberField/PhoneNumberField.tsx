@@ -46,7 +46,7 @@ const PhoneNumberField: FC<PhoneInputProps> = ({
   rules,
   color = 'secondary',
   control,
-  variant = 'filled',
+  variant = 'outlined',
   required,
   placeholder = '',
   defaultValue = '',
@@ -81,6 +81,7 @@ const PhoneNumberField: FC<PhoneInputProps> = ({
         {...props}
         {...field}
         color={color}
+        error={isError}
         variant={variant}
         InputProps={{
           classes,

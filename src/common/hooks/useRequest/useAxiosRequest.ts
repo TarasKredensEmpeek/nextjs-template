@@ -10,9 +10,9 @@ type BodyRequest = AxiosRequestConfig['data' | 'params'];
 type ParamsRequest = AxiosRequestConfig['params' | 'headers'];
 
 interface UseRequestState<D> {
-  data?: D | undefined;
+  data?: D | null;
   loading: boolean;
-  error?: AxiosError | undefined;
+  error?: AxiosError | null;
 }
 
 export interface UseRequestReturn<D = unknown | undefined> {
@@ -20,10 +20,16 @@ export interface UseRequestReturn<D = unknown | undefined> {
     body?: BodyRequest,
     params?: ParamsRequest,
     headers?: AxiosRequestConfig['headers'],
-  ) => Promise<unknown>;
+  ) => Promise<D>;
   requestState: UseRequestState<D>;
   cancelRequest: () => void;
 }
+
+export type UseMethodResult<D> = [
+  UseRequestReturn<D>['handleRequest'],
+  UseRequestReturn<D>['requestState'],
+  UseRequestReturn<D>['cancelRequest'],
+];
 
 const bodyLessRequestMethods = ['get', 'delete'];
 
@@ -91,7 +97,7 @@ const useAxiosRequest = <D = unknown | undefined>(
         setError(e as AxiosError);
         setLoading(false);
 
-        return e;
+        return e as AxiosError;
       }
     },
     [controller.signal, method, locale, resource],

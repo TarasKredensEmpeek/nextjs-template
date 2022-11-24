@@ -1,13 +1,7 @@
-import useAxiosRequest, { UseRequestReturn } from './useAxiosRequest';
+import useAxiosRequest, { UseMethodResult } from './useAxiosRequest';
 
-const useGetData = (
-  resource: string,
-): [
-  UseRequestReturn['handleRequest'],
-  UseRequestReturn['requestState'],
-  UseRequestReturn['cancelRequest'],
-] => {
-  const { handleRequest, requestState, cancelRequest } = useAxiosRequest(
+const useGetData = <D>(resource: string): UseMethodResult<D> => {
+  const { handleRequest, requestState, cancelRequest } = useAxiosRequest<D>(
     resource,
     'get',
   );

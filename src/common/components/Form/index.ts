@@ -1,5 +1,6 @@
 import FromBuilder from './FormBuilder';
 
+export { default as ResourceAutocompleteField } from './fields/ResourceAutocompleteField';
 export { default as PhoneNumberField } from './fields/PhoneNumberField';
 export { default as RadioGroupField } from './fields/RadioGroupField';
 export { default as PasswordField } from './fields/PasswordField';

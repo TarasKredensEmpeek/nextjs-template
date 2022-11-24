@@ -12,6 +12,12 @@ const labelStyleOverrides = {
   },
 };
 
+const bgListOptionStyle = { backgroundColor: '#FAF3E9 !important' };
+
+const hoverListOption = {
+  '&:hover': bgListOptionStyle,
+};
+
 const components: ComponentsOverrides = {
   ...textFields,
   ...booleanFields,
@@ -51,6 +57,7 @@ const components: ComponentsOverrides = {
       },
     },
   },
+
   MuiFormControlLabel: {
     defaultProps: {
       componentsProps: { typography: { variant: 'caption' } },
@@ -62,6 +69,7 @@ const components: ComponentsOverrides = {
       },
     },
   },
+
   MuiLink: {
     defaultProps: { color: 'text.link' },
 
@@ -71,6 +79,7 @@ const components: ComponentsOverrides = {
       },
     },
   },
+
   MuiFormLabel: {
     styleOverrides: labelStyleOverrides,
   } as ComponentsOverrides['MuiFormLabel'],
@@ -89,33 +98,43 @@ const components: ComponentsOverrides = {
       },
     },
   },
+
   MuiPaper: {
     styleOverrides: {
       root: {
         left: '0px !important',
         marginTop: 1,
         border: '1px solid #CACACA',
+
+        '& .MuiAutocomplete-option': {
+          ...hoverListOption,
+
+          '&.Mui-focused': {
+            ...bgListOptionStyle,
+          },
+        },
       },
     },
   },
+
   MuiMenuItem: {
     styleOverrides: {
-      root: () => {
-        const bgStyle = { backgroundColor: '#FAF3E9' };
+      root: () => ({
+        ...hoverListOption,
+        '&.Mui-focusVisible': bgListOptionStyle,
 
-        const hover = {
-          '&:hover': bgStyle,
-        };
+        '&.Mui-selected': {
+          ...bgListOptionStyle,
+          ...hoverListOption,
+        },
+      }),
+    },
+  },
 
-        return {
-          ...hover,
-          '&.Mui-focusVisible': bgStyle,
-
-          '&.Mui-selected': {
-            ...bgStyle,
-            ...hover,
-          },
-        };
+  MuiAutocomplete: {
+    styleOverrides: {
+      inputRoot: {
+        paddingTop: '9px !important',
       },
     },
   },

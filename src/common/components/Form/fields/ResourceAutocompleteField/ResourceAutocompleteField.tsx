@@ -6,7 +6,6 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -14,23 +13,19 @@ import { Control, useController } from 'react-hook-form';
 
 import { useGetData } from '@common/hooks/useRequest';
 
-import useStyles from './useStyles';
-
 type OptionKey = string;
 
 interface IResourceSelectProps {
   name: string;
   control: Control;
   resource?: string;
-  optionLabelName: OptionKey;
+  required?: boolean;
+  disabled?: boolean;
   placeholder?: string;
-  optionValueName: OptionKey;
+  defaultValue?: string;
   requestParams?: unknown;
-  withBorder?: boolean;
-  boldInputText?: boolean;
-  disabled: boolean;
-  required: boolean;
-  defaultValue: string;
+  optionLabelName?: OptionKey;
+  optionValueName?: OptionKey;
 }
 
 interface Option {
@@ -39,19 +34,16 @@ interface Option {
 
 const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
   name,
+  control,
+  resource,
+  disabled = false,
   required,
   placeholder,
-  resource,
+  defaultValue = undefined,
   requestParams,
-  disabled = false,
-  withBorder = false,
-  boldInputText = true,
   optionValueName = 'id',
   optionLabelName = 'name',
-  defaultValue = undefined,
-  control,
 }) => {
-  const classes = useStyles();
   const { t } = useTranslation();
   const [options, setData] = useState<Option[]>([]);
 
@@ -59,17 +51,6 @@ const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
   const [getOptions] = req;
 
   const { field, fieldState } = useController({ control, name, defaultValue });
-
-  const inputClasses = {
-    root: classes.root,
-    input: classes.input,
-    inputRoot: clsx(classes.inputRoot, {
-      [classes.withBorder]: withBorder,
-      [classes.boldInputText]: boldInputText,
-    }),
-    error: classes.error,
-    focused: classes.inputFocused,
-  };
 
   const { error } = fieldState;
   const isError = useMemo(() => Boolean(error), [error]);
@@ -94,7 +75,7 @@ const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
     try {
       const responseData = await getOptions(requestParams);
 
-      if (!!responseData?.length) {
+      if (responseData?.length) {
         setData(responseData);
       }
     } catch (e) {
@@ -133,7 +114,6 @@ const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
         size="small"
         value={computedValue}
         options={options}
-        classes={inputClasses}
         onChange={handleChange}
         disabled={disabled}
         getOptionLabel={option =>
@@ -146,6 +126,7 @@ const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
           <TextField
             {...params}
             error={isError}
+            required={required}
             inputRef={field.ref}
             helperText={errorMessage && t(errorMessage)}
             placeholder={fieldPlaceholder}

@@ -15,7 +15,7 @@ export interface TPackageTab {
 
 interface TPackageTabsProps {
   tabs: TPackageTab[];
-  activeTabId?: number;
+  activeIndex?: number;
   setActiveTab: TActiveTabSetter;
 }
 
@@ -69,10 +69,10 @@ const PackageTab: FC<TTabProps> = ({
   );
 };
 
-const Tabs: FC<TPackageTabsProps> = ({ tabs, setActiveTab, activeTabId }) => {
+const Tabs: FC<TPackageTabsProps> = ({ tabs, setActiveTab, activeIndex }) => {
   const activeTabData = useMemo(
-    () => tabs.find((_, index) => index === activeTabId)?.content,
-    [tabs, activeTabId],
+    () => activeIndex && tabs[activeIndex]?.content,
+    [tabs, activeIndex],
   );
 
   const getIsLastTab = useCallback(
@@ -81,8 +81,8 @@ const Tabs: FC<TPackageTabsProps> = ({ tabs, setActiveTab, activeTabId }) => {
   );
 
   const getIsActiveTab = useCallback(
-    (key: number) => key === activeTabId,
-    [activeTabId],
+    (key: number) => key === activeIndex,
+    [activeIndex],
   );
 
   return (

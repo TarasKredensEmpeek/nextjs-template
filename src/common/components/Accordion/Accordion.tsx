@@ -18,7 +18,7 @@ export enum AccordionVariants {
 }
 
 interface ContentProps {
-  currentStepId?: number;
+  expandedIndex?: number;
   handleNextStep?: (i: number) => void;
 }
 
@@ -31,7 +31,7 @@ interface AccordionProps {
   variant?: AccordionVariants;
   items: AccordionItemParams[];
   itemProps?: object;
-  expandedItemId?: number;
+  expandedIndex?: number;
   stepPrefixName?: string;
   handleExpand: (id: number) => void;
   children?: ReactElement;
@@ -58,8 +58,8 @@ const Accordion: FC<AccordionProps> = ({
   children,
   itemProps = {},
   handleExpand,
+  expandedIndex,
   stepPrefixName,
-  expandedItemId,
   transitionProps,
 }) => {
   const indexedStepsStyles = useIndexedStepStyles();
@@ -84,13 +84,13 @@ const Accordion: FC<AccordionProps> = ({
         if (typeof ItemComponent !== 'string') {
           contentComponent = ItemComponent ? (
             <ItemComponent
-              currentStepId={expandedItemId}
+              expandedIndex={expandedIndex}
               handleNextStep={handleExpand}
               {...(itemProps || {})}
             />
           ) : (
             cloneElement(children as ReactElement, {
-              currentStepId: expandedItemId,
+              expandedIndex,
               handleNextStep: handleExpand,
             })
           );
@@ -98,7 +98,7 @@ const Accordion: FC<AccordionProps> = ({
           contentComponent = ItemComponent;
         }
 
-        const expanded = expandedItemId === index;
+        const expanded = expandedIndex === index;
         const step = index + 1 >= 10 ? index + 1 : `0${index + 1}`;
         const label = isIndexedSteps
           ? `${stepPrefixName ? t(stepPrefixName) : 'Step'} ${step} /`

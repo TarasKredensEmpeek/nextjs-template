@@ -37,7 +37,7 @@ const Home = () => {
       </Button>
 
       <div style={{ width: 500 }}>
-        <Accordion items={data} handleExpand={toggle} expandedItemId={act} />
+        <Accordion items={data} handleExpand={toggle} expandedIndex={act} />
       </div>
     </>
   );

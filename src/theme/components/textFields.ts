@@ -22,13 +22,14 @@ const getBaseInput = ({ theme, ownerState }: InputOverrides) => {
   return {
     height: 20,
     borderWidth: 1,
+    fontFamily: 'StagSans-Book',
     color: theme.palette.text.secondary,
-    fontFamily: 'StagSans-Light',
     fontSize: `${size === 'small' ? 0.875 : 1}em`,
     paddingTop: theme.spacing(paddingValue),
     paddingBottom: theme.spacing(paddingValue),
     '&::placeholder': {
       textTransform: 'uppercase',
+      fontFamily: 'StagSans-Light',
       color: theme.palette.text.secondary,
     },
   };

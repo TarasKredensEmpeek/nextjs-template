@@ -1,12 +1,10 @@
 import React, { FC, ReactNode, useMemo } from 'react';
 import Box from '@mui/material/Box';
-import makeStyles from '@mui/styles/makeStyles';
-import { SxProps, Theme } from '@mui/material/styles';
 import Radio, { RadioProps } from '@mui/material/Radio';
+import FormHelperText from '@mui/material/FormHelperText';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
-import Typography, { TypographyProps } from '@mui/material/Typography';
 import {
   useController,
   Control,
@@ -39,14 +37,8 @@ export interface BooleanFieldProps extends UseControllerProps {
     | CheckboxProps['inputProps']
     | SwitchProps['inputProps'];
   className?: string;
-  labelVariant?: TypographyProps['variant'];
   defaultValue?: string | number;
-  labelTypographySx?: SxProps<Theme>;
 }
-
-const useStyles = makeStyles(({ spacing }: Theme) => ({
-  root: { padding: spacing(1), color: '#BCBFBE', '& svg': { fontSize: 24 } },
-}));
 
 const BooleanField: FC<BooleanFieldProps> = ({
   name,
@@ -58,11 +50,9 @@ const BooleanField: FC<BooleanFieldProps> = ({
   control,
   className,
   inputProps = {},
-  labelVariant = 'body2',
   defaultValue = false,
   ...props
 }) => {
-  const classes = useStyles();
   const { t } = useTranslation();
   const { field, fieldState }: UseControllerReturn = useController({
     name,
@@ -94,20 +84,10 @@ const BooleanField: FC<BooleanFieldProps> = ({
         name={name}
         color={color}
         checked={Boolean(field.value)}
-        classes={classes}
         inputProps={{ 'aria-label': `${color} checkbox`, ...inputProps }}
       />
     ),
-    [
-      size,
-      name,
-      field,
-      color,
-      props,
-      classes,
-      inputProps,
-      BooleanInputComponent,
-    ],
+    [size, name, field, color, props, inputProps, BooleanInputComponent],
   );
 
   return (
@@ -117,21 +97,12 @@ const BooleanField: FC<BooleanFieldProps> = ({
           label={fieldLabel}
           control={component}
           className={className}
-          componentsProps={{ typography: { variant: labelVariant } }}
         />
       ) : (
         component
       )}
 
-      {isError && (
-        <Typography
-          variant="fieldError"
-          color="error"
-          sx={{ left: 8, top: '95%', position: 'absolute' }}
-        >
-          {t(errorMessage)}
-        </Typography>
-      )}
+      <FormHelperText error={isError}>{t(errorMessage)}</FormHelperText>
     </Box>
   );
 };

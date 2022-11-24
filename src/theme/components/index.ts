@@ -30,7 +30,7 @@ const components: ComponentsOverrides = {
   },
 
   MuiFormHelperText: {
-    defaultProps: { color: 'error.dark' },
+    defaultProps: { color: 'error' },
 
     styleOverrides: {
       root: {
@@ -38,10 +38,16 @@ const components: ComponentsOverrides = {
         marginLeft: 0,
         marginRight: 0,
         top: '85%',
+        fontSize: '0.75em',
+        fontFamily: 'StagSans-Book',
       },
     },
   },
   MuiFormControlLabel: {
+    defaultProps: {
+      componentsProps: { typography: { variant: 'caption' } },
+    },
+
     styleOverrides: {
       root: {
         lineHeight: 1,

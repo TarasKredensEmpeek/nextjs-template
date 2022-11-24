@@ -4,6 +4,14 @@ import buttons from './buttons';
 import textFields from './textFields';
 import booleanFields from './booleanFields';
 
+const labelStyleOverrides = {
+  root: {
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Book',
+    textTransform: 'uppercase',
+  },
+};
+
 const components: ComponentsOverrides = {
   ...textFields,
   ...booleanFields,
@@ -64,10 +72,50 @@ const components: ComponentsOverrides = {
     },
   },
   MuiFormLabel: {
+    styleOverrides: labelStyleOverrides,
+  } as ComponentsOverrides['MuiFormLabel'],
+  MuiInputLabel: {
+    styleOverrides: labelStyleOverrides,
+  } as ComponentsOverrides['MuiInputLabel'],
+
+  MuiSelect: {
+    styleOverrides: {
+      select: {
+        paddingTop: 9,
+        paddingBottom: 8,
+      },
+      icon: {
+        color: '#9E9E9E',
+      },
+    },
+  },
+  MuiPaper: {
     styleOverrides: {
       root: {
-        fontSize: '0.875em',
-        fontFamily: 'StagSans-Book',
+        left: '0px !important',
+        marginTop: 1,
+        border: '1px solid #CACACA',
+      },
+    },
+  },
+  MuiMenuItem: {
+    styleOverrides: {
+      root: () => {
+        const bgStyle = { backgroundColor: '#FAF3E9' };
+
+        const hover = {
+          '&:hover': bgStyle,
+        };
+
+        return {
+          ...hover,
+          '&.Mui-focusVisible': bgStyle,
+
+          '&.Mui-selected': {
+            ...bgStyle,
+            ...hover,
+          },
+        };
       },
     },
   },

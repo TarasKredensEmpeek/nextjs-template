@@ -1,9 +1,17 @@
-import React, { FC, InputHTMLAttributes, useMemo } from 'react';
+import React, {
+  FC,
+  ReactElement,
+  InputHTMLAttributes,
+  useMemo,
+  useState,
+} from 'react';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
-import { SxProps, Theme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import { SxProps, Theme } from '@mui/material/styles';
 import Select, { SelectProps } from '@mui/material/Select';
 import {
   useController,
@@ -22,7 +30,8 @@ export interface SelectFieldProps
   options: FieldOptions;
   label?: string;
   leftLabel?: string;
-  rightLabel?: string;
+  rightLabel?: string | ReactElement;
+  placeholder?: string;
   fieldSxProps?: SxProps<Theme>;
   defaultValue?: string | number;
 }
@@ -32,13 +41,15 @@ const SelectField: FC<SelectFieldProps> = ({
   control,
   rules,
   label,
+  options,
   leftLabel,
   rightLabel,
-  options,
+  placeholder,
   defaultValue,
   fieldSxProps = {},
 }) => {
   const { t } = useTranslation();
+  const [opened, setOpened] = useState(false);
   const { field, fieldState }: UseControllerReturn = useController({
     name,
     rules,
@@ -47,22 +58,41 @@ const SelectField: FC<SelectFieldProps> = ({
   });
   const { error } = fieldState;
 
+  const toggleOpened = () => setOpened(o => !o);
+
   const isError = useMemo(() => Boolean(error), [error]);
   const errorMessage = useMemo(() => error?.message, [error?.message]);
 
   return (
     <Grid container style={{ position: 'relative' }} alignItems="center">
-      {leftLabel && <Typography variant="label1">{t(leftLabel)}</Typography>}
+      {leftLabel && <Typography variant="body1">{t(leftLabel)}</Typography>}
 
-      <Select {...field} label={label} sx={fieldSxProps}>
-        {options.map(option => (
-          <MenuItem key={option.value} value={option.value}>
-            {t(String(option.label))}
-          </MenuItem>
-        ))}
-      </Select>
+      <FormControl fullWidth size="small">
+        {!field.value && placeholder && !opened && (
+          <InputLabel>{t(placeholder)}</InputLabel>
+        )}
 
-      {rightLabel && <Typography variant="label1">{t(rightLabel)}</Typography>}
+        <Select
+          fullWidth
+          {...field}
+          label={label}
+          sx={fieldSxProps}
+          onOpen={toggleOpened}
+          onClose={toggleOpened}
+        >
+          {options.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {t(String(option.label))}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      {rightLabel && (
+        <Typography variant="body1">
+          {typeof rightLabel === 'string' ? t(rightLabel) : rightLabel}
+        </Typography>
+      )}
 
       {isError && <Typography variant="fieldError">{errorMessage}</Typography>}
     </Grid>

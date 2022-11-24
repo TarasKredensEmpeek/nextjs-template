@@ -31,7 +31,7 @@ const typography = {
   },
   subtitle2: {
     fontSize: '0.875em',
-    fontFamily: 'StagSans-Book',
+    fontFamily: 'StagSans-Medium',
   },
   body1: {
     fontSize: '1em',
@@ -61,6 +61,11 @@ const typography = {
   link: {
     fontSize: '0.875em',
     fontFamily: 'StagSans-Medium',
+  },
+  input: {
+    fontSize: '0.875em',
+    fontFamily: 'StagSans-Light',
+    textTransform: 'uppercase',
   },
 };
 

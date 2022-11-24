@@ -20,6 +20,7 @@ declare module '@mui/material/Button' {
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     link: true;
+    input: true;
     fieldError: true;
   }
 }
@@ -59,11 +60,13 @@ declare module '@mui/material/styles' {
 
   interface TypographyVariants {
     link: React.CSSProperties;
+    input: React.CSSProperties;
     fieldError: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     link?: React.CSSProperties;
+    input?: React.CSSProperties;
     fieldError?: React.CSSProperties;
   }
 }

@@ -138,6 +138,12 @@ const components: ComponentsOverrides = {
       },
     },
   },
+
+  MuiAccordion: {
+    styleOverrides: {
+      root: {},
+    },
+  },
 };
 
 export default components;

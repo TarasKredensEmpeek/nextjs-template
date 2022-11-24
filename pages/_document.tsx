@@ -16,6 +16,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <meta name="emotion-insertion-point" content="" />
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/* @ts-ignore */}
+          {this.props.emotionStyleTags}
         </Head>
         <body>
           <Main />
@@ -53,7 +57,7 @@ MyDocument.getInitialProps = async ctx => {
 
   const originalRenderPage = ctx.renderPage;
 
-  // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
+  // You can consider sharing the same Emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
@@ -67,8 +71,8 @@ MyDocument.getInitialProps = async ctx => {
     });
 
   const initialProps = await Document.getInitialProps(ctx);
-  // This is important. It prevents emotion to render invalid HTML.
-  // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
+  // This is important. It prevents Emotion to render invalid HTML.
+  // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map(style => (
     <style
@@ -81,6 +85,6 @@ MyDocument.getInitialProps = async ctx => {
 
   return {
     ...initialProps,
-    ...emotionStyleTags,
+    emotionStyleTags,
   };
 };

@@ -1,16 +1,19 @@
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles({
-  loadingSvg: {
-    animation: '$spin 2s linear infinite',
-  },
+const useStyles = makeStyles(
+  {
+    loadingSvg: {
+      animation: '$spin 2s linear infinite',
+    },
 
-  '@keyframes spin': {
-    from: { transform: 'rotate(0deg)' },
-    to: { transform: 'rotate(360deg)' },
+    '@keyframes spin': {
+      from: { transform: 'rotate(0deg)' },
+      to: { transform: 'rotate(360deg)' },
+    },
   },
-});
+  { name: 'MuiLoadingSpinner' },
+);
 
 const Loading = ({ width = 24, height = 24, color = 'currentColor' }) => {
   const classes = useStyles();

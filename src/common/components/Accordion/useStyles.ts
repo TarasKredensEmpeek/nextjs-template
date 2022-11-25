@@ -53,42 +53,45 @@ export const useIndexedStepStyles = makeStyles((theme: Theme) => {
   };
 });
 
-export const useStandardStyles = makeStyles((theme: Theme) => ({
-  container: {
-    border: 'none',
-    boxShadow: 'none',
-    borderTop: `1px solid ${theme.palette.border.light}`,
-    margin: 0,
-    '&:before': {
-      height: 0,
-    },
-
-    '&.Mui-expanded': {
+export const useStandardStyles = makeStyles(
+  (theme: Theme) => ({
+    container: {
+      border: 'none',
+      boxShadow: 'none',
+      borderTop: `1px solid ${theme.palette.border.light}`,
       margin: 0,
-      '&:first-of-type': { marginTop: 0 },
+      '&:before': {
+        height: 0,
+      },
+
+      '&.Mui-expanded': {
+        margin: 0,
+        '&:first-of-type': { marginTop: 0 },
+      },
     },
-  },
 
-  summary: {
-    height: 60,
-    minHeight: 60,
+    summary: {
+      height: 60,
+      minHeight: 60,
 
-    '&.Mui-expanded': {
-      minHeight: 0,
+      '&.Mui-expanded': {
+        minHeight: 0,
+      },
     },
-  },
 
-  summaryContent: {
-    '&.Mui-expanded': {
-      minHeight: 0,
-      margin: 0,
+    summaryContent: {
+      '&.Mui-expanded': {
+        minHeight: 0,
+        margin: 0,
+      },
     },
-  },
 
-  icon: {
-    fontSize: 24,
-    color: theme.palette.text.secondary,
-  },
+    icon: {
+      fontSize: 24,
+      color: theme.palette.text.secondary,
+    },
 
-  content: { padding: 0, paddingBottom: theme.spacing(3) },
-}));
+    content: { padding: 0, paddingBottom: theme.spacing(3) },
+  }),
+  { name: 'MuiOlAccordion' },
+);

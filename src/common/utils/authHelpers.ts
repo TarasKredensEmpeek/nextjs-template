@@ -9,6 +9,9 @@ interface AuthResponseData {
 }
 
 export interface DecodedTokenData {
+  emailAddress: string;
+  firstName: string;
+  lastName: string;
   clientId: string;
   hash: string;
   nbf: number;

@@ -2,11 +2,17 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import paths from '@common/constants/paths';
 import { isBrowser } from '@common/utils/ssrHelpers';
+import { openModal } from '@common/utils/eventEmitter';
+import useAuthProvider from '@common/hooks/useAuthProvider';
+import { AuthViews, ModalNames } from '@common/constants/enums';
 
 import Logo from '../logo';
 import SideMenu from './SideMenu';
@@ -25,13 +31,22 @@ const menuWrapperSx = {
   alignItems: 'center',
 };
 
+const getLinkSx = (color = 'inherit') => ({
+  color,
+  cursor: 'pointer',
+});
+
 const Header = () => {
   const theme = useTheme();
+  const router = useRouter();
+  const { t } = useTranslation();
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
   const isLg = useMediaQuery(theme.breakpoints.down(1366));
   const isDownLg = useMediaQuery(theme.breakpoints.down(1021));
   const [sideMenu, setSideMenu] = useState(false);
   const [scrollParams, setScrollParams] = useState(defaultScrollParams);
+
+  const { logout, isAuthorized, user } = useAuthProvider();
 
   const styles = useMemo(
     () =>
@@ -47,6 +62,24 @@ const Header = () => {
   );
 
   const toggleMenu = () => setSideMenu(isMenu => !isMenu);
+
+  const handleLoginLogout = () => {
+    if (isAuthorized) {
+      logout();
+      return;
+    }
+
+    openModal(ModalNames.auth, { view: AuthViews.login }, undefined, 'sm');
+  };
+
+  const handleCreateAccount = () => {
+    if (isAuthorized) {
+      router.push(paths.account);
+      return;
+    }
+
+    openModal(ModalNames.auth, { view: AuthViews.createAccount });
+  };
 
   const handleScroll = useCallback(() => {
     if (isBrowser) {
@@ -134,47 +167,70 @@ const Header = () => {
           },
         }}
       >
-        <div style={{ ...menuWrapperSx, justifyContent: 'flex-start' }}>
+        <Grid item sx={{ ...menuWrapperSx, justifyContent: 'flex-start' }}>
           {!isLg &&
             headerLinks.map(link => (
-              <Grid item px={1.875} key={link.name}>
-                <Link href={link.url}>
-                  <Typography variant="body2">{link.name}</Typography>
-                </Link>
+              <Grid item px={1.875} key={link.name} sx={getLinkSx()}>
+                <Typography variant="body2">
+                  <Link href={link.url}>{link.name}</Link>
+                </Typography>
               </Grid>
             ))}
-        </div>
+        </Grid>
 
-        <div
-          style={{
+        <Grid
+          item
+          sx={{
             left: '50%',
+            cursor: 'pointer',
             position: 'absolute',
             transform: 'translateX(-50%)',
             justifyContent: 'flex-start',
           }}
         >
-          <Logo />
-        </div>
+          <Link href={paths.home}>
+            <div>
+              <Logo />
+            </div>
+          </Link>
+        </Grid>
 
-        <div style={{ ...menuWrapperSx, justifyContent: 'flex-end' }}>
+        <Grid item sx={{ ...menuWrapperSx, justifyContent: 'flex-end' }}>
           {!isDownLg && (
             <>
-              <Grid item px={1.875}>
-                <Typography variant="body2">Create Account</Typography>
-              </Grid>
-
-              <Grid item px={1.875}>
-                <Typography variant="body2" color="primary">
-                  Log In
+              <Grid
+                item
+                px={1.875}
+                sx={getLinkSx()}
+                onClick={handleCreateAccount}
+              >
+                <Typography variant="body2">
+                  {t(
+                    isAuthorized
+                      ? 'buttons.namedAccount'
+                      : 'buttons.createAccount',
+                    { name: user?.firstName },
+                  )}
                 </Typography>
               </Grid>
 
-              <Grid item px={1.875}>
-                <Typography variant="body2">create account</Typography>
+              <Grid
+                item
+                px={1.875}
+                onClick={handleLoginLogout}
+                sx={getLinkSx()}
+              >
+                <Typography variant="body2" color="primary">
+                  {t(isAuthorized ? 'buttons.logout' : 'buttons.login')}
+                </Typography>
+              </Grid>
+
+              <Grid item px={1.875} sx={getLinkSx()}>
+                <Typography variant="body2">800 591 9198</Typography>
               </Grid>
             </>
           )}
-        </div>
+        </Grid>
       </Box>
 
       <SideMenu open={sideMenu} onClose={toggleMenu} />

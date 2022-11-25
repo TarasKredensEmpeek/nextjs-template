@@ -144,6 +144,17 @@ const components: ComponentsOverrides = {
       root: {},
     },
   },
+
+  MuiDialog: {
+    styleOverrides: {
+      container: {
+        '& .MuiPaper-root': {
+          border: 'none !important',
+          borderRadius: 0,
+        },
+      },
+    },
+  },
 };
 
 export default components;

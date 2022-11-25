@@ -27,7 +27,11 @@ const MyApp: FC<IAppProps> = props => {
       <AuthProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <GlobalStyles styles={{ body: { backgroundColor: '#F6F6F6' } }} />
+          <GlobalStyles
+            styles={{
+              body: { backgroundColor: theme.palette.background.secondary },
+            }}
+          />
           <AppRoot />
           <Component {...pageProps} />
         </ThemeProvider>

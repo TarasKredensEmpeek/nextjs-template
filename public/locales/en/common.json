@@ -18,7 +18,10 @@
     "unknownMessage": "Unknown error"
   },
   "buttons": {
-    "login": "Log in"
+    "login": "Log In",
+    "logout": "Log Off",
+    "namedAccount": "{{name}}'s Account",
+    "createAccount": "Create Account"
   },
   "fieldPlaceholders": {
     "email": "Email",

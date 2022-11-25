@@ -5,11 +5,16 @@ import Typography from '@mui/material/Typography';
 
 interface LogoProps {
   text?: string;
+  fontSize?: string;
   imageUrl?: string;
 }
 
 // todo decide to using css or svg
-const Logo: FC<LogoProps> = ({ text, imageUrl }) => {
+const Logo: FC<LogoProps> = ({
+  text = 'on location',
+  imageUrl,
+  fontSize = '1.2em',
+}) => {
   const { t } = useTranslation();
 
   if (imageUrl) {
@@ -30,10 +35,10 @@ const Logo: FC<LogoProps> = ({ text, imageUrl }) => {
       <Typography
         textTransform="uppercase"
         sx={{
+          fontSize,
           letterSpacing: 4,
           userSelect: 'none',
-          fontFamily: 'StagSans-Book',
-          fontSize: '1.2em',
+          fontFamily: 'StagSans-Medium',
           background:
             'radial-gradient(108.59% 6877.63% at 50.07% -1.57%, #E4D5B1 0%, #B4964C 100%)',
           backgroundClip: 'text',

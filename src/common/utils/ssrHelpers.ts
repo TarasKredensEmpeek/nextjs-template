@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next';
 import createCache from '@emotion/cache';
 
-const isBrowser = typeof document !== 'undefined';
+export const isBrowser = typeof document !== 'undefined';
 
 export const createEmotionCache = () => {
   let insertionPoint;

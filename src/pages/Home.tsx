@@ -36,9 +36,11 @@ const Home = () => {
         login
       </Button>
 
-      <div style={{ width: 500 }}>
-        <Accordion items={data} handleExpand={toggle} expandedIndex={act} />
-      </div>
+      {new Array(100).fill(null).map(() => (
+        <div style={{ width: 500 }} key={String(Math.random())}>
+          <Accordion items={data} handleExpand={toggle} expandedIndex={act} />
+        </div>
+      ))}
     </>
   );
 };

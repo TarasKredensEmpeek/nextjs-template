@@ -18,6 +18,7 @@ import { AuthViews, ModalNames } from '@common/constants/enums';
 import Logo from '../logo';
 import SideMenu from './SideMenu';
 import BurgerIcon from './BurgerIcon';
+import HeaderLink from './HeaderLink';
 import { headerLinks } from './constants';
 
 const headerHeight = 75;
@@ -180,9 +181,13 @@ const Header = () => {
           {!isLg &&
             headerLinks.map(link => (
               <Grid item px={1.875} key={link.name} sx={getLinkSx()}>
-                <Typography variant="body2">
-                  <Link href={link.url}>{link.name}</Link>
-                </Typography>
+                {link.external ? (
+                  <HeaderLink name={link.name} />
+                ) : (
+                  <Link href={link.url}>
+                    <HeaderLink name={link.name} />
+                  </Link>
+                )}
               </Grid>
             ))}
         </Grid>

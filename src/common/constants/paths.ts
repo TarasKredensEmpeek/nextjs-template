@@ -16,6 +16,8 @@ const paths = {
   about: '/about',
   account: '/account',
   calendar: '/sports-schedule',
+  news: '/news',
+  careers: '/careers',
 };
 
 export default paths;

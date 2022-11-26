@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Drawer from '@mui/material/Drawer';
@@ -11,8 +11,14 @@ import Logo from '@common/components/logo';
 
 import { sideLinks } from './constants';
 
-const LinkTypography = ({ name }: { name: string }) => (
+interface LinkTypographyProps {
+  name: string;
+  onClick?: () => void;
+}
+
+const LinkTypography: FC<LinkTypographyProps> = ({ name, onClick }) => (
   <Typography
+    onClick={onClick}
     variant="subtitle1"
     sx={{
       cursor: 'pointer',

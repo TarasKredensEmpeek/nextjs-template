@@ -1,32 +1,15 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import eventEmitter from '@services/eventEmitter';
-import { EventNames, ModalNames } from '@common/constants/enums';
+import { ServerSideProps } from '@/types/common';
+import PageWrapper from '@common/layouts/PageWrapper';
 
-const About = () => (
-  <div>
-    about.tsx
-    <Button
-      variant="rounded"
-      onClick={() =>
-        eventEmitter.emit(EventNames.openModal, { name: ModalNames.auth })
-      }
-    >
-      open modal
-    </Button>
-  </div>
-);
+const meta = { title: 'About', description: 'About' };
 
-interface SSRProps {
-  locale: string;
-}
+const About = () => <PageWrapper meta={meta}>about</PageWrapper>;
 
-export async function getServerSideProps({ locale }: SSRProps) {
-  const props = {
-    ...(await serverSideTranslations(locale)),
-  };
+export async function getServerSideProps({ locale }: ServerSideProps) {
+  const props = { ...(await serverSideTranslations(locale)) };
 
   return { props };
 }

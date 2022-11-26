@@ -1,28 +1,26 @@
 import React from 'react';
-import Head from 'next/head';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Home from '@/pages/Home';
+import { ServerSideProps } from '@/types/common';
+import PageWrapper from '@common/layouts/PageWrapper';
+
+const metaData = {
+  title:
+    'On Location | Sports, Music & Lifestyle Experiences, Tickets & Hospitality',
+  description:
+    'On Location | Sports, Music & Lifestyle Experiences, Tickets & Hospitality',
+};
 
 const HomePage: NextPage = () => (
-  <div>
-    <Head>
-      <title>My app</title>
-    </Head>
-
+  <PageWrapper meta={metaData}>
     <Home />
-  </div>
+  </PageWrapper>
 );
 
-interface SSRProps {
-  locale: string;
-}
-
-export const getServerSideProps = async ({ locale }: SSRProps) => {
-  const props = {
-    ...(await serverSideTranslations(locale)),
-  };
+export const getServerSideProps = async ({ locale }: ServerSideProps) => {
+  const props = { ...(await serverSideTranslations(locale)) };
 
   return { props };
 };

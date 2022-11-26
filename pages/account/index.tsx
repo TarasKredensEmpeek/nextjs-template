@@ -1,19 +1,8 @@
 import React from 'react';
-import Head from 'next/head';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import Home from '@/pages/Home';
-
-const HomePage: NextPage = () => (
-  <div>
-    <Head>
-      <title>My app</title>
-    </Head>
-
-    <Home />
-  </div>
-);
+const Account: NextPage = () => <div>Account</div>;
 
 interface SSRProps {
   locale: string;
@@ -27,4 +16,4 @@ export const getServerSideProps = async ({ locale }: SSRProps) => {
   return { props };
 };
 
-export default HomePage;
+export default Account;

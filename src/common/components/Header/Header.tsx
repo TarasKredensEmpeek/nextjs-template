@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhoneOutlined';
 
 import paths from '@common/constants/paths';
 import { isBrowser } from '@common/utils/ssrHelpers';
@@ -225,10 +226,27 @@ const Header = () => {
                 </Typography>
               </Grid>
 
-              <Grid item px={1.875} sx={getLinkSx()}>
+              <Grid
+                item
+                px={1.875}
+                sx={{
+                  ...getLinkSx(),
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 <Typography variant="body2">800 591 9198</Typography>
+                <LocalPhoneIcon
+                  color="primary"
+                  fontSize="medium"
+                  sx={{ pl: 1.2, mb: 0.5, fontSize: '29.7px' }}
+                />
               </Grid>
             </>
+          )}
+
+          {isDownLg && (
+            <LocalPhoneIcon color="primary" sx={{ cursor: 'pointer' }} />
           )}
         </Grid>
       </Box>

@@ -8,9 +8,17 @@ import Logo from '@common/components/logo';
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
-    width: '50vw',
+    width: '50%',
     border: 'none',
     backgroundColor: theme.palette.background.dark,
+
+    [theme.breakpoints.down(900)]: {
+      width: '85%',
+    },
+
+    [theme.breakpoints.down(400)]: {
+      width: '90%',
+    },
   },
 }));
 

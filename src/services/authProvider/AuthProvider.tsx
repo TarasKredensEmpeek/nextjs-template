@@ -109,7 +109,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const logout = useCallback(async () => {
     try {
       setLoading(true);
-      await axiosInstance.post<undefined, AuthResponse>('/auth/logout');
+      await axiosInstance.post<undefined, AuthResponse>('/auth/logOut');
       setUser(null);
       setAuthorized(false);
       setLoading(false);

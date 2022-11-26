@@ -39,7 +39,7 @@ const requestInterceptor = async (
 ): Promise<AxiosRequestConfig> => {
   const accessT = cookiesStorage.get(CookieNames.accessToken);
 
-  const isRefreshRequest = config.url === apiUrls.refreshToken;
+  const isRefreshRequest = config.url === apiUrls.auth.refreshToken;
 
   if (!accessT || isRefreshRequest) {
     return config;

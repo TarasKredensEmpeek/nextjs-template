@@ -2,7 +2,9 @@ import React from 'react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Account: NextPage = () => <div>Account</div>;
+import AccountPage from '@pages/Account';
+
+const Account: NextPage = () => <AccountPage />;
 
 interface SSRProps {
   locale: string;

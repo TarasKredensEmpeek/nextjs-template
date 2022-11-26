@@ -37,6 +37,8 @@ const getLinkSx = (color = 'inherit') => ({
   cursor: 'pointer',
 });
 
+const staticHeaderOnPaths = [paths.account];
+
 const Header = () => {
   const theme = useTheme();
   const router = useRouter();
@@ -49,12 +51,17 @@ const Header = () => {
 
   const { logout, isAuthorized, user } = useAuthProvider();
 
+  const isStaticHeader = useMemo(
+    () => staticHeaderOnPaths.includes(router.pathname),
+    [router],
+  );
+
   const styles = useMemo(
     () =>
-      sideMenu || scrollParams.isScrollDown
+      !isStaticHeader && (sideMenu || scrollParams.isScrollDown)
         ? { transform: 'translateY(-100%)' }
         : {},
-    [sideMenu, scrollParams.isScrollDown],
+    [sideMenu, isStaticHeader, scrollParams.isScrollDown],
   );
 
   const background = useMemo(
@@ -134,9 +141,10 @@ const Header = () => {
           left: isMd ? 24 : 50,
           zIndex: 100002,
           position: 'fixed',
-          transform: scrollParams.isScrollDown
-            ? 'translateY(-100px)'
-            : undefined,
+          transform:
+            !isStaticHeader && scrollParams.isScrollDown
+              ? 'translateY(-100px)'
+              : undefined,
           transition: 'background .7s ease,transform .7s ease-out',
 
           ':hover + header': {
@@ -155,8 +163,8 @@ const Header = () => {
         zIndex={10000}
         display="flex"
         flexWrap="nowrap"
-        position="fixed"
         bgcolor={background}
+        position={isStaticHeader ? 'static' : 'fixed'}
         component="header"
         alignItems="center"
         justifyContent="space-between"

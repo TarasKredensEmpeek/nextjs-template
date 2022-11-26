@@ -1,9 +1,12 @@
 const apiUrls = {
-  login: '/auth/logIn',
-  refreshToken: '/auth/refresh',
-  registration: '/auth/register',
-  forgotPassword: '/auth/forgotPassword',
-  resetPassword: '/auth/resetPassword',
+  auth: {
+    login: '/auth/logIn',
+    logout: '/auth/logOut',
+    refreshToken: '/auth/refresh',
+    registration: '/auth/register',
+    forgotPassword: '/auth/forgotPassword',
+    resetPassword: '/auth/resetPassword',
+  },
 };
 
 export default apiUrls;

@@ -12,6 +12,7 @@ import { AxiosResponse } from 'axios';
 import cookiesStorage, {
   CookieNames,
 } from '@services/cookiesStorage/cookiesStorage';
+import apiUrls from '@common/constants/apiUrls';
 import axiosInstance from '@services/dataProvider';
 import { AuthLoginData, AuthRegisterData } from '@/types/auth';
 import { decodeJwt, DecodedTokenData } from '@common/utils/authHelpers';
@@ -78,7 +79,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       const response = await axiosInstance.post<AuthRegisterData, AuthResponse>(
-        '/auth/register',
+        apiUrls.auth.registration,
         data,
       );
       const userData = decodeJwt(response.data.accessToken);
@@ -94,7 +95,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       const response = await axiosInstance.post<AuthLoginData, AuthResponse>(
-        '/auth/logIn',
+        apiUrls.auth.login,
         data,
       );
       const userData = decodeJwt(response.data.accessToken);
@@ -109,7 +110,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const logout = useCallback(async () => {
     try {
       setLoading(true);
-      await axiosInstance.post<undefined, AuthResponse>('/auth/logOut');
+      await axiosInstance.post<undefined, AuthResponse>(apiUrls.auth.logout);
       setUser(null);
       setAuthorized(false);
       setLoading(false);

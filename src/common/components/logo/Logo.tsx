@@ -25,7 +25,7 @@ const Logo: FC<LogoProps> = ({
         width="100%"
         height="100%"
         alt="logo"
-        objectFit="contain"
+        style={{ objectFit: 'contain' }}
       />
     );
   }

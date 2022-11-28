@@ -39,7 +39,7 @@
         "jsx": "never"
       }
     ],
-    "no-console": [1, {"allow": ["warn", "error"]}],
+    "no-console": [2, {"allow": ["warn", "error"]}],
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
     "import/no-unresolved": "off",

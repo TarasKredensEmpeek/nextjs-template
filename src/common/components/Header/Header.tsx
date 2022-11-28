@@ -133,6 +133,12 @@ const Header = () => {
     };
   }, []);
 
+  const handleCall = useCallback(() => {
+    if (isBrowser) {
+      window.open('tel:800 591 9198', '_self');
+    }
+  }, []);
+
   useEffect(() => handleScroll(), [handleScroll]);
   useEffect(() => handleMouseMove(), [handleMouseMove]);
 
@@ -244,6 +250,7 @@ const Header = () => {
               <Grid
                 item
                 px={1.875}
+                onClick={handleCall}
                 sx={{
                   ...getLinkSx(),
                   display: 'flex',
@@ -261,7 +268,9 @@ const Header = () => {
           )}
 
           {isDownLg && (
-            <LocalPhoneIcon color="primary" sx={{ cursor: 'pointer' }} />
+            <div role="presentation" onClick={handleCall}>
+              <LocalPhoneIcon color="primary" sx={{ cursor: 'pointer' }} />
+            </div>
           )}
         </Grid>
       </Box>

@@ -24,7 +24,7 @@ const useStyles = makeStyles(
         position: 'absolute',
         borderRadius: '9px',
         transition: '.25s ease-in-out',
-        transitionDelay: '.7s',
+        transitionDelay: '.5s',
       },
     },
 

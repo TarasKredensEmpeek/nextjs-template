@@ -21,11 +21,9 @@ const Logo: FC<LogoProps> = ({
     return (
       <Image
         src={imageUrl}
-        layout="fixed"
-        width="100%"
         height="100%"
         alt="logo"
-        style={{ objectFit: 'contain' }}
+        style={{ objectFit: 'contain', width: '100%' }}
       />
     );
   }

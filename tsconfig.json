@@ -24,8 +24,6 @@
       "@services/*": ["services/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src",
-    "pages"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src", "pages"],
+  "exclude": ["node_modules", "pages/_document.tsx"]
 }

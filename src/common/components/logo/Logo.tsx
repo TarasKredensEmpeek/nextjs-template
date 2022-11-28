@@ -9,7 +9,6 @@ interface LogoProps {
   imageUrl?: string;
 }
 
-// todo decide to using css or svg
 const Logo: FC<LogoProps> = ({
   text = 'on location',
   imageUrl,

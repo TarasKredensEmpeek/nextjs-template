@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:eslint": "eslint -c ./.eslintrc.json ./src/**/*{ts,tsx} ./pages/**/*{ts,tsx}",
+    "lint:prettier": "prettier --check ./src/**/*{ts,tsx} ./pages/**/*{ts,tsx}",
+    "lint:tsc": "tsc --project tsconfig.json"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",

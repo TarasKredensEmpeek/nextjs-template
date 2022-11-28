@@ -10,6 +10,7 @@ const Account: NextPage = () => <AccountPage />;
 export const getServerSideProps = async ({ locale }: ServerSideProps) => {
   const props = { ...(await serverSideTranslations(locale)) };
 
+  console.log('e');
   return { props };
 };
 

@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:eslint": "eslint -c ./.eslintrc.json ./src/**/*{ts,tsx} ./pages/**/*{ts,tsx}",
     "lint:prettier": "prettier --check ./src/**/*{ts,tsx} ./pages/**/*{ts,tsx}",
-    "lint:tsc": "npx tsc -p tsconfig.json --noEmit"
+    "lint:tsc": "npx tsc -p ./tsconfig.json"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",

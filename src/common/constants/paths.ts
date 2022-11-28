@@ -18,6 +18,9 @@ const paths = {
   calendar: '/sports-schedule',
   news: '/news',
   careers: '/careers',
+
+  reservation: '/r',
+  event: '/e',
 };
 
 export default paths;

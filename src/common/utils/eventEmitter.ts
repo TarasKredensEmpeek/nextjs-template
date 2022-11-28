@@ -6,13 +6,11 @@ import { EventNames, ModalNames } from '@common/constants/enums';
 export const openModal = (
   name: ModalNames,
   props?: unknown,
-  onClose?: () => void,
   maxWidth: DialogProps['maxWidth'] = 'md',
 ) =>
   eventEmitter.emit(EventNames.openModal, {
     name,
     props,
-    onClose,
     maxWidth,
   });
 

@@ -38,6 +38,8 @@ const getLinkSx = (color = 'inherit') => ({
   cursor: 'pointer',
 });
 
+const hiddenHeaderStyle = { transform: 'translateY(-100%)' };
+
 const staticHeaderOnPaths = [paths.account];
 
 const Header = () => {
@@ -60,7 +62,7 @@ const Header = () => {
   const styles = useMemo(
     () =>
       !isStaticHeader && (sideMenu || scrollParams.isScrollDown)
-        ? { transform: 'translateY(-100%)' }
+        ? hiddenHeaderStyle
         : {},
     [sideMenu, isStaticHeader, scrollParams.isScrollDown],
   );
@@ -78,7 +80,7 @@ const Header = () => {
       return;
     }
 
-    openModal(ModalNames.auth, { view: AuthViews.login }, undefined, 'sm');
+    openModal(ModalNames.auth, { view: AuthViews.login }, 'sm');
   };
 
   const handleCreateAccount = () => {

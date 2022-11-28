@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import clsx from 'clsx';
 import Grid from '@mui/material/Grid';
 import makeStyles from '@mui/styles/makeStyles';
@@ -13,6 +13,7 @@ const useStyles = makeStyles(
       transform: 'rotate(0deg)',
       transition: '.5s ease-in-out',
       zIndex: 100001,
+      padding: '15px 0px',
 
       '& div': {
         display: 'block',
@@ -23,6 +24,7 @@ const useStyles = makeStyles(
         position: 'absolute',
         borderRadius: '9px',
         transition: '.25s ease-in-out',
+        transitionDelay: '.7s',
       },
     },
 
@@ -45,13 +47,12 @@ const useStyles = makeStyles(
   { name: 'MuiBurgerIcon' },
 );
 
-const BurgerIcon = ({
-  open,
-  onClick,
-}: {
+interface BurgerIconProps {
   open?: boolean;
   onClick: () => void;
-}) => {
+}
+
+const BurgerIcon: FC<BurgerIconProps> = ({ open, onClick }) => {
   const styles = useStyles();
   const color = open ? 'background.default' : 'background.dark';
 

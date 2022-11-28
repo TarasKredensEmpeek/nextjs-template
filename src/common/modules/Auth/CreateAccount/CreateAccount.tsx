@@ -27,7 +27,7 @@ const CreateAccount = () => {
   const onSubmit = () => null;
 
   const openLogin = () =>
-    openModal(ModalNames.auth, { view: AuthViews.login }, undefined, 'sm');
+    openModal(ModalNames.auth, { view: AuthViews.login }, 'sm');
   const openCreateAgencyAccount = () =>
     openModal(ModalNames.auth, { view: AuthViews.createAgencyAccount });
 

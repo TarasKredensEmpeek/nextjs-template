@@ -46,13 +46,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const SideMenu = ({
-  open,
-  onClose,
-}: {
+interface SideMenuProps {
   open: boolean;
   onClose: () => void;
-}) => {
+}
+
+const SideMenu: FC<SideMenuProps> = ({ open, onClose }) => {
   const classes = useStyles();
 
   return (

@@ -6,7 +6,7 @@ import {
   getNameValidator,
 } from '@common/utils/validationSchema';
 
-export const validationSchemas = Yup.object().shape({
+const validationSchemas = Yup.object().shape({
   email: emailSchema,
   confirmEmail: Yup.string()
     .email('fieldValidationMessages.emailInvalid')

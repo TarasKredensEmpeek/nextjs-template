@@ -11,9 +11,9 @@ const Account = () => {
   const { isAuthorized } = useAuthProvider('isAuthorized');
 
   const redirectIfNotAuthorized = useCallback(async () => {
-    if (!isAuthorized) {
+    if (!isAuthorized && typeof isAuthorized === 'boolean') {
       await router.replace(paths.home);
-      openModal(ModalNames.auth, { view: AuthViews.login }, undefined, 'sm');
+      openModal(ModalNames.auth, { view: AuthViews.login }, 'sm');
     }
   }, [isAuthorized, router]);
 

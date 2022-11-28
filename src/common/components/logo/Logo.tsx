@@ -20,8 +20,8 @@ const Logo: FC<LogoProps> = ({
     return (
       <Image
         src={imageUrl}
-        height="100%"
         alt="logo"
+        height="100%"
         style={{ objectFit: 'contain', width: '100%' }}
       />
     );

@@ -20,6 +20,7 @@
       "@/*": ["*"],
       "@theme": ["theme"],
       "@pages/*": ["pages/*"],
+      "@store/*": ["store/*"],
       "@common/*": ["common/*"],
       "@services/*": ["services/*"]
     }

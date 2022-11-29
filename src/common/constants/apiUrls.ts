@@ -7,6 +7,10 @@ const apiUrls = {
     forgotPassword: '/auth/forgotPassword',
     resetPassword: '/auth/resetPassword',
   },
+
+  account: {
+    info: '/myAccountService/getUserInformation',
+  },
 };
 
 export default apiUrls;

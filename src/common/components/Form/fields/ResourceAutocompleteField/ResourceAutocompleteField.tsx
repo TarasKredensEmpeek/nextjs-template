@@ -18,6 +18,7 @@ type OptionKey = string;
 interface IResourceSelectProps {
   name: string;
   control: Control;
+  onChange?: (e: SyntheticEvent, data: Option | null) => void;
   resource?: string;
   required?: boolean;
   disabled?: boolean;
@@ -35,6 +36,7 @@ interface Option {
 const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
   name,
   control,
+  onChange,
   resource,
   disabled = false,
   required,
@@ -90,6 +92,10 @@ const ResourceAutocompleteField: FC<IResourceSelectProps> = ({
 
   const handleChange = (e: SyntheticEvent, data: Option | null) => {
     field.onChange(data?.[optionValueName] || data);
+
+    if (onChange) {
+      onChange(e, data);
+    }
   };
 
   const computedValue = useMemo(() => {

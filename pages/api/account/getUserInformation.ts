@@ -9,8 +9,8 @@ const getUserInformation = async (
 ) => {
   try {
     const response = await axiosInstance.get(
-      '/muAccountService/getUserInformation',
-      { params: req.query },
+      '/myAccountService/getUserInformation',
+      { params: req.query, req, res },
     );
 
     res.status(response.status).json(response.data);

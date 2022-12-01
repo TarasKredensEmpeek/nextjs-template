@@ -5,7 +5,6 @@ export enum CookieNames {
   clientId = 'clientId',
   accessToken = 'accessToken',
   refreshToken = 'refreshToken',
-  serverTimeDiff = 'serverTimeDiff',
 }
 
 const cookiesStorage = {

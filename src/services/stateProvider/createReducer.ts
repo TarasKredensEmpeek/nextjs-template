@@ -61,7 +61,9 @@ const createReducer = <
       return state;
     }
 
-    const reducerCase = caseReducers[actionType] as ReduceFunc<State>;
+    const reducerCase = caseReducers[
+      actionType
+    ] as unknown as ReduceFunc<State>;
 
     return reducerCase(state, action) as State;
   };

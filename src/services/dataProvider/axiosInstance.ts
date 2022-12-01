@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import axios, { AxiosRequestConfig } from 'axios';
 
 import requestInterceptor from './requestInterceptor';
-import { onFulfilled, onRejected } from './responseInterceptor';
+import { onFulfilled } from './responseInterceptor';
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -19,6 +19,6 @@ const clientAxiosInstance = axios.create({
 
 clientAxiosInstance.interceptors.request.use(requestInterceptor);
 
-clientAxiosInstance.interceptors.response.use(onFulfilled, onRejected);
+clientAxiosInstance.interceptors.response.use(onFulfilled);
 
 export default clientAxiosInstance;

@@ -9,19 +9,15 @@ import refreshToken from './refreshToken';
 
 let refreshPromise: Promise<undefined> | null = null;
 
-export const getServerTimeDiff = (opts: OptionsType) =>
-  Number(cookiesStorage.get(CookieNames.serverTimeDiff, opts)) ?? 0;
-
-export const isTokenAlive = (token: string, opts: OptionsType) => {
+export const isTokenAlive = (token: string) => {
   if (!token) return false;
 
   try {
     const decodedToken = decodeJwt(token);
     const tokenExpTime = decodedToken.exp;
-    const serverTimeDiff = getServerTimeDiff(opts);
-    const currentTime = new Date().getTime() / 1000;
+    const currentTime = Date.now() / 1000;
 
-    return tokenExpTime - currentTime - serverTimeDiff > 60;
+    return tokenExpTime - currentTime > 60;
   } catch (e) {
     return false;
   }
@@ -50,13 +46,13 @@ const requestInterceptor = async (
     return config;
   }
 
-  if (isTokenAlive(accessT as string, opts)) {
+  if (isTokenAlive(accessT as string)) {
     return getConfigWithToken(config, opts);
   }
 
   const refreshT = cookiesStorage.get(CookieNames.refreshToken, opts);
 
-  if (refreshT && !isTokenAlive(refreshT as string, opts)) {
+  if (refreshT && !isTokenAlive(refreshT as string)) {
     removeTokens(opts);
 
     return config;

@@ -52,16 +52,6 @@ export const setTokens = (
 
   if (refreshToken) {
     cookiesStorage.set(CookieNames.refreshToken, refreshToken, options);
-
-    const decodedToken = decodeJwt(refreshToken);
-    const tokenIatTime = decodedToken.iat;
-    const currentTime = new Date().getTime() / 1000;
-
-    cookiesStorage.set(
-      CookieNames.serverTimeDiff,
-      `${tokenIatTime - currentTime}`,
-      options,
-    );
   }
 };
 
@@ -69,5 +59,4 @@ export const removeTokens = (options?: OptionsType) => {
   cookiesStorage.remove(CookieNames.clientId, options);
   cookiesStorage.remove(CookieNames.accessToken, options);
   cookiesStorage.remove(CookieNames.refreshToken, options);
-  cookiesStorage.remove(CookieNames.serverTimeDiff, options);
 };

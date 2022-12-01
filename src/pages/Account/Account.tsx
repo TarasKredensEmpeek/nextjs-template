@@ -1,13 +1,22 @@
 import React, { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Button from '@mui/material/Button';
 
 import paths from '@common/constants/paths';
 import { openModal } from '@common/utils/eventEmitter';
 import useAuthProvider from '@common/hooks/useAuthProvider';
 import { AuthViews, ModalNames } from '@common/constants/enums';
+import axiosInstance from '@services/dataProvider/axiosInstance';
+import creteAsyncAction from '@services/stateProvider/creteAsyncAction';
+import { useDispatch } from '@common/hooks/useStore';
+
+const getAccountT = creteAsyncAction('account.getAccount', () =>
+  axiosInstance.get('/account/getUserInformation'),
+);
 
 const Account = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { isAuthorized } = useAuthProvider('isAuthorized');
 
   const redirectIfNotAuthorized = useCallback(async () => {
@@ -17,11 +26,19 @@ const Account = () => {
     }
   }, [isAuthorized, router]);
 
+  const getAccount = useCallback(async () => {
+    await dispatch(getAccountT());
+  }, [dispatch]);
+
   useEffect(() => {
     redirectIfNotAuthorized();
   }, [redirectIfNotAuthorized]);
 
-  return <div>Account</div>;
+  return (
+    <div>
+      <Button onClick={getAccount}>getAccount</Button>
+    </div>
+  );
 };
 
 export default Account;

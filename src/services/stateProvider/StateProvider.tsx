@@ -5,13 +5,16 @@ import React, {
   FC,
   Dispatch,
   ReactNode,
+  useCallback,
 } from 'react';
 
 import { AccountState } from '@store/account';
 
-export type Action<P = unknown> = {
+export type Action<P = unknown, E = unknown> = {
   type: string;
   payload?: P;
+  asyncMiddleware?: (dispatch: Dispatch<Action>) => Promise<void>;
+  error?: E;
 };
 
 export type ReduceFunc<State, Payload = unknown> = (
@@ -44,7 +47,18 @@ const StateProvider: FC<StateProviderProps> = ({
   children,
   initialState,
 }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, stateDispatch] = useReducer(reducer, initialState);
+
+  const dispatch = useCallback(
+    async (action: Action) => {
+      stateDispatch(action);
+
+      if (action.asyncMiddleware) {
+        action.asyncMiddleware(dispatch);
+      }
+    },
+    [stateDispatch],
+  );
 
   const value = useMemo(
     () => ({
